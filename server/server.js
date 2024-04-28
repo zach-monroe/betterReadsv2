@@ -20,8 +20,27 @@ const db = new pg.Client({
 
 db.connect();
 
-app.get("/api", (req, res) => {
-  res.json({ tests: ["test1", "test2", "test3"] });
+app.get("/api", async (req, res) => {
+  let result;
+  //allows users to sort by the query params.
+  if (req.query.q) {
+    if (req.query.q == "rating") {
+      result = await db.query(
+        "SELECT * FROM read INNER JOIN isbn ON read.id = isbn.book_id ORDER BY rating DESC",
+      );
+    } else if (req.query.q == "author") {
+      result = await db.query(
+        "SELECT * FROM read INNER JOIN isbn ON read.id = isbn.book_id ORDER BY author_lname",
+      );
+    }
+  } else {
+    result = await db.query(
+      "SELECT * FROM read INNER JOIN isbn ON read.id = isbn.book_id",
+    );
+  }
+
+  const books = result.rows;
+  res.json({ books: books });
 });
 
 app.listen(port, () => {
