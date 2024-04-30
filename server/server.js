@@ -9,6 +9,7 @@ const port = 5000;
 
 app.use(express.static("../public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 const db = new pg.Client({
   host: "localhost",

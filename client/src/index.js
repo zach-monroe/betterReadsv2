@@ -10,6 +10,15 @@ root.render(
   </React.StrictMode>,
 );
 
+//TODOS GO HERE;
+//
+// App.jsx
+//TODO: make navbar own component
+//TODO: style navbar
+// New.jsx:
+//
+// TODO: Add Edit functionality as well.
+//
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
