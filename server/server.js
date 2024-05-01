@@ -44,6 +44,49 @@ app.get("/api", async (req, res) => {
   res.json({ books: books });
 });
 
+app.post("/api/add", async (req, res) => {
+  console.log(req.body);
+  //For adding the users input into the database
+  const title = req.body.title;
+  const notes = req.body.notes;
+  const author_fname = req.body.author_fname;
+  const author_lname = req.body.author_lname;
+  const rating = req.body.rating;
+  const isbn = req.body.isbn;
+
+  //API request for getting the ISBN
+  //  const urlTitle = title.toLowerCase().replace(/ /g, "+");
+  //  const urlAuthor = author_lname.toLowerCase();
+  //  const isbnGet = await axios.get(
+  //    "https://openlibrary.org/search.json?title=" +
+  //      urlTitle +
+  //      "&author=" +
+  //      urlAuthor,
+  //  );
+
+  //validates if the isbn exists - if it does not it redirects to an error message.
+  if (isbn) {
+    //posting the information to the database.  It is placed here so users can't add their input unless it gets a valid isbn number.
+    try {
+      const readResult = await db.query(
+        "INSERT INTO read (author_lname, title, notes, rating, author_fname) VALUES ($1, $2, $3, $4, $5) RETURNING (id)",
+        [author_lname, title, notes, rating, author_fname],
+      );
+
+      //gets the id from the post to "read" table and connect with the "isbn" table
+      const id = readResult.rows[0].id;
+
+      //posts the isbn number and the book id to the "isbn" table
+      const isbnPost = await db.query(
+        "INSERT INTO isbn (book_id, book_isbn) VALUES ($1, $2)",
+        [id, isbn],
+      );
+    } catch (err) {
+      console.log(err.body);
+    }
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is live at port ${port}`);
 });

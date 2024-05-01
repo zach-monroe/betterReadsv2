@@ -11,12 +11,17 @@ root.render(
 );
 
 //TODOS GO HERE;
+//Book.jsx:
+//TODO: Add functionality for editing and deleting entries
+//
 //
 // App.jsx
 //TODO: make navbar own component
+//
+//
 //TODO: style navbar
 // New.jsx:
-//
+//TODO: Add redirect functionality after successful submit
 // TODO: Add Edit functionality as well.
 //
 // If you want to start measuring performance in your app, pass a function
