@@ -9,7 +9,6 @@ function New() {
     notes: "",
     rating: 0,
   });
-
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
@@ -18,27 +17,6 @@ function New() {
       ...prevValue,
       [name]: value,
     }));
-  }
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    try {
-      // Fetch the ISBN for the book
-      const isbn = await fetchISBN(book.title, book.author_lname);
-      console.log("ISBN:", isbn);
-
-      // If ISBN is found, continue with adding the book to the database
-      if (isbn) {
-        // Call the function to add the book to the database
-        await addBookToDatabase(book, isbn);
-        console.log("Book added successfully");
-      } else {
-        console.error("ISBN not found");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
   }
 
   async function fetchISBN(title, author_lname) {
@@ -79,6 +57,26 @@ function New() {
       }
     } catch (error) {
       throw new Error("Failed to add book to database: " + error.message);
+    }
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    try {
+      // Fetch the ISBN for the book
+      const isbn = await fetchISBN(book.title, book.author_lname);
+      console.log("ISBN:", isbn);
+
+      // If ISBN is found, continue with adding the book to the database
+      if (isbn) {
+        // Call the function to add the book to the database
+        await addBookToDatabase(book, isbn);
+        console.log("Book added successfully");
+      } else {
+        console.error("ISBN not found");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   }
 
