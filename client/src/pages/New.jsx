@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function New() {
-  // TODO: Users can edit isbn?
   const [book, setBook] = useState({
     title: "",
     author_fname: "",

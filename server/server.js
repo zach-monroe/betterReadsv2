@@ -87,6 +87,21 @@ app.post("/api/add", async (req, res) => {
   }
 });
 
+app.post("/api/delete", async (req, res) => {
+  console.log(req.body);
+  const id = req.body.id;
+
+  try {
+    await db.query(
+      "DELETE FROM read USING isbn WHERE id = isbn.book_id AND id = ($1)",
+      [id],
+    );
+  } catch (err) {
+    console.log(err);
+  }
+  res.redirect("/");
+});
+
 app.listen(port, () => {
   console.log(`Server is live at port ${port}`);
 });
