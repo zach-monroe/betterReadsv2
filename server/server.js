@@ -81,6 +81,7 @@ app.post("/api/add", async (req, res) => {
         "INSERT INTO isbn (book_id, book_isbn) VALUES ($1, $2)",
         [id, isbn],
       );
+      res.status(200).send("Book Added Successfully");
     } catch (err) {
       console.log(err.body);
     }

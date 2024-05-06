@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function New() {
   const [book, setBook] = useState({
@@ -8,6 +9,15 @@ function New() {
     notes: "",
     rating: 0,
   });
+  const [isSubmitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSubmitted) {
+      navigate("/");
+    }
+  }, [isSubmitted, navigate]);
+
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
@@ -42,7 +52,6 @@ function New() {
 
   async function addBookToDatabase(bookData, isbn) {
     try {
-      // Call your API endpoint to add the book to the database
       const response = await fetch("/api/add", {
         method: "POST",
         headers: {
@@ -61,6 +70,7 @@ function New() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     try {
       // Fetch the ISBN for the book
       const isbn = await fetchISBN(book.title, book.author_lname);
@@ -71,6 +81,7 @@ function New() {
         // Call the function to add the book to the database
         await addBookToDatabase(book, isbn);
         console.log("Book added successfully");
+        setSubmitted(true);
       } else {
         console.error("ISBN not found");
       }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import genericBookImage from "../../assets/generic-book.jpg";
 import axios from "axios";
+import "../../output.css";
 
 function BookCover(props) {
   const [imgSrc, setImgSrc] = useState(null);
@@ -32,23 +33,22 @@ function BookCover(props) {
 
   return (
     <>
-      {imgSrc !== genericBookImage ? (
-        <img src={imgSrc} alt={props.title} />
-      ) : (
-        <div
-          style={{
-            backgroundImage: `url(${genericBookImage})`,
-            width: "180px",
-            height: "300px",
-            backgroundSize: "cover",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {props.title}
-        </div>
-      )}
+      <div
+        className="rounded hover:shadow-xl hover:shadow-purple-400"
+        style={{
+          backgroundImage: `url(${imgSrc})`,
+          width: "180px",
+          height: "300px",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {imgSrc !== genericBookImage ? null : props.title}
+      </div>
     </>
   );
 }

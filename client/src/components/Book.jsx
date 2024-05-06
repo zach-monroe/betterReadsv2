@@ -2,6 +2,7 @@ import React from "react";
 import BookCover from "./Book/BookCover";
 import DeleteButton from "./Book/DeleteButton";
 import EditButton from "./Book/EditButton";
+import "../output.css";
 
 function Book(props) {
   return (

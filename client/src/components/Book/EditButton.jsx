@@ -1,18 +1,16 @@
 import React from "react";
 
-function test(x) {
-  console.log(x);
-}
-
 function EditButton(props) {
   return (
-    <button
-      onClick={() => {
-        test(props);
-      }}
-    >
-      Edit
-    </button>
+    <div>
+      <button
+        onClick={() => {
+          console.log(props);
+        }}
+      >
+        Edit
+      </button>
+    </div>
   );
 }
 

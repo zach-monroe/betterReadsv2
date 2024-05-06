@@ -4,7 +4,14 @@ function DeleteButton(props) {
   return (
     <form action="/api/delete" method="POST">
       <input type="hidden" name="id" value={props.id} />
-      <button type="submit">Delete</button>
+      <button
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+        type="submit"
+      >
+        Delete
+      </button>
     </form>
   );
 }
