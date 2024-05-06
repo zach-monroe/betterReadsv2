@@ -22,7 +22,6 @@ root.render(
 //
 //
 // App.jsx
-//TODO: make navbar own component
 //TODO: style navbar
 //
 // New.jsx:
