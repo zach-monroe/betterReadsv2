@@ -16,7 +16,7 @@ function Book(props) {
       <p>{props.notes}</p>
       <p>{props.rating}</p>
       <DeleteButton id={props.id} />
-      <EditButton edit={props} />
+      <EditButton id={props.id} />
     </div>
   );
 }

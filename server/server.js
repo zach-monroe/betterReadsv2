@@ -1,7 +1,6 @@
 import express from "express";
 import pg from "pg";
 import bodyParser from "body-parser";
-import axios from "axios";
 import password from "./config.js";
 
 const app = express();
@@ -54,16 +53,6 @@ app.post("/api/add", async (req, res) => {
   const rating = req.body.rating;
   const isbn = req.body.isbn;
 
-  //API request for getting the ISBN
-  //  const urlTitle = title.toLowerCase().replace(/ /g, "+");
-  //  const urlAuthor = author_lname.toLowerCase();
-  //  const isbnGet = await axios.get(
-  //    "https://openlibrary.org/search.json?title=" +
-  //      urlTitle +
-  //      "&author=" +
-  //      urlAuthor,
-  //  );
-
   //validates if the isbn exists - if it does not it redirects to an error message.
   if (isbn) {
     //posting the information to the database.  It is placed here so users can't add their input unless it gets a valid isbn number.
@@ -86,6 +75,18 @@ app.post("/api/add", async (req, res) => {
       console.log(err.body);
     }
   }
+});
+
+app.get("/api/edit/:id", async (req, res) => {
+  console.log(req.params);
+  const id = req.params.id;
+  const result = await db.query(
+    "SELECT * FROM read INNER JOIN isbn ON read.id = isbn.book_id WHERE read.id = ($1)",
+    [id],
+  );
+  const book = result.rows;
+  console.log(book);
+  res.json({ book: book });
 });
 
 app.post("/api/delete", async (req, res) => {

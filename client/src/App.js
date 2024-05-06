@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import New from "./pages/New";
+import Edit from "./pages/Edit";
 import NavBar from "./components/NavBar";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="*" exact element={<Home />} />
         <Route path="/New" element={<New />} />
+        <Route path="/edit/:id" element={<Edit />} />
       </Routes>
     </div>
   );
