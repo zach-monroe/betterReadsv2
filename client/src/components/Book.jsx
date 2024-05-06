@@ -5,7 +5,7 @@ import EditButton from "./Book/EditButton";
 
 function Book(props) {
   return (
-    <div id={props.id}>
+    <div id={props.id} className="container mx-auto ml-4">
       <h1>{props.title}</h1>
       <BookCover isbn={props.isbn} title={props.title} />
 
