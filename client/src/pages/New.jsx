@@ -82,6 +82,7 @@ function New() {
         await addBookToDatabase(book, isbn);
         console.log("Book added successfully");
         setSubmitted(true);
+        console.log(isSubmitted);
       } else {
         console.error("ISBN not found");
       }

@@ -89,6 +89,26 @@ app.get("/api/edit/:id", async (req, res) => {
   res.json({ book: book });
 });
 
+app.post("/api/update", async (req, res) => {
+  const title = req.body.title;
+  const notes = req.body.notes;
+  const author_fname = req.body.author_fname;
+  const author_lname = req.body.author_lname;
+  const rating = req.body.rating;
+  const id = req.body.id;
+
+  try {
+    const readResult = await db.query(
+      "UPDATE read SET author_lname = $1, title = $2, notes = $3, rating = $4, author_fname = $5 WHERE id = $6",
+      [author_lname, title, notes, rating, author_fname, id],
+    );
+  } catch (err) {
+    console.log(err.body);
+  }
+
+  res.status(200).send("Update Posted!");
+});
+
 app.post("/api/delete", async (req, res) => {
   console.log(req.body);
   const id = req.body.id;
