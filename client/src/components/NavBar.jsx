@@ -11,6 +11,9 @@ const NavBar = () => {
       <li className="text-center">
         <Link to="/new">New</Link>
       </li>
+      <li className="text-center">
+        <Link to="/login">Log-In/Sign-Up</Link>
+      </li>
     </nav>
   );
 };

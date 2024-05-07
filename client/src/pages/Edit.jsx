@@ -3,9 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import Input, { TextArea } from "../components/Inputs";
 
 //follows very similarly to New.jsx. Could have made both functions (add, update) fit into one form, but this felt like a cleaner approach.
-//specifying any areas that differ from New.jsx for clarity
+//
+//I will be specifying any areas that differ from New.jsx for clarity
 function Edit() {
-  const { id } = useParams();
+  const { id } = useParams(); //used for finding the database entry by ID is passed as a query param.
   const [backendData, setData] = useState({});
 
   //had to change book to bookData for destructuring backendData to make sense.
@@ -31,7 +32,7 @@ function Edit() {
 
   const { book } = backendData;
 
-  //setting bookData with the destructred backendData variable "book"
+  //setting bookData with the destructred backendData variable "book" (prefilling the form values with previously submitted user data)
   useEffect(() => {
     if (book) {
       setBook(...book);

@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import NavBar from "./components/NavBar";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="*" exact element={<Home />} />
         <Route path="/New" element={<New />} />
         <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );

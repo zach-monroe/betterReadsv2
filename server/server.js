@@ -2,6 +2,7 @@ import express from "express";
 import pg from "pg";
 import bodyParser from "body-parser";
 import password from "./config.js";
+import bcrypt from "bcrypt";
 
 const app = express();
 const port = 5000;
@@ -123,6 +124,17 @@ app.post("/api/delete", async (req, res) => {
   }
   res.redirect("/");
 });
+
+app.post("/api/login", async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  console.log(email, password);
+
+  res.sendStatus(200);
+});
+
+app.post("/api/signup", async (req, res) => {});
 
 app.listen(port, () => {
   console.log(`Server is live at port ${port}`);
