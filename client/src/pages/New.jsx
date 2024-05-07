@@ -92,43 +92,45 @@ function New() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        onChange={handleChange}
-        name="title"
-        type="text"
-        placeholder="title"
-        value={book.title}
-      />
-      <input
-        onChange={handleChange}
-        name="author_fname"
-        type="text"
-        placeholder="Author First Name"
-        value={book.author_fname}
-      />
-      <input
-        onChange={handleChange}
-        name="author_lname"
-        type="text"
-        placeholder="Author Last Name"
-        value={book.author_lname}
-      />
-      <textarea
-        onChange={handleChange}
-        name="notes"
-        placeholder="Your Notes Here!"
-        value={book.notes}
-      ></textarea>
-      <input
-        onChange={handleChange}
-        name="rating"
-        type="number"
-        placeholder="Your rating!"
-        value={book.rating}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div className="container min-h-screen pt-20">
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={handleChange}
+          name="title"
+          type="text"
+          placeholder="title"
+          value={book.title}
+        />
+        <input
+          onChange={handleChange}
+          name="author_fname"
+          type="text"
+          placeholder="Author First Name"
+          value={book.author_fname}
+        />
+        <input
+          onChange={handleChange}
+          name="author_lname"
+          type="text"
+          placeholder="Author Last Name"
+          value={book.author_lname}
+        />
+        <textarea
+          onChange={handleChange}
+          name="notes"
+          placeholder="Your Notes Here!"
+          value={book.notes}
+        ></textarea>
+        <input
+          onChange={handleChange}
+          name="rating"
+          type="number"
+          placeholder="Your rating!"
+          value={book.rating}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 }
 
