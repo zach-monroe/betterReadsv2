@@ -19,7 +19,6 @@ root.render(
 //TODO: Style and layout
 //
 //Book.jsx:
-//TODO: Add functionality for editing
 //
 //TODO: Style book components
 //
@@ -28,8 +27,6 @@ root.render(
 //TODO: style navbar
 //
 // New.jsx:
-//TODO: Add redirect functionality after successful submit
-// TODO: Add Edit functionality as well.
 //
 //Login.jsx
 //TODO: set up OAuth with passport

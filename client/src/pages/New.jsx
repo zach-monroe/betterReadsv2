@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Input, { TextArea } from "../components/Inputs";
 
 function New() {
   const [book, setBook] = useState({
@@ -9,25 +10,9 @@ function New() {
     notes: "",
     rating: 0,
   });
-  const [isSubmitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isSubmitted) {
-      navigate("/");
-    }
-  }, [isSubmitted, navigate]);
-
-  function handleChange(event) {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    setBook((prevValue) => ({
-      ...prevValue,
-      [name]: value,
-    }));
-  }
-
+  //Function for getting the ISBN number from an API
   async function fetchISBN(title, author_lname) {
     try {
       // API request for getting the ISBN
@@ -50,8 +35,10 @@ function New() {
     }
   }
 
+  // function that handles adding the book to the database by sending an API post request.
   async function addBookToDatabase(bookData, isbn) {
     try {
+      //trying the post request to the api endpoint.
       const response = await fetch("/api/add", {
         method: "POST",
         headers: {
@@ -68,6 +55,7 @@ function New() {
     }
   }
 
+  //function that combines fetchISBN and addBookToDatabase on form submission
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -81,8 +69,8 @@ function New() {
         // Call the function to add the book to the database
         await addBookToDatabase(book, isbn);
         console.log("Book added successfully");
-        setSubmitted(true);
-        console.log(isSubmitted);
+        // once form is submitted correctly redirect the user to the homescreen.
+        navigate("/");
       } else {
         console.error("ISBN not found");
       }
@@ -94,35 +82,35 @@ function New() {
   return (
     <div className="container min-h-screen pt-20">
       <form onSubmit={handleSubmit}>
-        <input
-          onChange={handleChange}
+        <Input
+          setBook={setBook}
           name="title"
           type="text"
           placeholder="title"
           value={book.title}
         />
-        <input
-          onChange={handleChange}
+        <Input
+          setBook={setBook}
           name="author_fname"
           type="text"
           placeholder="Author First Name"
           value={book.author_fname}
         />
-        <input
-          onChange={handleChange}
+        <Input
+          setBook={setBook}
           name="author_lname"
           type="text"
           placeholder="Author Last Name"
           value={book.author_lname}
         />
-        <textarea
-          onChange={handleChange}
+        <TextArea
+          setBook={setBook}
           name="notes"
           placeholder="Your Notes Here!"
           value={book.notes}
-        ></textarea>
-        <input
-          onChange={handleChange}
+        />
+        <Input
+          setBook={setBook}
           name="rating"
           type="number"
           placeholder="Your rating!"
