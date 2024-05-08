@@ -1,15 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router } from "react-router-dom";
 import "./output.css";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <App />
   </React.StrictMode>,
 );
 
@@ -29,5 +26,7 @@ root.render(
 // New.jsx:
 //
 //Login.jsx
-//TODO: set up OAuth with passport
+//TODO: set up OAuth with passport (?)
+//TODO: set up cookies and authentication using React Auth Kit and jwt tokens(?)
+
 //

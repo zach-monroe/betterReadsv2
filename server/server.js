@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 
 const app = express();
 const port = 5000;
+const saltRounds = 10;
 
 app.use(express.static("../public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -122,26 +123,44 @@ app.post("/api/delete", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  res.redirect("/");
 });
 
 app.post("/api/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+  try {
+    const result = await db.query("SELECT * from users WHERE email = $1", [
+      email,
+    ]);
+    if (result.rows.length > 0) {
+      console.log(result.rows);
+      const user = result.rows[0];
+      const storedHash = user.hash;
 
-  //hash password and salt it here
-
-  //  try {
-  //    await db.query(
-  //      "INSERT INTO users (email, hash) VALUES ($1, $2)", [email, hash]
-  //    )
-  //  }
-
-  console.log(email, password);
-
-  //send back cookie/authentication data.
-
-  res.sendStatus(200);
+      bcrypt.compare(password, storedHash, (err, result) => {
+        if (err) {
+          console.log("error logging in:", err);
+        } else {
+          if (result) {
+            console.log("signed in");
+            //sendback cookie/authentication data
+            res.sendStatus(200);
+            return;
+          } else {
+            console.log("wrong password");
+            res.status(401).send("Password incorrect!");
+            return;
+          }
+        }
+      });
+    } else {
+      console.log("not a user");
+      res.status(404).send("User Not Found!");
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.post("/api/register", async (req, res) => {
@@ -151,10 +170,37 @@ app.post("/api/register", async (req, res) => {
   const user_fname = req.body.user.user_fname;
   const user_lname = req.body.user.user_lname;
 
-  console.log(
-    `New user added ${user_fname} ${user_lname}. Their email is ${email} and password is ${password}`,
-  );
-  res.sendStatus(200);
+  try {
+    const testEmail = await db.query("SELECT * from users WHERE email = $1", [
+      email,
+    ]);
+
+    if (testEmail.rows.length > 0) {
+      console.log("User already exists");
+      res.status(401).send("Email already exists, try logging in.");
+      return;
+    } else {
+      bcrypt.hash(password, saltRounds, async (err, hash) => {
+        if (err) {
+          console.log("Error making hash:", err);
+        } else {
+          const result = await db.query(
+            "INSERT INTO users (email, hash, user_fname, user_lname) VALUES ($1, $2, $3, $4)",
+            [email, hash, user_fname, user_lname],
+          );
+          console.log(hash);
+          res.json({ result: hash });
+
+          console.log(
+            `New user added ${user_fname} ${user_lname}. Their email is ${email} and password is ${password}`,
+          );
+          return;
+        }
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.post("/api/signup", async (req, res) => {});

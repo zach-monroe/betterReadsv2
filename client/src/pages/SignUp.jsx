@@ -10,7 +10,9 @@ function SignUp() {
     user_fname: "",
     user_lname: "",
   });
-  const [error, setError] = useState(false);
+
+  const [error, setError] = useState(0);
+
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -23,6 +25,7 @@ function SignUp() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
+
     if (data.password === data.confirm) {
       const response = await fetch("/api/register", {
         method: "POST",
@@ -31,12 +34,19 @@ function SignUp() {
         },
         body: JSON.stringify({ user: data }),
       });
-      console.log(response);
+
       if (response.ok) {
+        //returns hash temporarily until cookie and headers are correctly configured
+        const responseData = await response.json();
+        console.log(responseData);
         navigate("/");
+      } else {
+        //handles if password was not handled correctly
+        setError(2);
       }
     } else {
-      setError(true);
+      //handles if user has already made an account with that email. Maybe redirect to login with a message in the props?
+      setError(1);
       setData((prevValue) => ({
         ...prevValue,
         password: "",
@@ -87,9 +97,10 @@ function SignUp() {
 
         <input type="submit" />
       </form>
-      {error === true ? (
+      {error === 1 ? (
         <p>Password and Confirmation do not match, please try again.</p>
       ) : null}
+      {error === 2 ? <p>User already exists try logging in</p> : null}
     </div>
   );
 }
