@@ -129,8 +129,31 @@ app.post("/api/login", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  //hash password and salt it here
+
+  //  try {
+  //    await db.query(
+  //      "INSERT INTO users (email, hash) VALUES ($1, $2)", [email, hash]
+  //    )
+  //  }
+
   console.log(email, password);
 
+  //send back cookie/authentication data.
+
+  res.sendStatus(200);
+});
+
+app.post("/api/register", async (req, res) => {
+  console.log(req.body);
+  const email = req.body.user.email;
+  const password = req.body.user.password;
+  const user_fname = req.body.user.user_fname;
+  const user_lname = req.body.user.user_lname;
+
+  console.log(
+    `New user added ${user_fname} ${user_lname}. Their email is ${email} and password is ${password}`,
+  );
   res.sendStatus(200);
 });
 

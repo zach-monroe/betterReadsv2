@@ -29,6 +29,7 @@ function Input(props) {
 //replaces <textarea> element in form.
 function TextArea(props) {
   const setBook = props.setBook;
+
   function handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
