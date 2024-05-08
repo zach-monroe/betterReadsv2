@@ -3,17 +3,21 @@ import { Link } from "react-router-dom";
 import "../output.css";
 
 const NavBar = () => {
+  function changeColor() {
+    console.log("time to change the color");
+  }
   return (
-    <nav className="navbar bg-gray-900 text-white fixed w-full z-10 transition-transform duration-300 transform translate-y-0">
-      <li className="text-blue-400 text-center">
+    <nav className="navbar flex bg-gray-950 text-gray-300 sticky z-10 rounded  justify-center gap-8">
+      <span></span>
+      <div className="self-start" onClick={changeColor}>
         <Link to="/">Home</Link>
-      </li>
-      <li className="text-center">
+      </div>
+      <div className="text-center">
         <Link to="/new">New</Link>
-      </li>
-      <li className="text-center">
+      </div>
+      <div className="text-right">
         <Link to="/login">Log-In/Sign-Up</Link>
-      </li>
+      </div>
     </nav>
   );
 };
