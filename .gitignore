@@ -1,6 +1,7 @@
 ./node_modules/
 ./server/config.js
 ./client/node_modules/
+notes.txt
 
 # Logs
 logs
