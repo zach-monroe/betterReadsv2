@@ -3,6 +3,8 @@ import pg from "pg";
 import bodyParser from "body-parser";
 import password from "./config.js";
 import bcrypt from "bcrypt";
+import "dotenv/config";
+import jwt from "jsonwebtoken";
 
 const app = express();
 const port = 5000;
@@ -136,6 +138,7 @@ app.post("/api/login", async (req, res) => {
       console.log(result.rows);
       const user = result.rows[0];
       const storedHash = user.hash;
+      const id = user.id;
 
       bcrypt.compare(password, storedHash, (err, result) => {
         if (err) {
@@ -143,8 +146,13 @@ app.post("/api/login", async (req, res) => {
         } else {
           if (result) {
             console.log("signed in");
+            const jwtToken = jwt.sign({ id, email }, process.env.SECRET_KEY);
             //sendback cookie/authentication data
-            res.sendStatus(200);
+            //
+            res.json({
+              message: `Welcome back ${user.user_fname}`,
+              token: jwtToken,
+            });
             return;
           } else {
             console.log("wrong password");
@@ -185,11 +193,12 @@ app.post("/api/register", async (req, res) => {
           console.log("Error making hash:", err);
         } else {
           const result = await db.query(
-            "INSERT INTO users (email, hash, user_fname, user_lname) VALUES ($1, $2, $3, $4)",
+            "INSERT INTO users (email, hash, user_fname, user_lname) VALUES ($1, $2, $3, $4) RETURNING (id)",
             [email, hash, user_fname, user_lname],
           );
-          console.log(hash);
-          res.json({ result: hash });
+          const id = result.rows[0].id;
+          const jwtToken = jwt.sign({ id, email }, process.env.SECRET_KEY);
+          res.json({ message: `Welcome ${user_fname}`, token: jwtToken });
 
           console.log(
             `New user added ${user_fname} ${user_lname}. Their email is ${email} and password is ${password}`,

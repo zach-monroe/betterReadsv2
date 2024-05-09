@@ -14,7 +14,7 @@ function App() {
     authName: "_auth",
     authType: "cookie",
     cookieDomain: window.location.hostname,
-    cookieSecure: window.location.protocol === "http:", //change to https before build
+    cookieSecure: false, //change to true before build
   });
 
   return (
