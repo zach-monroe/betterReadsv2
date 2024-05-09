@@ -5,11 +5,16 @@ import { useAuth } from "../AuthProvider";
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState();
   const auth = useAuth();
   async function handleSubmit(event) {
     event.preventDefault();
     console.log(email, password);
-    auth.loginAction({ email: email, password: password });
+    try {
+      await auth.loginAction({ email: email, password: password });
+    } catch (err) {
+      setError(err.message);
+    }
     return;
   }
   return (
@@ -35,6 +40,7 @@ function Login() {
         />
         <input type="submit" />
       </form>
+      {error && <p>{error}</p>}
       <br />
       <p>OR</p>
       <Link to="/signup">Sign-Up</Link>

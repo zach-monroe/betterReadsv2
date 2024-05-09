@@ -18,17 +18,18 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify(data),
       });
       const res = await response.json();
-      if (res) {
+      if (response.ok && res) {
         setUser(res);
         setToken(res.token);
         localStorage.setItem("site", res.token);
         navigate("/");
         return;
+      } else {
+        throw new Error(res.error);
       }
-      throw new Error(res.message);
     } catch (err) {
       console.error(err);
-      // Optionally, you can handle errors more gracefully, such as displaying an error message to the user
+      throw err;
     }
   };
   const signupAction = async (data) => {

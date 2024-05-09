@@ -160,14 +160,14 @@ app.post("/api/login", async (req, res) => {
             return;
           } else {
             console.log("wrong password");
-            res.status(401).send("Password incorrect!");
+            res.status(401).json({ error: "Password incorrect!" });
             return;
           }
         }
       });
     } else {
       console.log("not a user");
-      res.status(404).send("User Not Found!");
+      res.status(404).json({ error: "User not found, try signing up!" });
       return;
     }
   } catch (err) {
