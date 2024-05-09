@@ -1,31 +1,16 @@
 import React, { useState } from "react";
-//import { useSignIn } from "react-auth-kit";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthProvider";
 
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate();
-  // const signIn = useSignIn();
-
+  const auth = useAuth();
   async function handleSubmit(event) {
     event.preventDefault();
     console.log(email, password);
-    const request = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    });
-    console.log(request);
-    const response = await request.json();
-    console.log(response.token); //Token is properly sent to front end. Need to configure basic authentication through react-auth-kit.
-    navigate("/");
+    auth.loginAction({ email: email, password: password });
+    return;
   }
   return (
     <div className="min-h-screen pt-28">

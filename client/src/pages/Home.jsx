@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import React from "react";
 import Book from "../components/Book";
 import "../output.css";
+import { useAuth } from "../AuthProvider";
 
 function Home() {
   const [backendData, setData] = useState([]);
-
+  const { user } = useAuth();
   useEffect(() => {
     fetch("/api")
       .then((response) => response.json())
@@ -13,13 +14,14 @@ function Home() {
         setData(data);
       });
   }, []);
-
   console.log(JSON.stringify(backendData));
 
   const { books } = backendData;
+  console.log(JSON.stringify(user));
 
   return (
     <div className="px-4 mx-auto pt-16 grid grid-cols-2 justify-center items-center min-h-screen gap-2">
+      {user.name ? <p>Welcome {user.name}</p> : <p> No user data </p>}
       {books && books.length > 0 ? (
         books.map((book, i) => (
           <div className="-mx-1">

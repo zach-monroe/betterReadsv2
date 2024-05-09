@@ -139,6 +139,7 @@ app.post("/api/login", async (req, res) => {
       const user = result.rows[0];
       const storedHash = user.hash;
       const id = user.id;
+      const user_fname = user.user_fname;
 
       bcrypt.compare(password, storedHash, (err, result) => {
         if (err) {
@@ -152,6 +153,9 @@ app.post("/api/login", async (req, res) => {
             res.json({
               message: `Welcome back ${user.user_fname}`,
               token: jwtToken,
+              name: user_fname,
+              email: email,
+              id: id,
             });
             return;
           } else {
