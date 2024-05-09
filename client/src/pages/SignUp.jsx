@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../AuthProvider";
 
 function SignUp() {
   const [data, setData] = useState({
@@ -11,9 +11,9 @@ function SignUp() {
     user_lname: "",
   });
 
-  const [error, setError] = useState(0);
+  const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
+  const auth = useAuth();
 
   function handleChange(e) {
     const name = e.target.name;
@@ -25,27 +25,16 @@ function SignUp() {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (data.password === data.confirm) {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: data }),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log(responseData); //token logged properly.
-        navigate("/");
-      } else {
-        //handles if user has already made an account with that email. Maybe redirect to login with a message in the props?
-        setError(2);
+      try {
+        await auth.signupAction(data);
+      } catch (err) {
+        console.log(err);
+        setError(err.message);
       }
     } else {
       //handles if password does not match confirmation
-      setError(1);
+      setError("Password and Confirmation do not match, please try again!");
       setData((prevValue) => ({
         ...prevValue,
         password: "",
@@ -96,10 +85,7 @@ function SignUp() {
 
         <input type="submit" />
       </form>
-      {error === 1 ? (
-        <p>Password and Confirmation do not match, please try again.</p>
-      ) : null}
-      {error === 2 ? <p>User already exists try logging in</p> : null}
+      {error?.length > 0 ? <p>{error}</p> : null}
     </div>
   );
 }

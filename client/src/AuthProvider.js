@@ -31,7 +31,29 @@ const AuthProvider = ({ children }) => {
       // Optionally, you can handle errors more gracefully, such as displaying an error message to the user
     }
   };
-
+  const signupAction = async (data) => {
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const res = await response.json();
+      if (response.ok) {
+        setUser(res);
+        setToken(res.token);
+        localStorage.setItem("site", res.token);
+        navigate("/");
+      } else {
+        throw new Error(res.error || "an error occured try again!");
+      }
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  };
   const logOut = () => {
     setUser({ name: "", email: "" }); // Reset user state to an empty object
     setToken("");
@@ -40,7 +62,9 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
+    <AuthContext.Provider
+      value={{ token, user, loginAction, signupAction, logOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

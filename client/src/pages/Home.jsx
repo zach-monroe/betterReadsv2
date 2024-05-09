@@ -21,7 +21,7 @@ function Home() {
 
   return (
     <div className="px-4 mx-auto pt-16 grid grid-cols-2 justify-center items-center min-h-screen gap-2">
-      {user.name ? <p>Welcome {user.name}</p> : <p> No user data </p>}
+      {user?.name ? <p>Welcome {user.name}</p> : null}
       {books && books.length > 0 ? (
         books.map((book, i) => (
           <div className="-mx-1">

@@ -177,10 +177,10 @@ app.post("/api/login", async (req, res) => {
 
 app.post("/api/register", async (req, res) => {
   console.log(req.body);
-  const email = req.body.user.email;
-  const password = req.body.user.password;
-  const user_fname = req.body.user.user_fname;
-  const user_lname = req.body.user.user_lname;
+  const email = req.body.email;
+  const password = req.body.password;
+  const user_fname = req.body.user_fname;
+  const user_lname = req.body.user_lname;
 
   try {
     const testEmail = await db.query("SELECT * from users WHERE email = $1", [
@@ -189,7 +189,7 @@ app.post("/api/register", async (req, res) => {
 
     if (testEmail.rows.length > 0) {
       console.log("User already exists");
-      res.status(401).send("Email already exists, try logging in.");
+      res.status(401).json({ error: "Email already exists, try logging in." });
       return;
     } else {
       bcrypt.hash(password, saltRounds, async (err, hash) => {
@@ -202,7 +202,13 @@ app.post("/api/register", async (req, res) => {
           );
           const id = result.rows[0].id;
           const jwtToken = jwt.sign({ id, email }, process.env.SECRET_KEY);
-          res.json({ message: `Welcome ${user_fname}`, token: jwtToken });
+          res.json({
+            message: `Welcome ${user_fname}`,
+            token: jwtToken,
+            name: user_fname,
+            email: email,
+            id: id,
+          });
 
           console.log(
             `New user added ${user_fname} ${user_lname}. Their email is ${email} and password is ${password}`,
