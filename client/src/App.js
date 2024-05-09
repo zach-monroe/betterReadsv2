@@ -6,6 +6,7 @@ import Edit from "./pages/Edit";
 import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
 import AuthProvider from "./AuthProvider";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </AuthProvider>
       </Router>

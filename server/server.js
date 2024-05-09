@@ -222,8 +222,15 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-app.post("/api/signup", async (req, res) => {});
-
+app.get("/api/profile/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const result = await db.query("SELECT * from read WHERE user_id = $1", [
+      id,
+    ]);
+    res.json({ data: result?.rows[0] });
+  } catch (error) {}
+});
 app.listen(port, () => {
   console.log(`Server is live at port ${port}`);
 });

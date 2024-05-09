@@ -18,6 +18,10 @@ const NavBar = () => {
       <div className="text-right">
         <Link to="/login">Log-In/Sign-Up</Link>
       </div>
+
+      <div className="text-right">
+        <Link to="/profile">Profile</Link>
+      </div>
     </nav>
   );
 };
