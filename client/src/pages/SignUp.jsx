@@ -36,16 +36,15 @@ function SignUp() {
       });
 
       if (response.ok) {
-        //returns hash temporarily until cookie and headers are correctly configured
         const responseData = await response.json();
-        console.log(responseData);
+        console.log(responseData); //token logged properly.
         navigate("/");
       } else {
-        //handles if password was not handled correctly
+        //handles if user has already made an account with that email. Maybe redirect to login with a message in the props?
         setError(2);
       }
     } else {
-      //handles if user has already made an account with that email. Maybe redirect to login with a message in the props?
+      //handles if password does not match confirmation
       setError(1);
       setData((prevValue) => ({
         ...prevValue,
