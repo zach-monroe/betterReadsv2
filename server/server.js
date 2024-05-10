@@ -26,22 +26,10 @@ db.connect();
 
 app.get("/api", async (req, res) => {
   let result;
-  //allows users to sort by the query params.
-  if (req.query.q) {
-    if (req.query.q == "rating") {
-      result = await db.query(
-        "SELECT * FROM read INNER JOIN isbn ON read.id = isbn.book_id ORDER BY rating DESC",
-      );
-    } else if (req.query.q == "author") {
-      result = await db.query(
-        "SELECT * FROM read INNER JOIN isbn ON read.id = isbn.book_id ORDER BY author_lname",
-      );
-    }
-  } else {
-    result = await db.query(
-      "SELECT * FROM read INNER JOIN isbn ON read.id = isbn.book_id",
-    );
-  }
+
+  result = await db.query(
+    "SELECT read.*, isbn.*, users.user_fname as user_fname, users.user_lname as user_lname FROM read INNER JOIN isbn ON read.id = isbn.book_id INNER JOIN users on read.user_id = users.id",
+  );
 
   const books = result.rows;
   res.json({ books: books });
@@ -122,6 +110,7 @@ app.post("/api/delete", async (req, res) => {
       "DELETE FROM read USING isbn WHERE id = isbn.book_id AND id = ($1)",
       [id],
     );
+    res.sendStatus(204);
   } catch (err) {
     console.log(err);
   }

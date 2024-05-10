@@ -34,6 +34,8 @@ function Home() {
               notes={book.notes}
               rating={book.rating}
               isbn={book.book_isbn}
+              user_fname={book.user_fname}
+              user_id={book.user_id}
             />
           </div>
         ))
