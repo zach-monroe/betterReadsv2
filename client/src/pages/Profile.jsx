@@ -5,11 +5,11 @@ import Book from "../components/Book";
 
 function Profile() {
   const [backendData, setBackendData] = useState([]);
+  const auth = useAuth();
   const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Define a function inside useEffect to fetch data
     const fetchData = async () => {
       try {
         const response = await fetch(`/api/profile/${user.id}`);
@@ -17,21 +17,18 @@ function Profile() {
           const data = await response.json();
           setBackendData(data);
         } else {
-          // Handle non-OK response status
           console.error("Failed to fetch data:", response.status);
         }
       } catch (error) {
-        // Handle fetch errors
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData(); // Call the fetchData function
-
-    // Add user.id to dependency array to ensure useEffect runs when user.id changes
+    fetchData();
   }, [user.id]);
-
+  console.log(backendData);
   const { books } = backendData;
+  console.log(books);
   return (
     <div>
       <h1>hello {user.name}</h1>
@@ -58,6 +55,13 @@ function Profile() {
         }}
       >
         make a new post!
+      </button>
+      <button
+        onClick={() => {
+          auth.logOut();
+        }}
+      >
+        Log Out
       </button>
     </div>
   );

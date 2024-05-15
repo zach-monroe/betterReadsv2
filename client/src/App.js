@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import AuthProvider from "./AuthProvider";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
           </Routes>
         </AuthProvider>
       </Router>

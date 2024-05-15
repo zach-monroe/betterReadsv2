@@ -212,12 +212,15 @@ app.post("/api/register", async (req, res) => {
 });
 
 app.get("/api/profile/:id", async (req, res) => {
+  console.log(req.params);
   const id = req.params.id;
   try {
-    const result = await db.query("SELECT * from read WHERE user_id = $1", [
-      id,
-    ]);
-    res.json({ data: result?.rows[0] });
+    const result = await db.query(
+      "SELECT read.*, isbn.* FROM read INNER JOIN isbn ON read.id = isbn.book_id WHERE user_id = $1 ",
+      [id],
+    );
+    console.log(result.rows);
+    res.json({ books: result?.rows });
   } catch (error) {}
 });
 app.listen(port, () => {

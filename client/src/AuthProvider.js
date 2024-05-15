@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -8,8 +8,20 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("site") || ""); // Set token to empty string if not found
   const navigate = useNavigate();
 
+  //Initializes user data from local storage if present. Allowing data to persist between sessions.
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("site");
+    if (storedUser && storedToken) {
+      setUser(JSON.parse(storedUser));
+      setToken(JSON.stringify(storedToken));
+    }
+  }, []);
+
+  //Handles login.
   const loginAction = async (data) => {
     try {
+      //fetching user information from server
       const response = await fetch("/api/login", {
         method: "POST",
         headers: {
@@ -17,11 +29,13 @@ const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify(data),
       });
+      //returning and reformating user data into json.
       const res = await response.json();
       if (response.ok && res) {
         setUser(res);
         setToken(res.token);
-        localStorage.setItem("site", res.token);
+        localStorage.setItem("site", res.token); //puts token in local storage so data persists
+        localStorage.setItem("user", JSON.stringify(res)); //puts user data in local storage so data persists
         navigate("/");
         return;
       } else {
@@ -32,6 +46,7 @@ const AuthProvider = ({ children }) => {
       throw err;
     }
   };
+
   const signupAction = async (data) => {
     try {
       const response = await fetch("/api/register", {
@@ -46,6 +61,7 @@ const AuthProvider = ({ children }) => {
         setUser(res);
         setToken(res.token);
         localStorage.setItem("site", res.token);
+        localStorage.setItem("user", JSON.stringify(res));
         navigate("/");
       } else {
         throw new Error(res.error || "an error occured try again!");
@@ -55,10 +71,12 @@ const AuthProvider = ({ children }) => {
       throw err;
     }
   };
+
   const logOut = () => {
-    setUser({ name: "", email: "" }); // Reset user state to an empty object
+    setUser(null);
     setToken("");
     localStorage.removeItem("site");
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
