@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
 function EditButton(props) {
   const navigate = useNavigate();
+
   return (
     <div>
       <button

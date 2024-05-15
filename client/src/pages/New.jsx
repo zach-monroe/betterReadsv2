@@ -38,10 +38,10 @@ function New() {
     }
   }
 
-  // function that handles adding the book to the database by sending an API post request.
+  // Function that handles adding the book to the database by sending an API post request.
   async function addBookToDatabase(bookData, isbn) {
     try {
-      //trying the post request to the api endpoint.
+      //Trying the post request to the api endpoint.
       const response = await fetch("/api/add", {
         method: "POST",
         headers: {
@@ -58,7 +58,7 @@ function New() {
     }
   }
 
-  //function that combines fetchISBN and addBookToDatabase on form submission
+  //Function that combines fetchISBN and addBookToDatabase on form submission
   async function handleSubmit(event) {
     event.preventDefault();
 

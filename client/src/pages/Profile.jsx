@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import Book from "../components/Book";
+import EditButton from "../components/Book/EditButton";
+import DeleteButton from "../components/Book/DeleteButton";
 
 function Profile() {
   const [backendData, setBackendData] = useState({});
@@ -58,6 +60,8 @@ function Profile() {
               rating={book.rating}
               isbn={book.book_isbn}
             />
+            <DeleteButton id={book.book_id} />
+            <EditButton id={book.book_id} />
           </div>
         ))
       ) : (

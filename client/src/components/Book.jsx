@@ -1,7 +1,5 @@
 import React from "react";
 import BookCover from "./Book/BookCover";
-import DeleteButton from "./Book/DeleteButton";
-import EditButton from "./Book/EditButton";
 import "../output.css";
 
 function Book(props) {
@@ -15,8 +13,6 @@ function Book(props) {
       </h2>
       <p>{props.notes}</p>
       <p>{props.rating}</p>
-      <DeleteButton id={props.id} />
-      <EditButton id={props.id} />
       <h2>{props.user_fname}</h2>
     </div>
   );

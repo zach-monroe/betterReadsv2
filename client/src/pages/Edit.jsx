@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Input, { TextArea } from "../components/Inputs";
+import { useAuth } from "../AuthProvider";
 
 //follows very similarly to New.jsx. Could have made both functions (add, update) fit into one form, but this felt like a cleaner approach.
 //
 //I will be specifying any areas that differ from New.jsx for clarity
 function Edit() {
+  const { user } = useAuth();
   const { id } = useParams(); //used for finding the database entry by ID is passed as a query param.
   const [backendData, setData] = useState({});
 
@@ -17,9 +19,9 @@ function Edit() {
     notes: "",
     rating: 0,
     id: "",
+    user_id: "",
   });
   const navigate = useNavigate();
-  console.log(id);
 
   //getting data from backend to prefill the form
   useEffect(() => {
@@ -33,11 +35,16 @@ function Edit() {
   const { book } = backendData;
 
   //setting bookData with the destructred backendData variable "book" (prefilling the form values with previously submitted user data)
+  //This also validates if the user has editting rights for this book. (Crudely.)
   useEffect(() => {
     if (book) {
-      setBook(...book);
+      if (user !== null && book[0].user_id === user.id) {
+        setBook(...book);
+      } else {
+        navigate("/login");
+      }
     }
-  }, [book]);
+  }, [book, user, navigate]);
 
   //submits data to the update endpoint which changes the entry in the database.
   async function handleSubmit(event) {
