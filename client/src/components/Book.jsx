@@ -17,9 +17,7 @@ function Book(props) {
       <p>{props.rating}</p>
       <DeleteButton id={props.id} />
       <EditButton id={props.id} />
-      <h2>
-        {props.user_fname} id number {props.user_id}
-      </h2>
+      <h2>{props.user_fname}</h2>
     </div>
   );
 }

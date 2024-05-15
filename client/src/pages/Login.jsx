@@ -7,14 +7,18 @@ function Login() {
   const [password, setPassword] = useState();
   const [error, setError] = useState();
   const auth = useAuth();
+
+  //submission handling.
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(email, password);
+
     try {
+      //uses authentication handling set up in parent
       await auth.loginAction({ email: email, password: password });
     } catch (err) {
       setError(err.message);
     }
+
     return;
   }
   return (

@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input, { TextArea } from "../components/Inputs";
+import { useAuth } from "../AuthProvider";
 
 function New() {
+  const { user } = useAuth();
   const [book, setBook] = useState({
     title: "",
     author_fname: "",
     author_lname: "",
     notes: "",
     rating: 0,
+    user_id: user.id,
   });
   const navigate = useNavigate();
 

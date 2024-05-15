@@ -44,14 +44,15 @@ app.post("/api/add", async (req, res) => {
   const author_lname = req.body.author_lname;
   const rating = req.body.rating;
   const isbn = req.body.isbn;
+  const user_id = req.body.user_id;
 
   //validates if the isbn exists - if it does not it redirects to an error message.
   if (isbn) {
     //posting the information to the database.  It is placed here so users can't add their input unless it gets a valid isbn number.
     try {
       const readResult = await db.query(
-        "INSERT INTO read (author_lname, title, notes, rating, author_fname) VALUES ($1, $2, $3, $4, $5) RETURNING (id)",
-        [author_lname, title, notes, rating, author_fname],
+        "INSERT INTO read (author_lname, title, notes, rating, author_fname, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING (id)",
+        [author_lname, title, notes, rating, author_fname, user_id],
       );
 
       //gets the id from the post to "read" table and connect with the "isbn" table

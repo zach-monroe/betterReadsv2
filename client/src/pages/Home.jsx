@@ -5,19 +5,21 @@ import "../output.css";
 import { useAuth } from "../AuthProvider";
 
 function Home() {
-  const [backendData, setData] = useState([]);
+  const [backendData, setData] = useState({});
   const { user } = useAuth();
+
+  //fetches all book data from server
   useEffect(() => {
     fetch("/api")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
       });
-  }, []);
+  }, []); //using promises here, but not using elsewhere.  FIX: Turn to async await.
+
   console.log(JSON.stringify(backendData));
 
   const { books } = backendData;
-  console.log(JSON.stringify(user));
 
   return (
     <div className="px-4 mx-auto pt-16 grid grid-cols-2 justify-center items-center min-h-screen gap-2">
