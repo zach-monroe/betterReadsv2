@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Input, { TextArea } from "../components/Inputs";
+import Input, { TextArea } from "../components/New/Inputs";
 import { useAuth } from "../AuthProvider";
 
 //follows very similarly to New.jsx. Could have made both functions (add, update) fit into one form, but this felt like a cleaner approach.

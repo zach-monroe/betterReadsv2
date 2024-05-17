@@ -602,6 +602,10 @@ video {
   margin-left: 1rem;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
