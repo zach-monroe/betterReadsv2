@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
+import "../output.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import Book from "../components/Book";
 import EditButton from "../components/Book/EditButton";
 import DeleteButton from "../components/Book/DeleteButton";
+
+// PERF: Refactor code so:
+// - Edit
+// - Delete
+// - Log Out
+// Exist in a separate form which appears from a drop down menu.
 
 function Profile() {
   const [backendData, setBackendData] = useState({});
@@ -36,14 +43,8 @@ function Profile() {
     fetchData();
   }, [user]);
 
-  //checking backendData
-  console.log(backendData);
-
   //deconstructing backendData into a "books" array for mapping.
   const { books } = backendData;
-
-  //checking books array
-  console.log(books);
 
   //returns a filtered array where all books except the deleted book appear.
   const handleDelete = (bookId) => {

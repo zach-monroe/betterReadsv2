@@ -14,13 +14,14 @@ function Input(props) {
       [name]: value,
     }));
   }
-
+  const type = props.type;
   return (
     <input
       name={props.name}
       type={props.type}
       onChange={handleChange}
       placeholder={props.placeholder}
+      {...(type === "number" ? { max: 5, min: 1 } : null)}
       value={props.value}
     />
   );

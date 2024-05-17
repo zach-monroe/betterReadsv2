@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../output.css";
 import { useAuth } from "../../AuthProvider";
 
 function DeleteButton(props) {
@@ -34,7 +35,11 @@ function DeleteButton(props) {
   return (
     <form onSubmit={handleDelete}>
       <input type="hidden" name="id" value={props.id} />
-      <button type="submit" disabled={isDeleting}>
+      <button
+        className="rounded-full bg-red-800 px-4"
+        type="submit"
+        disabled={isDeleting}
+      >
         {isDeleting ? "Deleting..." : "Delete"}
       </button>
     </form>

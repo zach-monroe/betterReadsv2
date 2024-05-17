@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import "../../output.css";
 import genericBookImage from "../../assets/generic-book.jpg";
 import axios from "axios";
-import "../../output.css";
 
 function BookCover(props) {
   const [imgSrc, setImgSrc] = useState(null);

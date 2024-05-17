@@ -37,9 +37,11 @@ function New() {
         navigate("/");
       } else {
         console.error("ISBN not found");
+        navigate("/new");
       }
     } catch (error) {
       console.error("Error:", error);
+      navigate("/new");
     }
   }
 
@@ -77,6 +79,8 @@ function New() {
           setBook={setBook}
           name="rating"
           type="number"
+          max="5"
+          min="1"
           placeholder="Your rating!"
           value={book.rating}
         />
