@@ -105,11 +105,12 @@ app.post("/api/update", async (req, res) => {
 app.post("/api/delete", async (req, res) => {
   console.log(req.body);
   const id = req.body.id;
+  const client_id = req.body.user;
 
   try {
     await db.query(
-      "DELETE FROM read USING isbn WHERE id = isbn.book_id AND id = ($1)",
-      [id],
+      "DELETE FROM read USING isbn WHERE id = isbn.book_id AND id = ($1) AND user_id = ($2)",
+      [id, client_id],
     );
     res.sendStatus(204);
   } catch (err) {

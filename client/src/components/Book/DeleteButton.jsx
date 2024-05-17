@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useAuth } from "../../AuthProvider";
 
 function DeleteButton(props) {
   const [isDeleting, setIsDeleting] = useState(false);
+  const { user } = useAuth();
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
     setIsDeleting(true); // Set deleting state to true
 
     try {
@@ -12,21 +15,19 @@ function DeleteButton(props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id: props.id }), // Send the id to delete
+        body: JSON.stringify({ id: props.id, user: user.id }), // Send the id to delete, and user_id to verify
       });
 
       if (response.ok) {
-        // If deletion is successful, you can perform any UI updates here if needed
         console.log("Item deleted successfully");
+        props.onDelete(props.id);
       } else {
-        // If deletion fails, handle the error
         console.error("Failed to delete item:", response.status);
       }
     } catch (error) {
-      // If an error occurs during the deletion process, log it
       console.error("Error deleting item:", error);
     } finally {
-      setIsDeleting(false); // Reset the deleting state to false
+      setIsDeleting(false);
     }
   };
 

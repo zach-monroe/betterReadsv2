@@ -18,13 +18,11 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="*" exact element={<Home />} />
-            <Route element={<PrivateRoute />}>
-              <Route path="/New" element={<New />} />
-            </Route>
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route element={<PrivateRoute />}>
+              <Route path="/new" element={<New />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
