@@ -13,6 +13,7 @@ function New() {
     rating: 0,
     user_id: user.id,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   //Function for getting the ISBN number from an API
@@ -61,6 +62,7 @@ function New() {
   //Function that combines fetchISBN and addBookToDatabase on form submission
   async function handleSubmit(event) {
     event.preventDefault();
+    setIsSubmitting(true);
 
     try {
       // Fetch the ISBN for the book
@@ -72,6 +74,7 @@ function New() {
         // Call the function to add the book to the database
         await addBookToDatabase(book, isbn);
         console.log("Book added successfully");
+        setIsSubmitting(false);
         // once form is submitted correctly redirect the user to the homescreen.
         navigate("/");
       } else {
@@ -119,7 +122,9 @@ function New() {
           placeholder="Your rating!"
           value={book.rating}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Submit"}
+        </button>
       </form>
     </div>
   );

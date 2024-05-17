@@ -63,8 +63,9 @@ app.post("/api/add", async (req, res) => {
         "INSERT INTO isbn (book_id, book_isbn) VALUES ($1, $2)",
         [id, isbn],
       );
-      res.status(200).send("Book Added Successfully");
+      res.status(200).json({ message: "Book added successfully!" });
     } catch (err) {
+      res.status(400).json({ message: "an error occured" });
       console.log(err.body);
     }
   }
@@ -97,9 +98,10 @@ app.post("/api/update", async (req, res) => {
     );
   } catch (err) {
     console.log(err.body);
+    res.status(400).json({ message: "Update could not be posted." });
   }
 
-  res.status(200).send("Update Posted!");
+  res.status(200).json({ message: "Update Posted!" });
 });
 
 app.post("/api/delete", async (req, res) => {

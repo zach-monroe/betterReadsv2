@@ -15,22 +15,20 @@ function Profile() {
   useEffect(() => {
     //using a callback function to handle async functions.
     const fetchData = async () => {
-      if (user) {
-        try {
-          //requests the user's data by using their id number.
-          const response = await fetch(`/api/profile/${user.id}`);
-          if (response.ok) {
-            //handles normal response.
-            const data = await response.json();
-            setBackendData(data);
-          } else {
-            //prints status and error message if fetch does not work.
-            console.error("Failed to fetch data:", response.status);
-          }
-        } catch (error) {
-          //basic error handling
-          console.error("Error fetching data:", error);
+      try {
+        //requests the user's data by using their id number.
+        const response = await fetch(`/api/profile/${user.id}`);
+        if (response.ok) {
+          //handles normal response.
+          const data = await response.json();
+          setBackendData(data);
+        } else {
+          //prints status and error message if fetch does not work.
+          console.error("Failed to fetch data:", response.status);
         }
+      } catch (error) {
+        //basic error handling
+        console.error("Error fetching data:", error);
       }
     };
 

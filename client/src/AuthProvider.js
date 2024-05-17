@@ -35,15 +35,15 @@ const AuthProvider = ({ children }) => {
         setUser(res);
         setToken(res.token);
         localStorage.setItem("site", res.token); //puts token in local storage so data persists
-        localStorage.setItem("user", JSON.stringify(res)); //puts user data in local storage so data persists
+        localStorage.setItem("user", JSON.stringify(res)); //puts user data in local storage so data persists  NOTE: Will need to make sure this does not cause race conditions
         navigate("/");
         return;
       } else {
         throw new Error(res.error);
       }
     } catch (err) {
-      console.error(err);
-      throw err;
+      console.log(err);
+      throw err; //throws error to be displayed in Login.Jsx
     }
   };
 
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       console.log(err);
-      throw err;
+      throw err; //throws error to be displayed in SignUp.jsx
     }
   };
 

@@ -10,6 +10,7 @@ function Edit() {
   const { user } = useAuth();
   const { id } = useParams(); //used for finding the database entry by ID is passed as a query param.
   const [backendData, setData] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   //had to change book to bookData for destructuring backendData to make sense.
   const [bookData, setBook] = useState({
@@ -49,6 +50,7 @@ function Edit() {
   //submits data to the update endpoint which changes the entry in the database.
   async function handleSubmit(event) {
     event.preventDefault();
+    setIsSubmitting(true);
     try {
       const response = await fetch("/api/update", {
         method: "POST",
@@ -59,6 +61,7 @@ function Edit() {
       });
 
       if (response.ok) {
+        setIsSubmitting(false);
         navigate("/");
       } else {
         throw new Error("Failed to add book: " + response.statusText);
@@ -98,7 +101,9 @@ function Edit() {
           placeholder="Your rating!"
           value={bookData.rating}
         />
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Submit"}
+        </button>
       </form>
     </div>
   );

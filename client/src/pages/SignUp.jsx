@@ -33,6 +33,7 @@ function SignUp() {
         setError(err.message);
       }
     } else {
+      //
       //handles if password does not match confirmation
       setError("Password and Confirmation do not match, please try again!");
       setData((prevValue) => ({
