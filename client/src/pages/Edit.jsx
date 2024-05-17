@@ -26,11 +26,16 @@ function Edit() {
 
   //getting data from backend to prefill the form
   useEffect(() => {
-    fetch(`/api/edit/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/edit/${id}`);
+        const data = await response.json();
         setData(data);
-      });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, [id]);
 
   const { book } = backendData;

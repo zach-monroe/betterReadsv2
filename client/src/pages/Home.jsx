@@ -8,14 +8,18 @@ function Home() {
   const [backendData, setData] = useState({});
   const { user } = useAuth();
 
-  //fetches all book data from server
   useEffect(() => {
-    fetch("/api")
-      .then((response) => response.json())
-      .then((data) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api");
+        const data = await response.json();
         setData(data);
-      });
-  }, []); //using promises here, but not using elsewhere.  FIX: Turn to async await.
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   console.log(JSON.stringify(backendData));
 
