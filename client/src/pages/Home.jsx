@@ -26,9 +26,9 @@ function Home() {
   const { books } = backendData;
 
   return (
-    <div>
+    <div className="col-span-11">
       {user?.name ? <p>Welcome {user.name}</p> : null}
-      <div className="px-4 mx-auto pt-16 grid grid-cols-2 justify-center items-center min-h-screen gap-2">
+      <div className="px-4 mx-auto pt-16 grid lg:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 min-h-screen gap-2">
         {books && books.length > 0 ? (
           books.map((book, i) => (
             <div className="mx-4">

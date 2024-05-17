@@ -36,7 +36,7 @@ function DeleteButton(props) {
     <form onSubmit={handleDelete}>
       <input type="hidden" name="id" value={props.id} />
       <button
-        className="rounded-full bg-red-800 px-4"
+        className="rounded-full bg-red-800 px-4 mt-4"
         type="submit"
         disabled={isDeleting}
       >

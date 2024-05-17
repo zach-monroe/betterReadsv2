@@ -15,7 +15,7 @@ function Book(props) {
       id={props.id}
       className="bg-slate-200 rounded overflow-hidden shadow-md"
     >
-      <h1>Title: {title}</h1>
+      <h1 className="text-black">Title: {title}</h1>
       <br />
       <div className="flex justify-center">
         <BookCover isbn={props.isbn} title={title} />
@@ -26,7 +26,7 @@ function Book(props) {
       </h2>
       <p>Notes: {props.notes}</p>
       <p>Rating {props.rating}</p>
-      <h2>User: {user}</h2>
+      {user ? <h2>User: {user}</h2> : null}
     </div>
   );
 }

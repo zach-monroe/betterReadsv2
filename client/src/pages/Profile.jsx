@@ -55,27 +55,29 @@ function Profile() {
   };
 
   return (
-    <div className="mx-auto text-center justify-center items-center">
-      <h1>hello {user?.name}</h1>
-      {books && books.length > 0 ? (
-        books.map((book, i) => (
-          <div className="-mx-1" key={i}>
-            <Book
-              id={book.book_id}
-              title={book.title}
-              author_fname={book.author_fname}
-              author_lname={book.author_lname}
-              notes={book.notes}
-              rating={book.rating}
-              isbn={book.book_isbn}
-            />
-            <DeleteButton id={book.book_id} onDelete={handleDelete} />
-            <EditButton id={book.book_id} />
-          </div>
-        ))
-      ) : (
-        <p>No Data</p>
-      )}
+    <div className="mx-auto text-center col-span-11">
+      <h1>Hello {user?.name}</h1>
+      <div className="grid grid-cols-3">
+        {books && books.length > 0 ? (
+          books.map((book, i) => (
+            <div className="mx-2" key={i}>
+              <Book
+                id={book.book_id}
+                title={book.title}
+                author_fname={book.author_fname}
+                author_lname={book.author_lname}
+                notes={book.notes}
+                rating={book.rating}
+                isbn={book.book_isbn}
+              />
+              <DeleteButton id={book.book_id} onDelete={handleDelete} />
+              <EditButton id={book.book_id} />
+            </div>
+          ))
+        ) : (
+          <p>No Data</p>
+        )}{" "}
+      </div>
       <button
         onClick={() => {
           navigate("/new");
