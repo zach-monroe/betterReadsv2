@@ -13,9 +13,9 @@ function Book(props) {
   return (
     <div
       id={props.id}
-      className="bg-slate-200 rounded overflow-hidden shadow-md"
+      className="bg-primaryDark rounded overflow-hidden shadow-md"
     >
-      <h1 className="text-black">Title: {title}</h1>
+      <h1 className="text-material">Title: {title}</h1>
       <br />
       <div className="flex justify-center">
         <BookCover isbn={props.isbn} title={title} />

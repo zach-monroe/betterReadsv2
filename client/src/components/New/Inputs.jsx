@@ -1,4 +1,5 @@
 import React from "react";
+import "../../output.css";
 
 //made input and change handling into a separate component to make the New.jsx and Edit.jsx file more readable.
 
@@ -23,6 +24,7 @@ function Input(props) {
       placeholder={props.placeholder}
       {...(type === "number" ? { max: 5, min: 1 } : null)}
       value={props.value}
+      className="px-2 rounded"
     />
   );
 }
@@ -48,6 +50,7 @@ function TextArea(props) {
       onChange={handleChange}
       placeholder={props.placeholder}
       value={props.value}
+      className="px-2 rounded"
     ></textarea>
   );
 }

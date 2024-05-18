@@ -11,7 +11,7 @@ function New() {
     author_fname: "",
     author_lname: "",
     notes: "",
-    rating: 0,
+    rating: 5,
     user_id: user.id,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,48 +46,69 @@ function New() {
   }
 
   return (
-    <div className="container min-h-screen pt-20">
-      <form onSubmit={handleSubmit}>
-        <Input
-          setBook={setBook}
-          name="title"
-          type="text"
-          placeholder="title"
-          value={book.title}
-        />
-        <Input
-          setBook={setBook}
-          name="author_fname"
-          type="text"
-          placeholder="Author First Name"
-          value={book.author_fname}
-        />
-        <Input
-          setBook={setBook}
-          name="author_lname"
-          type="text"
-          placeholder="Author Last Name"
-          value={book.author_lname}
-        />
-        <TextArea
-          setBook={setBook}
-          name="notes"
-          placeholder="Your Notes Here!"
-          value={book.notes}
-        />
-        <Input
-          setBook={setBook}
-          name="rating"
-          type="number"
-          max="5"
-          min="1"
-          placeholder="Your rating!"
-          value={book.rating}
-        />
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Submitting..." : "Submit"}
-        </button>
-      </form>
+    <div className="col-start-5 col-end-9 flex justify-center items-center min-h-screen text-material">
+      <div className="p-8 px-20 rounded bg-material">
+        <form onSubmit={handleSubmit}>
+          <div className="pb-4">
+            <h2 className="mb-2 text-primary ">Book Title:</h2>
+            <Input
+              setBook={setBook}
+              name="title"
+              type="text"
+              placeholder="Book Title"
+              value={book.title}
+            />
+          </div>
+          <div className="pb-4">
+            <h2 className="mb-2 text-primary ">Author First Name:</h2>
+            <Input
+              setBook={setBook}
+              name="author_fname"
+              type="text"
+              placeholder="Author First Name"
+              value={book.author_fname}
+            />
+          </div>
+          <div className="pb-4">
+            <h2 className="mb-2 text-primary ">Author Last Name:</h2>
+            <Input
+              setBook={setBook}
+              name="author_lname"
+              type="text"
+              placeholder="Author Last Name"
+              value={book.author_lname}
+            />
+          </div>
+          <div className="pb-4">
+            <h2 className="mb-2 text-primary ">Add Your Notes Here:</h2>
+            <TextArea
+              setBook={setBook}
+              name="notes"
+              placeholder="Your Notes Here!"
+              value={book.notes}
+            />
+          </div>
+          <div className="pb-4">
+            <h2 className="mb-2 text-primary ">Rate This Read From 1-5:</h2>
+            <Input
+              setBook={setBook}
+              name="rating"
+              type="number"
+              max="5"
+              min="1"
+              placeholder="Your rating!"
+              value={book.rating}
+            />
+          </div>
+          <button
+            className="text-primary bg-accent border-primary border-2 rounded-full my-4 px-4 mx-auto block"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Submitting..." : "Submit"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

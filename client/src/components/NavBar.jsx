@@ -12,14 +12,14 @@ const NavBar = () => {
   }
   console.log(user);
   return (
-    <nav className="col-span-1 bg-gray-950 text-gray-300 z-10 w-20">
-      <div className="hover:text-blue-800" onClick={changeColor}>
+    <nav className="col-span-1 bg-material text-primary z-10 w-20">
+      <div className="hover:text-accent" onClick={changeColor}>
         <Link to="/">Home</Link>
       </div>
-      <div>
+      <div className="hover:text-accent">
         <Link to="/new">New</Link>
       </div>
-      <div>
+      <div className="hover:text-accent">
         {!user.token ? (
           <Link to="/login">Log-In/Sign-Up</Link>
         ) : (

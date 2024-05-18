@@ -55,9 +55,9 @@ function Profile() {
   };
 
   return (
-    <div className="mx-auto text-center col-span-11">
+    <div className="mx-auto text-center text-darkFore col-span-11">
       <h1>Hello {user?.name}</h1>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 text-fore1">
         {books && books.length > 0 ? (
           books.map((book, i) => (
             <div className="mx-2" key={i}>
@@ -76,7 +76,7 @@ function Profile() {
           ))
         ) : (
           <p>No Data</p>
-        )}{" "}
+        )}
       </div>
       <button
         onClick={() => {

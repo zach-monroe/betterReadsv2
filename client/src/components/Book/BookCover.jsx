@@ -34,7 +34,7 @@ function BookCover(props) {
   return (
     <>
       <div
-        className="rounded hover:shadow-xl hover:shadow-purple-400"
+        className="rounded hover:shadow-xl hover:shadow-accent"
         style={{
           backgroundImage: `url(${imgSrc})`,
           width: "180px",
