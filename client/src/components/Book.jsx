@@ -1,6 +1,7 @@
 import React from "react";
 import "../output.css";
 import BookCover from "./Book/BookCover";
+import Meatball from "./Book/Meatball";
 
 function Book(props) {
   let shortTitle = "";
@@ -33,6 +34,7 @@ function Book(props) {
       <p>Notes: {props.notes}</p>
       <p>Rating {props.rating}</p>
       {user ? <h2 className="pb-2">User: {user}</h2> : null}
+      {props.menu === true ? <Meatball id={props.id} /> : null}
     </div>
   );
 }

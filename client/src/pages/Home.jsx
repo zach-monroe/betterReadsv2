@@ -46,6 +46,7 @@ function Home() {
                   isbn={book.book_isbn}
                   user_fname={book.user_fname}
                   user_id={book.user_id}
+                  menu={false}
                 />
                 <br />
               </div>

@@ -3,8 +3,6 @@ import "../output.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import Book from "../components/Book";
-import EditButton from "../components/Book/EditButton";
-import DeleteButton from "../components/Book/DeleteButton";
 
 // PERF: Refactor code so:
 // - Edit
@@ -62,7 +60,7 @@ function Profile() {
         <div className="grid pt-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 text-fore1">
           {books && books.length > 0 ? (
             books.map((book, i) => (
-              <div className="mx-2" key={i}>
+              <div className="mx-2 my-2" key={i}>
                 <Book
                   id={book.book_id}
                   title={book.title}
@@ -71,9 +69,9 @@ function Profile() {
                   notes={book.notes}
                   rating={book.rating}
                   isbn={book.book_isbn}
+                  menu={true}
+                  handleDelete={handleDelete}
                 />
-                <DeleteButton id={book.book_id} onDelete={handleDelete} />
-                <EditButton id={book.book_id} />
               </div>
             ))
           ) : (

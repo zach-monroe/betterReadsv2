@@ -60,7 +60,7 @@ function DeleteButton(props) {
       <form onSubmit={openModal}>
         <input type="hidden" name="id" value={props.id} />
         <button
-          className="rounded-full bg-red-800 px-4 mt-4"
+          className="rounded-full bg-red-800 px-4 my-4"
           type="submit"
           disabled={isDeleting}
         >
@@ -75,7 +75,7 @@ function DeleteButton(props) {
         <div className="flex justify-center items-center bg-material text-primary">
           <div>
             <div className="flex justify-center text-center py-4">
-              <p>Are You Sure you want to delete this post?</p>
+              <p>Are you sure you want to delete this post?</p>
             </div>
             <div className="flex justify-around py-4">
               <button

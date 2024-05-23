@@ -6,12 +6,13 @@ function EditButton(props) {
   return (
     <div>
       <button
-        className="bg-gray-800 rounded-full text-white px-4 my-4"
+        className="bg-gray-800 rounded-full text-white px-6 my-4"
         onClick={() => {
           navigate(`/edit/${props.id}`);
         }}
       >
-        Edit
+        {" "}
+        Edit{" "}
       </button>
     </div>
   );
