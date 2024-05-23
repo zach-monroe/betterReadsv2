@@ -48,7 +48,7 @@ function BookCover(props) {
         }}
       >
         {imgSrc !== genericBookImage ? null : (
-          <p className="text-primary">{props.title}</p>
+          <p className="text-primary text-center">{props.title}</p>
         )}
       </div>
     </>
