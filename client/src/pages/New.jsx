@@ -15,6 +15,7 @@ function New() {
     user_id: user.id,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState({});
   const navigate = useNavigate();
 
   //Function that combines fetchISBN and addBookToDatabase on form submission
@@ -36,12 +37,21 @@ function New() {
         // once form is submitted correctly redirect the user to the homescreen.
         navigate("/");
       } else {
+        setIsSubmitting(false);
+        setError({ message: "Entry not found, please try again!" });
+        setBook({
+          title: "",
+          author_fname: "",
+          author_lname: "",
+          notes: "",
+          rating: 5,
+          user_id: user.id,
+        });
         console.error("ISBN not found");
-        navigate("/new");
       }
     } catch (error) {
       console.error("Error:", error);
-      navigate("/new");
+      setError({ message: "Something went wrong, please try again!" });
     }
   }
 
@@ -109,6 +119,11 @@ function New() {
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </form>
+          <div className="flex justify-center">
+            {error.message ? (
+              <p className="text-primary">{error.message}</p>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

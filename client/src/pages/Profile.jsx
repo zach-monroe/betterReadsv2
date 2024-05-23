@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../output.css";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import Book from "../components/Book";
 import EditButton from "../components/Book/EditButton";
@@ -16,7 +16,6 @@ function Profile() {
   const [backendData, setBackendData] = useState({});
   const auth = useAuth();
   const { user } = useAuth();
-  const navigate = useNavigate();
 
   //fetches profile data from server to render onto the page.
   useEffect(() => {
@@ -55,8 +54,8 @@ function Profile() {
   };
 
   return (
-    <div className="text-darkFore">
-      <div className="flex justify-center ">
+    <div className="text-darkFore min-h-screen bg-primary">
+      <div className="flex justify-center">
         <h1 className="pt-10">{user?.name}'s Profile</h1>
       </div>
       <div className="flex justify-center">
@@ -78,18 +77,17 @@ function Profile() {
               </div>
             ))
           ) : (
-            <p>No Data</p>
+            <div className="flex col-span-full justify-center text-center pb-4">
+              <p>
+                You haven't added any reads!
+                <br />
+                <Link className="hover:italic" to="/new">
+                  Make a New Post!
+                </Link>
+              </p>
+            </div>
           )}
         </div>
-      </div>
-      <div className="flex justify-center">
-        <button
-          onClick={() => {
-            navigate("/new");
-          }}
-        >
-          make a new post!
-        </button>
       </div>
       <div className="flex justify-center">
         <button

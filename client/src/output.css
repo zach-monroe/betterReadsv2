@@ -583,6 +583,10 @@ video {
   z-index: 10;
 }
 
+.col-span-full {
+  grid-column: 1 / -1;
+}
+
 .col-start-1 {
   grid-column-start: 1;
 }
@@ -652,6 +656,10 @@ video {
   min-height: 100vh;
 }
 
+.w-full {
+  width: 100%;
+}
+
 .min-w-128 {
   min-width: 32rem;
 }
@@ -688,6 +696,10 @@ video {
 
 .gap-2 {
   gap: 0.5rem;
+}
+
+.place-self-center {
+  place-self: center;
 }
 
 .overflow-hidden {
@@ -850,6 +862,10 @@ video {
 
 nav li {
   list-style-type: none;
+}
+
+.hover\:italic:hover {
+  font-style: italic;
 }
 
 .hover\:text-accent:hover {
