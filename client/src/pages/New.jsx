@@ -47,7 +47,7 @@ function New() {
 
   return (
     <div className="bg-primary pt-4">
-      <div className="col-start-5 col-end-9 flex justify-center items-center min-h-screen text-material">
+      <div className=" flex justify-center items-center min-h-screen text-material">
         <div className="p-8 px-20 rounded bg-material">
           <form onSubmit={handleSubmit}>
             <div className="pb-4">

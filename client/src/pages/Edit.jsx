@@ -77,39 +77,72 @@ function Edit() {
   }
 
   return (
-    <div className="container min-h-screen pt-20">
-      <form onSubmit={handleSubmit}>
-        <Input
-          setBook={setBook}
-          name="title"
-          type="text"
-          placeholder="title"
-          value={bookData.author_fname}
-        />
-        <Input
-          setBook={setBook}
-          name="author_lname"
-          type="text"
-          placeholder="Author Last Name"
-          value={bookData.author_lname}
-        />
-        <TextArea
-          setBook={setBook}
-          name="notes"
-          placeholder="Your Notes Here!"
-          value={bookData.notes}
-        />
-        <Input
-          setBook={setBook}
-          name="rating"
-          type="number"
-          placeholder="Your rating!"
-          value={bookData.rating}
-        />
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Submitting..." : "Submit"}
-        </button>
-      </form>
+    <div className="bg-primary pt-4">
+      <div className="flex justify-center items-center min-h-screen text-material">
+        <div className="p-8 px-20 rounded bg-material">
+          <form onSubmit={handleSubmit}>
+            <div className="pb-4">
+              <h2 className="mb-2 text-primary">Book Title:</h2>
+              <Input
+                setBook={setBook}
+                name="title"
+                type="text"
+                placeholder="title"
+                value={bookData.title}
+              />
+            </div>
+            <div className="pb-4">
+              <h2 className="mb-2 text-primary">Author First Name:</h2>
+
+              <Input
+                setBook={setBook}
+                name="author_fname"
+                type="text"
+                placeholder="Author First Name"
+                value={bookData.author_fname}
+              />
+            </div>
+            <div className="pb-4">
+              <h2 className="mb-2 text-primary">Author Last Name:</h2>
+              <Input
+                setBook={setBook}
+                name="author_lname"
+                type="text"
+                placeholder="Author Last Name"
+                value={bookData.author_lname}
+              />
+            </div>
+            <div className="pb-4">
+              <h2 className="mb-2 text-primary">Add Your Notes Here:</h2>
+              <TextArea
+                setBook={setBook}
+                name="notes"
+                placeholder="Your Notes Here!"
+                value={bookData.notes}
+              />
+            </div>
+            <div className="pb-4">
+              <h2 className="mb-2 text-primary">Rate This Read from 1-5:</h2>
+              <Input
+                setBook={setBook}
+                name="rating"
+                type="number"
+                max="5"
+                min="1"
+                placeholder="Your rating!"
+                value={bookData.rating}
+              />
+            </div>
+            <button
+              className="text-primary bg-accent border-primary border-2 rounded-full my-4 px-4 mx-auto block"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

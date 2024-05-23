@@ -17,9 +17,9 @@ function Book(props) {
   return (
     <div
       id={props.id}
-      className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80"
+      className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-2 px-2"
     >
-      <h1 className="text-material">
+      <h1 className="text-material pt-2">
         Title: {shortTitle !== "" ? shortTitle : title}
       </h1>
       <br />
@@ -32,7 +32,7 @@ function Book(props) {
       </h2>
       <p>Notes: {props.notes}</p>
       <p>Rating {props.rating}</p>
-      {user ? <h2>User: {user}</h2> : null}
+      {user ? <h2 className="pb-2">User: {user}</h2> : null}
     </div>
   );
 }
