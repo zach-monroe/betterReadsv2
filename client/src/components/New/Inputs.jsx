@@ -25,6 +25,7 @@ function Input(props) {
       {...(type === "number" ? { max: 5, min: 1 } : null)}
       value={props.value}
       className="px-2 rounded"
+      required
     />
   );
 }
@@ -51,6 +52,7 @@ function TextArea(props) {
       placeholder={props.placeholder}
       value={props.value}
       className="pl-2 pr-10 rounded"
+      required
     ></textarea>
   );
 }

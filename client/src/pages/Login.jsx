@@ -22,32 +22,54 @@ function Login() {
     return;
   }
   return (
-    <div className="min-h-screen pt-28">
-      <form method="POST" onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          placeholder="Password"
-        />
-        <input type="submit" />
-      </form>
-      {error && <p>{error}</p>}
-      <br />
-      <p>OR</p>
-      <Link to="/signup">Sign-Up</Link>
+    <div className="min-h-screen flex justify-center items-start text-primary">
+      <div>
+        <div className="bg-material rounded p-8">
+          <form method="POST" onSubmit={handleSubmit}>
+            <div className="pb-4">
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                placeholder="Email"
+              />
+            </div>
+            <div className="pb-4">
+              <input
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                placeholder="Password"
+              />
+            </div>
+            <div className="flex justify-center">
+              <input
+                className="bg-accent rounded-full px-4 border-primary border-2"
+                type="submit"
+                value="Log-In"
+              />
+            </div>
+          </form>
+          <div className="flex justify-center pt-4">
+            {error && <p>{error}</p>}
+            <p>- OR -</p>
+          </div>
+          <div className="flex justify-center pt-4 ">
+            <Link
+              className="bg-material text-accent border-accent border-2 rounded-full px-4"
+              to="/signup"
+            >
+              Sign-Up
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

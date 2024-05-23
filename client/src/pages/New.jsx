@@ -66,7 +66,7 @@ function New() {
                 setBook={setBook}
                 name="title"
                 type="text"
-                placeholder="Book Title"
+                placeholder="A Great Book"
                 value={book.title}
               />
             </div>
@@ -76,7 +76,7 @@ function New() {
                 setBook={setBook}
                 name="author_fname"
                 type="text"
-                placeholder="Author First Name"
+                placeholder="Jane"
                 value={book.author_fname}
               />
             </div>
@@ -86,7 +86,7 @@ function New() {
                 setBook={setBook}
                 name="author_lname"
                 type="text"
-                placeholder="Author Last Name"
+                placeholder="Doe"
                 value={book.author_lname}
               />
             </div>
@@ -95,7 +95,7 @@ function New() {
               <TextArea
                 setBook={setBook}
                 name="notes"
-                placeholder="Your Notes Here!"
+                placeholder="Some very insightful quote or observation."
                 value={book.notes}
               />
             </div>
@@ -107,7 +107,7 @@ function New() {
                 type="number"
                 max="5"
                 min="1"
-                placeholder="Your rating!"
+                placeholder="5"
                 value={book.rating}
               />
             </div>
