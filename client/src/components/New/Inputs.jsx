@@ -50,7 +50,7 @@ function TextArea(props) {
       onChange={handleChange}
       placeholder={props.placeholder}
       value={props.value}
-      className="px-2 rounded"
+      className="pl-2 pr-10 rounded"
     ></textarea>
   );
 }

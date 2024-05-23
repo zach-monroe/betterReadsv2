@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../output.css";
-import genericBookImage from "../../assets/generic-book.jpg";
+import genericBookImage from "../../assets/generic-book.png";
 import axios from "axios";
 
 function BookCover(props) {
@@ -47,7 +47,9 @@ function BookCover(props) {
           justifyContent: "center",
         }}
       >
-        {imgSrc !== genericBookImage ? null : props.title}
+        {imgSrc !== genericBookImage ? null : (
+          <p className="text-primary">{props.title}</p>
+        )}
       </div>
     </>
   );
