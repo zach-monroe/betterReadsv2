@@ -45,48 +45,71 @@ function SignUp() {
   }
 
   return (
-    <div className="min-h-screen pt-28">
-      <form method="POST" onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          name="password"
-          value={data.password}
-          onChange={handleChange}
-          placeholder="Password"
-        />
-        <input
-          type="password"
-          name="confirm"
-          value={data.confirm}
-          onChange={handleChange}
-          placeholder="Confirm Password"
-        />
-        <input
-          type="text"
-          name="user_fname"
-          value={data.user_fname}
-          onChange={handleChange}
-          placeholder="First Name"
-        />
+    <div className="pg-primary pt-4">
+      <div className="min-h-screen flex justify-center items-center text-primary">
+        <div className="bg-material rounded p-8">
+          <form method="POST" onSubmit={handleSubmit}>
+            <div className="pb-4 text-material">
+              <input
+                type="email"
+                name="email"
+                value={data.email}
+                onChange={handleChange}
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div className="pb-4 text-material">
+              <input
+                type="password"
+                name="password"
+                value={data.password}
+                onChange={handleChange}
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div className="pb-4 text-material">
+              <input
+                type="password"
+                name="confirm"
+                value={data.confirm}
+                onChange={handleChange}
+                placeholder="Confirm Password"
+                required
+              />
+            </div>
 
-        <input
-          type="text"
-          name="user_lname"
-          value={data.user_lname}
-          onChange={handleChange}
-          placeholder="Last Name"
-        />
-
-        <input type="submit" />
-      </form>
-      {error?.length > 0 ? <p>{error}</p> : null}
+            <div className="pb-4 text-material">
+              <input
+                type="text"
+                name="user_fname"
+                value={data.user_fname}
+                onChange={handleChange}
+                placeholder="First Name"
+                required
+              />
+            </div>
+            <div className="pb-4 text-material">
+              <input
+                type="text"
+                name="user_lname"
+                value={data.user_lname}
+                onChange={handleChange}
+                placeholder="Last Name"
+                required
+              />
+            </div>
+            <div className="flex justify-center ">
+              <input
+                className="bg-accent rounded-full px-4 border-primary border-2"
+                type="submit"
+              />
+            </div>
+          </form>
+          {error?.length > 0 ? <p>{error}</p> : null}
+        </div>
+      </div>
     </div>
   );
 }

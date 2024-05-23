@@ -22,11 +22,11 @@ function Login() {
     return;
   }
   return (
-    <div className="min-h-screen flex justify-center items-start text-primary">
-      <div>
+    <div className="bg-primary pt-4">
+      <div className="min-h-screen flex justify-center items-center text-primary">
         <div className="bg-material rounded p-8">
           <form method="POST" onSubmit={handleSubmit}>
-            <div className="pb-4">
+            <div className="pb-4 text-material">
               <input
                 type="email"
                 name="email"
@@ -35,9 +35,10 @@ function Login() {
                   setEmail(e.target.value);
                 }}
                 placeholder="Email"
+                required
               />
             </div>
-            <div className="pb-4">
+            <div className="pb-4 text-material">
               <input
                 type="password"
                 name="password"
@@ -46,6 +47,7 @@ function Login() {
                   setPassword(e.target.value);
                 }}
                 placeholder="Password"
+                required
               />
             </div>
             <div className="flex justify-center">
@@ -56,8 +58,12 @@ function Login() {
               />
             </div>
           </form>
+          {error && (
+            <p className="flex justify-center pt-4 text-center text-primary">
+              {error}
+            </p>
+          )}
           <div className="flex justify-center pt-4">
-            {error && <p>{error}</p>}
             <p>- OR -</p>
           </div>
           <div className="flex justify-center pt-4 ">
