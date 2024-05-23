@@ -34,7 +34,9 @@ function Book(props) {
       <p>Notes: {props.notes}</p>
       <p>Rating {props.rating}</p>
       {user ? <h2 className="pb-2">User: {user}</h2> : null}
-      {props.menu === true ? <Meatball id={props.id} /> : null}
+      {props.menu === true ? (
+        <Meatball id={props.id} handleDelete={props.handleDelete} />
+      ) : null}
     </div>
   );
 }

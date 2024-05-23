@@ -49,6 +49,7 @@ function Profile() {
       ...prevData,
       books: prevData.books.filter((book) => book.book_id !== bookId),
     }));
+    console.log("profile handle delete was called.");
   };
 
   return (

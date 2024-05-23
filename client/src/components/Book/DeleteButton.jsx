@@ -3,8 +3,9 @@ import "../../output.css";
 import { useAuth } from "../../AuthProvider";
 import Modal from "react-modal/lib/components/Modal";
 
+Modal.setAppElement("#root");
+
 function DeleteButton(props) {
-  const [isDeleting, setIsDeleting] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
 
@@ -20,17 +21,16 @@ function DeleteButton(props) {
     },
   };
 
-  const openModal = (e) => {
-    e.preventDefault();
+  const openModal = (id) => {
+    console.log("received id", id);
     setIsOpen(true);
   };
 
   function closeModal() {
     setIsOpen(false);
   }
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    setIsDeleting(true); // Set deleting state to true
+  const handleDelete = async () => {
+    console.log("handle delete has been called");
 
     try {
       const response = await fetch("/api/delete", {
@@ -44,6 +44,7 @@ function DeleteButton(props) {
       if (response.ok) {
         console.log("Item deleted successfully");
         props.onDelete(props.id);
+        console.log("DeleteButton handle delete worked");
       } else {
         console.error("Failed to delete item:", response.status);
       }
@@ -51,25 +52,20 @@ function DeleteButton(props) {
       console.error("Error deleting item:", error);
     } finally {
       setIsOpen(false);
-      setIsDeleting(false);
     }
   };
 
   return (
     <div>
-      <form onSubmit={openModal}>
-        <input type="hidden" name="id" value={props.id} />
-        <button
-          className="rounded-full bg-red-800 text-primary border-2 border-red-800 hover:bg-primary hover:text-red-800 px-4 my-4"
-          type="submit"
-          disabled={isDeleting}
-        >
-          {isDeleting ? "Deleting..." : "Delete"}
-        </button>
-      </form>
+      <button
+        className="rounded-full bg-red-800 text-primary border-2 border-red-800 hover:bg-primary hover:text-red-800 px-4 my-4"
+        onClick={() => openModal(props.id)}
+      >
+        Delete
+      </button>
       <Modal
         isOpen={modalIsOpen}
-        onRequestclose={closeModal}
+        onRequestClose={closeModal}
         style={customStyles}
       >
         <div className="flex justify-center items-center bg-material text-primary">
@@ -86,9 +82,9 @@ function DeleteButton(props) {
               </button>
               <button
                 className="rounded-full px-4 bg-red-800 border-primary text-primary border-2"
-                onClick={handleDelete}
+                onMouseDown={handleDelete}
               >
-                Delete
+                Confirm Delete
               </button>
             </div>
           </div>
