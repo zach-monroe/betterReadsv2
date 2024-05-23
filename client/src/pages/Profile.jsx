@@ -55,44 +55,51 @@ function Profile() {
   };
 
   return (
-    <div className="mx-auto text-center text-darkFore col-span-11">
-      <h1>Hello {user?.name}</h1>
-      <div className="grid grid-cols-3 text-fore1">
-        {books && books.length > 0 ? (
-          books.map((book, i) => (
-            <div className="mx-2" key={i}>
-              <Book
-                id={book.book_id}
-                title={book.title}
-                author_fname={book.author_fname}
-                author_lname={book.author_lname}
-                notes={book.notes}
-                rating={book.rating}
-                isbn={book.book_isbn}
-              />
-              <DeleteButton id={book.book_id} onDelete={handleDelete} />
-              <EditButton id={book.book_id} />
-            </div>
-          ))
-        ) : (
-          <p>No Data</p>
-        )}
+    <div className="text-darkFore">
+      <div className="flex justify-center ">
+        <h1 className="pt-10">{user?.name}'s Profile</h1>
       </div>
-      <button
-        onClick={() => {
-          navigate("/new");
-        }}
-      >
-        make a new post!
-      </button>
-      <br />
-      <button
-        onClick={() => {
-          auth.logOut();
-        }}
-      >
-        Log Out
-      </button>
+      <div className="flex justify-center">
+        <div className="grid pt-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 text-fore1">
+          {books && books.length > 0 ? (
+            books.map((book, i) => (
+              <div className="mx-2" key={i}>
+                <Book
+                  id={book.book_id}
+                  title={book.title}
+                  author_fname={book.author_fname}
+                  author_lname={book.author_lname}
+                  notes={book.notes}
+                  rating={book.rating}
+                  isbn={book.book_isbn}
+                />
+                <DeleteButton id={book.book_id} onDelete={handleDelete} />
+                <EditButton id={book.book_id} />
+              </div>
+            ))
+          ) : (
+            <p>No Data</p>
+          )}
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <button
+          onClick={() => {
+            navigate("/new");
+          }}
+        >
+          make a new post!
+        </button>
+      </div>
+      <div className="flex justify-center">
+        <button
+          onClick={() => {
+            auth.logOut();
+          }}
+        >
+          Log Out
+        </button>
+      </div>
     </div>
   );
 }
