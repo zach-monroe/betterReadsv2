@@ -6,7 +6,7 @@ function EditButton(props) {
   return (
     <div>
       <button
-        className="bg-gray-800 rounded-full text-white px-6 my-4"
+        className="bg-material rounded-full text-primary border-2 border-material hover:bg-primary hover:text-material px-6 my-4"
         onClick={() => {
           navigate(`/edit/${props.id}`);
         }}

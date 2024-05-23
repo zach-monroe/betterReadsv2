@@ -60,7 +60,7 @@ function DeleteButton(props) {
       <form onSubmit={openModal}>
         <input type="hidden" name="id" value={props.id} />
         <button
-          className="rounded-full bg-red-800 px-4 my-4"
+          className="rounded-full bg-red-800 text-primary border-2 border-red-800 hover:bg-primary hover:text-red-800 px-4 my-4"
           type="submit"
           disabled={isDeleting}
         >
