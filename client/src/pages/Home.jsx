@@ -26,9 +26,9 @@ function Home() {
   const { books } = backendData;
 
   return (
-    <div className=" text-material bg-primary">
+    <div className="flex justify-center text-material bg-primary">
       {user?.name ? <p>Welcome {user.name}</p> : null}
-      <div className="px-10 mx-auto pt-16 grid md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 xs:max-w-sm text-material min-h-screen min-w-fit gap-2">
+      <div className="px-10 mx-auto pt-16 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  xs:max-w-sm text-material min-h-screen min-w-fit gap-2">
         {books && books.length > 0 ? (
           books.map((book, i) => (
             <div className="mx-4">

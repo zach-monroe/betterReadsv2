@@ -12,17 +12,17 @@ const NavBar = () => {
   }
   console.log(user);
   return (
-    <div className="flex justify-center mx-auto">
-      <nav className="grid grid-cols-6 mx-auto px-10 mx-16 place-items-center text-left bg-material text-primary z-10 min-w-full h-20">
-        <div className="col-start-1 hover:text-accent" onClick={changeColor}>
+    <div className="flex justify-center">
+      <nav className="grid grid-cols-12 items-center bg-material text-primary z-10  h-20">
+        <div className="hover:text-accent" onClick={changeColor}>
           <Link to="/">Home</Link>
         </div>
-        <div className="col-start-5 hover:text-accent">
+        <div className="hover:text-accent">
           <Link to="/new">New</Link>
         </div>
         <div className="hover:text-accent">
           {!user.token ? (
-            <Link to="/login">Log-In</Link>
+            <Link to="/login">Log-In/Sign-Up</Link>
           ) : (
             <Link to="/profile">Profile</Link>
           )}

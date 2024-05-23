@@ -12,7 +12,7 @@ import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   return (
-    <div>
+    <div className="min-w-128">
       <Router>
         <AuthProvider>
           <NavBar />

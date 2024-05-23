@@ -10,6 +10,9 @@ module.exports = {
         secondary: "#292f47",
         accent: "#ff7629",
       },
+      spacing: {
+        128: "32rem",
+      },
     },
     fontFamily: {},
   },
