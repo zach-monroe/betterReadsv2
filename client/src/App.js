@@ -15,8 +15,9 @@ function App() {
     <div>
       <Router>
         <AuthProvider>
-          <div className="grid grid-cols-12 bg-primary">
-            <NavBar />
+          <NavBar />
+
+          <div className=" bg-primary">
             <Routes>
               <Route path="*" exact element={<Home />} />
               <Route path="/edit/:id" element={<Edit />} />

@@ -12,7 +12,7 @@ const NavBar = () => {
   }
   console.log(user);
   return (
-    <nav className="col-span-1 bg-material text-primary z-10 w-20">
+    <nav className="flex justify-between items-center bg-material text-primary z-10 px-20 h-20">
       <div className="hover:text-accent" onClick={changeColor}>
         <Link to="/">Home</Link>
       </div>

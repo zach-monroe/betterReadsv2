@@ -13,7 +13,7 @@ function Book(props) {
   return (
     <div
       id={props.id}
-      className="bg-primaryDark rounded overflow-hidden shadow-md"
+      className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80"
     >
       <h1 className="text-material">Title: {title}</h1>
       <br />
