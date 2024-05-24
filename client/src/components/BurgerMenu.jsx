@@ -11,6 +11,18 @@ function Burger() {
   const [isOpen, setIsOpen] = useState(false);
   const auth = useAuth();
 
+  function simulateEscapeKeyPress() {
+    const event = new KeyboardEvent("keydown", {
+      key: "Escape",
+      keyCode: 27,
+      which: 27,
+      bubbles: true,
+      cancelable: true,
+    });
+
+    document.dispatchEvent(event);
+  }
+
   const customStyles = {
     content: {
       top: "50%",
@@ -24,6 +36,7 @@ function Burger() {
   };
 
   function openModal() {
+    simulateEscapeKeyPress();
     setIsOpen(true);
   }
 
@@ -40,17 +53,25 @@ function Burger() {
   return (
     <div>
       <Menu>
-        <Link to="/">Home</Link>
-        <Link to="/new">New</Link>
+        <Link onClick={simulateEscapeKeyPress} to="/">
+          Home
+        </Link>
+        <Link onClick={simulateEscapeKeyPress} to="/new">
+          New
+        </Link>
         {token ? (
           <div>
-            <Link to="/profile">Profile</Link>
+            <Link onClick={simulateEscapeKeyPress} to="/profile">
+              Profile
+            </Link>
             <div>
               <button onClick={openModal}>Log-Out</button>
             </div>
           </div>
         ) : (
-          <Link to="/login">Log-In</Link>
+          <Link onClick={simulateEscapeKeyPress} to="/login">
+            Log-In
+          </Link>
         )}
       </Menu>
       <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
