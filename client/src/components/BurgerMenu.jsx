@@ -60,19 +60,15 @@ function Burger() {
           New
         </Link>
         {token ? (
-          <div>
-            <Link onClick={simulateEscapeKeyPress} to="/profile">
-              Profile
-            </Link>
-            <div>
-              <button onClick={openModal}>Log-Out</button>
-            </div>
-          </div>
+          <Link onClick={simulateEscapeKeyPress} to="/profile">
+            Profile
+          </Link>
         ) : (
           <Link onClick={simulateEscapeKeyPress} to="/login">
             Log-In
           </Link>
         )}
+        {token ? <button onClick={openModal}>Log-Out</button> : null}
       </Menu>
       <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
         <div className="flex justify-center items-center bg-material text-primary">
