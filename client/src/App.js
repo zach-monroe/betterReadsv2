@@ -3,19 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
-import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import AuthProvider from "./AuthProvider";
 import PrivateRoute from "./routes/PrivateRoute";
+import Burger from "./components/BurgerMenu";
 
 function App() {
   return (
     <div className="min-w-128">
       <Router>
         <AuthProvider>
-          <NavBar />
+          <Burger />
 
           <div className=" bg-primary">
             <Routes>
