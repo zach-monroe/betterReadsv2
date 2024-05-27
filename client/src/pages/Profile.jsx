@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../output.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
-import Book from "../components/Book";
+import BookCard from "../components/BookCard";
 
 // PERF: Refactor code so:
 // - Edit
@@ -62,7 +62,7 @@ function Profile() {
           {books && books.length > 0 ? (
             books.map((book, i) => (
               <div className="mx-2 my-2" key={i}>
-                <Book
+                <BookCard
                   id={book.book_id}
                   title={book.title}
                   author_fname={book.author_fname}

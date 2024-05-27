@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import "../output.css";
-import Book from "../components/Book";
+import BookCard from "../components/BookCard";
 import { useAuth } from "../AuthProvider";
 
 function Home() {
@@ -35,7 +35,7 @@ function Home() {
           {books && books.length > 0 ? (
             books.map((book, i) => (
               <div className="mx-4">
-                <Book
+                <BookCard
                   key={i}
                   id={book.book_id}
                   title={book.title}
