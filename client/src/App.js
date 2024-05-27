@@ -9,7 +9,7 @@ import Profile from "./pages/Profile";
 import AuthProvider from "./AuthProvider";
 import PrivateRoute from "./routes/PrivateRoute";
 import Burger from "./components/BurgerMenu";
-import Highlight from "./components/Highlght";
+import Highlight from "./components/Highlight";
 
 function App() {
   return (

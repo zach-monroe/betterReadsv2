@@ -247,6 +247,7 @@ app.get("/api/highlights/", async (req, res) => {
   }
 });
 
+//adding a highlight
 app.post("/api/highlights/", async (req, res) => {
   const book_id = req.body.book_id;
   const user_id = req.body.user_id;

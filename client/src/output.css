@@ -545,25 +545,8 @@ video {
   --tw-contain-style:  ;
 }
 
-.z-10 {
-  z-index: 10;
-}
-
 .col-span-full {
   grid-column: 1 / -1;
-}
-
-.col-start-1 {
-  grid-column-start: 1;
-}
-
-.col-start-5 {
-  grid-column-start: 5;
-}
-
-.mx-16 {
-  margin-left: 4rem;
-  margin-right: 4rem;
 }
 
 .mx-2 {
@@ -607,8 +590,12 @@ video {
   display: grid;
 }
 
-.h-20 {
-  height: 5rem;
+.hidden {
+  display: none;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .min-h-screen {
@@ -625,24 +612,12 @@ video {
   min-width: fit-content;
 }
 
-.min-w-full {
-  min-width: 100%;
-}
-
 .max-w-80 {
   max-width: 20rem;
 }
 
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.grid-cols-6 {
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-}
-
-.place-items-center {
-  place-items: center;
 }
 
 .items-center {
@@ -726,13 +701,13 @@ video {
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 
-.p-8 {
-  padding: 2rem;
+.bg-cream {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 244 244 / var(--tw-bg-opacity));
 }
 
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+.p-8 {
+  padding: 2rem;
 }
 
 .px-2 {
@@ -922,11 +897,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .hover\:italic:hover {
   font-style: italic;
-}
-
-.hover\:text-accent:hover {
-  --tw-text-opacity: 1;
-  color: rgb(255 118 41 / var(--tw-text-opacity));
 }
 
 .hover\:text-material:hover {
