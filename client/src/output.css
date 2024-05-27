@@ -590,14 +590,6 @@ video {
   display: grid;
 }
 
-.hidden {
-  display: none;
-}
-
-.h-full {
-  height: 100%;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
@@ -701,11 +693,6 @@ video {
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 
-.bg-cream {
-  --tw-bg-opacity: 1;
-  background-color: rgb(244 244 244 / var(--tw-bg-opacity));
-}
-
 .p-8 {
   padding: 2rem;
 }
@@ -775,10 +762,6 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.text-left {
-  text-align: left;
 }
 
 .text-center {
@@ -888,6 +871,20 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+.book {
+  display: flex;
+  position: relative;
+  height: 500px;
+  width: 350px;
+}
+
+.page {
+  position: absolute;
+  background-color: white;
+  height: 100%;
+  width: 100%;
 }
 
 .hover\:bg-primary:hover {

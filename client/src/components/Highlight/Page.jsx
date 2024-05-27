@@ -1,8 +1,13 @@
 import React from "react";
-import "../../output.css";
+import "../../output.css"; // Import CSS file for Page styling
 
-function Page(props) {
-  return <h1>{props.highlight}</h1>;
+function Page({ page, highlight, z }) {
+  return (
+    <div className="page" style={{ zIndex: z }}>
+      <div className="front">{highlight}</div>
+      <div className="back">Blank bc its the abck</div>
+    </div>
+  );
 }
 
 export default Page;

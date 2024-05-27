@@ -32,7 +32,7 @@ function Highlight() {
     <div className="min-h-screen flex justify-center items-center">
       {highlights && highlights.length > 0 ? (
         highlights.some((highlight) => highlight.user_id === user?.id) ? (
-          <UserFlipBook highlights={highlights} />
+          <GenericFlipBook highlights={highlights} />
         ) : (
           <GenericFlipBook highlights={highlights} />
         )

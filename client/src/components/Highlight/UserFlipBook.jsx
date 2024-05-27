@@ -3,7 +3,7 @@ import Page from "./Page";
 
 function UserFlipBook({ highlights }) {
   return (
-    <div>
+    <div className="book">
       <h1>User can edit</h1>
       {highlights && highlights.length > 0 ? (
         highlights.map((highlight, i) => (

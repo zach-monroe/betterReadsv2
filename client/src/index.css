@@ -71,3 +71,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
+
+.book {
+  display: flex;
+  position: relative;
+  height: 500px;
+  width: 350px;
+}
+.page {
+  position: absolute;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
