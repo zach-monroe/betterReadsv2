@@ -40,7 +40,7 @@ function BookCard(props) {
         Title: {shortTitle !== "" ? shortTitle : formattedTitle}
       </motion.h1>
       <motion.div className="flex justify-center">
-        <BookCover isbn={isbn} title={formattedTitle} />
+        <BookCover isbn={isbn} isAnimated={false} title={formattedTitle} />
       </motion.div>
       <motion.h2>
         Author: {formattedAuthorFname} {formattedAuthorLname}

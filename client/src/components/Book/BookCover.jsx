@@ -34,7 +34,11 @@ function BookCover(props) {
   return (
     <>
       <div
-        className="rounded hover:shadow-xl hover:shadow-accent"
+        className={
+          props.isAnimated
+            ? "rounded hover:shadow-xl hover:shadow-accent"
+            : "rounded hover:shadow-none"
+        }
         style={{
           backgroundImage: `url(${imgSrc})`,
           width: "180px",
