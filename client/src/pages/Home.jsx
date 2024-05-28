@@ -48,10 +48,7 @@ function Home() {
                 transition={{ delay: (i + 1) / 4, type: "tween" }}
                 className="mx-4"
               >
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.8 }}
-                >
+                <motion.div whileHover={{ scale: 1.05 }}>
                   <BookCard
                     key={i}
                     id={book.book_id}
@@ -83,10 +80,11 @@ function Home() {
             className="fixed inset-0 bg-black bg-opacity-50 z-50 flex flex-col items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            transition={{ duration: 0, style: "tween" }}
             exit={{ opacity: 0 }}
           >
             <motion.div
-              className="bg-primaryDark max-h-fit rounded p-4 shadow-md flex flex-col items-center justify-center"
+              className="bg-primaryDark min-w-max rounded p-4 shadow-md flex flex-col items-center justify-center"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.8 }}

@@ -638,6 +638,11 @@ video {
   min-width: fit-content;
 }
 
+.min-w-max {
+  min-width: -webkit-max-content;
+  min-width: max-content;
+}
+
 .max-w-80 {
   max-width: 20rem;
 }
