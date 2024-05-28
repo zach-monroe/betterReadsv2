@@ -1,13 +1,21 @@
 import React from "react";
 import "../../output.css"; // Import CSS file for Page styling
 
-function Page({ page, highlight, z }) {
+function FrontPage({ page, highlight, z }) {
   return (
-    <div className="page" id={`page${page}`} style={{ zIndex: z }}>
-      <div className="front">{highlight}</div>
-      <div className="back">Blank bc its the abck</div>
+    <div class="front-page">
+      <p>{highlight}</p>
     </div>
   );
 }
 
-export default Page;
+function BackPage({ page, highlight, z }) {
+  return (
+    <div class="back-page">
+      <p>{highlight}</p>
+    </div>
+  );
+}
+
+export default FrontPage;
+export { BackPage };
