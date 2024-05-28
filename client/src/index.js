@@ -12,21 +12,12 @@ root.render(
 
 //TODOS GO HERE;
 //
-//Home.jsx:
-//TODO: Style and layout
-//
-//Book.jsx:
-//
-//TODO: Style book components
+// GenericFlipBook.js
+//TODO: FIX the buttons animating all over the place
 //
 //
-// App.jsx
-//TODO: style navbar
+//UserFlipBook.js
+//TODO: Add Edit functionality to pages if a user has permissions
+// TODO: Add an add button to last page if a user has permissions.
 //
-// New.jsx:
-//
-//Login.jsx
-//TODO: set up OAuth with passport (?)
-//TODO: set up cookies and authentication using React Auth Kit and jwt tokens(?)
-
 //
