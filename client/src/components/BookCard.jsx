@@ -1,44 +1,58 @@
 import React from "react";
+import { motion } from "framer-motion";
 import "../output.css";
 import BookCover from "./Book/BookCover";
 import Meatball from "./Book/Meatball";
 
-function Book(props) {
+function BookCard(props) {
+  const {
+    id,
+    title,
+    author_fname,
+    author_lname,
+    notes,
+    rating,
+    isbn,
+    user_fname,
+    menu,
+    onSelect,
+  } = props;
+
   let shortTitle = "";
-  const title = props.title?.[0].toUpperCase() + props.title?.substring(1);
-  const author_fname =
-    props.author_fname?.[0].toUpperCase() + props.author_fname?.substring(1);
-  const author_lname =
-    props.author_lname?.[0].toUpperCase() + props.author_lname?.substring(1);
-  const user =
-    props.user_fname?.[0].toUpperCase() + props.user_fname?.substring(1);
-  if (title.length > 24) {
-    shortTitle = title.substring(0, 21) + "...";
+  const formattedTitle = title?.[0].toUpperCase() + title?.substring(1);
+  const formattedAuthorFname =
+    author_fname?.[0].toUpperCase() + author_fname?.substring(1);
+  const formattedAuthorLname =
+    author_lname?.[0].toUpperCase() + author_lname?.substring(1);
+  const formattedUser =
+    user_fname?.[0].toUpperCase() + user_fname?.substring(1);
+  if (formattedTitle.length > 24) {
+    shortTitle = formattedTitle.substring(0, 21) + "...";
   }
+
   return (
-    <div
-      id={props.id}
-      className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-2 px-2"
+    <motion.div
+      layoutId={id}
+      onClick={onSelect}
+      className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-2 px-2 cursor-pointer"
     >
-      <h1 className="text-material pt-2">
-        Title: {shortTitle !== "" ? shortTitle : title}
-      </h1>
-      <br />
-      <div className="flex justify-center">
-        <BookCover isbn={props.isbn} title={title} />
-      </div>
-      <br />
-      <h2>
-        Author: {author_fname} {author_lname}
-      </h2>
-      <p>Notes: {props.notes}</p>
-      <p>Rating {props.rating}</p>
-      {user ? <h2 className="pb-2">User: {user}</h2> : null}
-      {props.menu === true ? (
-        <Meatball id={props.id} handleDelete={props.handleDelete} />
+      <motion.h1 className="text-material pt-2">
+        Title: {shortTitle !== "" ? shortTitle : formattedTitle}
+      </motion.h1>
+      <motion.div className="flex justify-center">
+        <BookCover isbn={isbn} title={formattedTitle} />
+      </motion.div>
+      <motion.h2>
+        Author: {formattedAuthorFname} {formattedAuthorLname}
+      </motion.h2>
+      <motion.p>Notes: {notes}</motion.p>
+      <motion.p>Rating {rating}</motion.p>
+      {formattedUser ? <h2 className="pb-2">User: {formattedUser}</h2> : null}
+      {menu === true ? (
+        <Meatball id={id} handleDelete={props.handleDelete} />
       ) : null}
-    </div>
+    </motion.div>
   );
 }
 
-export default Book;
+export default BookCard;
