@@ -20,4 +20,8 @@ root.render(
 //TODO: Add Edit functionality to pages if a user has permissions
 // TODO: Add an add button to last page if a user has permissions.
 //
+// Home/Profile
+//
+// TODO: Segment animate presence functions into their own individual components to save space.
+//
 //
