@@ -38,22 +38,27 @@ function Home() {
               <motion.div
                 initial={{ x: "150vw", opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: (i + 1) / 4 }}
+                transition={{ delay: (i + 1) / 4, type: "tween" }}
                 className="mx-4"
               >
-                <BookCard
-                  key={i}
-                  id={book.book_id}
-                  title={book.title}
-                  author_fname={book.author_fname}
-                  author_lname={book.author_lname}
-                  notes={book.notes}
-                  rating={book.rating}
-                  isbn={book.book_isbn}
-                  user_fname={book.user_fname}
-                  user_id={book.user_id}
-                  menu={false}
-                />
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.8 }}
+                >
+                  <BookCard
+                    key={i}
+                    id={book.book_id}
+                    title={book.title}
+                    author_fname={book.author_fname}
+                    author_lname={book.author_lname}
+                    notes={book.notes}
+                    rating={book.rating}
+                    isbn={book.book_isbn}
+                    user_fname={book.user_fname}
+                    user_id={book.user_id}
+                    menu={false}
+                  />
+                </motion.div>
                 <br />
               </motion.div>
             ))
