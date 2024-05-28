@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import "../output.css";
 import BookCard from "../components/BookCard";
+import { motion } from "framer-motion";
 import { useAuth } from "../AuthProvider";
 
 function Home() {
@@ -34,7 +35,12 @@ function Home() {
         <div className="px-5 mx-auto pt-8 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  xs:max-w-sm text-material min-h-screen min-w-fit gap-2">
           {books && books.length > 0 ? (
             books.map((book, i) => (
-              <div className="mx-4">
+              <motion.div
+                initial={{ x: "150vw", opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: (i + 1) / 4 }}
+                className="mx-4"
+              >
                 <BookCard
                   key={i}
                   id={book.book_id}
@@ -49,7 +55,7 @@ function Home() {
                   menu={false}
                 />
                 <br />
-              </div>
+              </motion.div>
             ))
           ) : (
             <p>No Data</p>
