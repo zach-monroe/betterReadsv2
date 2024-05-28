@@ -1,7 +1,7 @@
 import React from "react";
 import "../../output.css"; // Import CSS file for Page styling
 
-function FrontPage({ page, highlight, z }) {
+function FrontPage({ highlight }) {
   return (
     <div class="front-page">
       <p>{highlight}</p>
@@ -9,7 +9,7 @@ function FrontPage({ page, highlight, z }) {
   );
 }
 
-function BackPage({ page, highlight, z }) {
+function BackPage({ highlight }) {
   return (
     <div class="back-page">
       <p>{highlight}</p>
