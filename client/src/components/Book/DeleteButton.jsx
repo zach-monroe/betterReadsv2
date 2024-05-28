@@ -1,35 +1,20 @@
 import React, { useState } from "react";
 import "../../output.css";
 import { useAuth } from "../../AuthProvider";
-import Modal from "react-modal/lib/components/Modal";
-
-Modal.setAppElement("#root");
 
 function DeleteButton(props) {
-  const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      backgroundColor: "#242424",
-    },
+  const handleDeleteClick = () => {
+    setShowConfirm(true);
   };
 
-  const openModal = (id) => {
-    console.log("received id", id);
-    setIsOpen(true);
+  const cancelDelete = () => {
+    setShowConfirm(false);
   };
 
-  function closeModal() {
-    setIsOpen(false);
-  }
-  const handleDelete = async () => {
+  const confirmDelete = async () => {
     console.log("handle delete has been called");
 
     try {
@@ -51,45 +36,39 @@ function DeleteButton(props) {
     } catch (error) {
       console.error("Error deleting item:", error);
     } finally {
-      setIsOpen(false);
+      props.closePopUp();
+      setShowConfirm(false);
     }
   };
 
   return (
     <div>
-      <button
-        className="rounded-full bg-red-800 text-primary border-2 border-red-800 hover:bg-primary hover:text-red-800 px-4 my-4"
-        onClick={() => openModal(props.id)}
-      >
-        Delete
-      </button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-      >
-        <div className="flex justify-center items-center bg-material text-primary">
-          <div>
-            <div className="flex justify-center text-center py-4">
-              <p>Are you sure you want to delete this post?</p>
-            </div>
-            <div className="flex justify-around py-4">
-              <button
-                className="rounded-full px-4 bg-material border-primary text-primary border-2"
-                onClick={closeModal}
-              >
-                Close
-              </button>
-              <button
-                className="rounded-full px-4 bg-red-800 border-primary text-primary border-2"
-                onMouseDown={handleDelete}
-              >
-                Confirm Delete
-              </button>
-            </div>
+      {!showConfirm ? (
+        <button
+          onClick={handleDeleteClick}
+          className=" px-4 bg-red-800 text-white rounded-full"
+        >
+          Delete
+        </button>
+      ) : (
+        <div className="flex flex-col items-center">
+          <p>Are you sure?</p>
+          <div className="flex justify-around">
+            <button
+              onClick={confirmDelete}
+              className="m-2 px-4 bg-red-800 text-white rounded-full"
+            >
+              Yes
+            </button>
+            <button
+              onClick={cancelDelete}
+              className="m-2 px-4 bg-primary text-material rounded-full"
+            >
+              No
+            </button>
           </div>
         </div>
-      </Modal>
+      )}
     </div>
   );
 }

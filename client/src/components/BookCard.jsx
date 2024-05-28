@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import "../output.css";
 import BookCover from "./Book/BookCover";
-import Meatball from "./Book/Meatball";
 
 function BookCard(props) {
   const {
@@ -14,7 +13,6 @@ function BookCard(props) {
     rating,
     isbn,
     user_fname,
-    menu,
     onSelect,
   } = props;
 
@@ -32,25 +30,34 @@ function BookCard(props) {
 
   return (
     <motion.div
-      layoutId={id}
-      onClick={onSelect}
-      className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-2 px-2 cursor-pointer"
+      key={props.index}
+      initial={{ x: "150vw", opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ delay: (props.index + 1) / 4, type: "tween" }}
+      className="mx-4"
     >
-      <motion.h1 className="text-material pt-2">
-        Title: {shortTitle !== "" ? shortTitle : formattedTitle}
-      </motion.h1>
-      <motion.div className="flex justify-center">
-        <BookCover isbn={isbn} isAnimated={false} title={formattedTitle} />
+      <motion.div whileHover={{ scale: 1.05 }}>
+        <motion.div
+          layoutId={id}
+          onClick={onSelect}
+          className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-2 px-2 cursor-pointer"
+        >
+          <motion.h1 className="text-material pt-2">
+            Title: {shortTitle !== "" ? shortTitle : formattedTitle}
+          </motion.h1>
+          <motion.div className="flex justify-center">
+            <BookCover isbn={isbn} isAnimated={false} title={formattedTitle} />
+          </motion.div>
+          <motion.h2>
+            Author: {formattedAuthorFname} {formattedAuthorLname}
+          </motion.h2>
+          <motion.p>Notes: {notes}</motion.p>
+          <motion.p>Rating {rating}</motion.p>
+          {formattedUser ? (
+            <h2 className="pb-2">User: {formattedUser}</h2>
+          ) : null}
+        </motion.div>
       </motion.div>
-      <motion.h2>
-        Author: {formattedAuthorFname} {formattedAuthorLname}
-      </motion.h2>
-      <motion.p>Notes: {notes}</motion.p>
-      <motion.p>Rating {rating}</motion.p>
-      {formattedUser ? <h2 className="pb-2">User: {formattedUser}</h2> : null}
-      {menu === true ? (
-        <Meatball id={id} handleDelete={props.handleDelete} />
-      ) : null}
     </motion.div>
   );
 }

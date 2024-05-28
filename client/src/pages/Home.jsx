@@ -41,31 +41,21 @@ function Home() {
         <div className="px-5 mx-auto pt-8 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:max-w-sm text-material min-h-screen min-w-fit gap-2">
           {books && books.length > 0 ? (
             books.map((book, i) => (
-              <motion.div
-                key={book.book_id}
-                initial={{ x: "150vw", opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: (i + 1) / 4, type: "tween" }}
-                className="mx-4"
-              >
-                <motion.div whileHover={{ scale: 1.05 }}>
-                  <BookCard
-                    key={i}
-                    id={book.book_id}
-                    title={book.title}
-                    author_fname={book.author_fname}
-                    author_lname={book.author_lname}
-                    notes={book.notes}
-                    rating={book.rating}
-                    isbn={book.book_isbn}
-                    user_fname={book.user_fname}
-                    user_id={book.user_id}
-                    menu={false}
-                    onSelect={() => setSelectedBook(book)}
-                  />
-                </motion.div>
-                <br />
-              </motion.div>
+              <BookCard
+                key={i}
+                index={i}
+                id={book.book_id}
+                title={book.title}
+                author_fname={book.author_fname}
+                author_lname={book.author_lname}
+                notes={book.notes}
+                rating={book.rating}
+                isbn={book.book_isbn}
+                user_fname={book.user_fname}
+                user_id={book.user_id}
+                menu={false}
+                onSelect={() => setSelectedBook(book)}
+              />
             ))
           ) : (
             <p>No Data</p>
