@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import FrontPage, { BackPage } from "./Page";
 
 //HACK: This entire file
+//
 
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -43,7 +44,7 @@ function GenericFlipBook({ highlights }) {
       if (currentPage === 0) {
         openBook(true);
       }
-      if (currentPage === pages.length) {
+      if (currentPage === pages.length - 1) {
         closeBook(false);
       }
       setCurrentPage((prevPage) => prevPage + 1);
@@ -55,7 +56,7 @@ function GenericFlipBook({ highlights }) {
       if (currentPage === 1) {
         closeBook(true);
       }
-      if (currentPage === pages.length - 1) {
+      if (currentPage === pages.length) {
         openBook(false);
       }
       setCurrentPage((prevPage) => prevPage - 1);
@@ -99,7 +100,16 @@ function GenericFlipBook({ highlights }) {
     i += 2;
   }
 
-  pages.push(<div className="back-cover" id="back-cover"></div>);
+  pages.push(
+    <div
+      className={`back-cover ${currentPage === pages.length + 1 ? "flipback" : null}`}
+      style={{
+        zIndex: currentPage > pages.length ? 99 : -1,
+        transition: "zIndex 1.5s",
+      }}
+      id="back-cover"
+    ></div>,
+  );
 
   return (
     <div className="flex justify-center items-center">
