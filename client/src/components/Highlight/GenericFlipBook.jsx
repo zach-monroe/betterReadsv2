@@ -77,7 +77,10 @@ function GenericFlipBook({ highlights }) {
         id={`page${Math.ceil(i + 1 / 2)}`}
         key={i + 1}
         style={{
-          zIndex: highlights.length - Math.ceil(i + 1 / 2),
+          zIndex:
+            currentPage >= i + 1
+              ? highlights.length + 1
+              : highlights.length - Math.ceil(i + 1 / 2),
           transform:
             currentPage > Math.ceil(i + 1 / 2)
               ? "rotateY(-180deg)"
