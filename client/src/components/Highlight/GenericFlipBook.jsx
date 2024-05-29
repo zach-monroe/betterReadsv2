@@ -2,6 +2,8 @@ import "../../output.css";
 import React, { useState } from "react";
 import FrontPage, { BackPage } from "./Page";
 
+//HACK: This entire file
+
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -63,7 +65,7 @@ function GenericFlipBook({ highlights }) {
   const pages = [
     <div
       key={0}
-      className={`cover ${currentPage >= 1 ? "flipcover" : null}`}
+      className={`cover ${currentPage > 0 ? "flipcover" : null}`}
       id="cover"
     ></div>,
   ];
@@ -71,27 +73,26 @@ function GenericFlipBook({ highlights }) {
   let i = 0;
 
   while (i < highlights.length) {
+    var counter = Math.floor(i / 2) + 1;
     pages.push(
       <div
         className="page"
-        id={`page${Math.ceil(i + 1 / 2)}`}
-        key={i + 1}
+        id={`page${counter}`}
+        key={counter}
         style={{
           zIndex:
-            currentPage >= i + 1
-              ? highlights.length + 1
-              : highlights.length - Math.ceil(i + 1 / 2),
+            currentPage > counter
+              ? highlights.length + i
+              : highlights.length - counter,
           transform:
-            currentPage > Math.ceil(i + 1 / 2)
-              ? "rotateY(-180deg)"
-              : "rotateY(0deg)",
+            currentPage > counter ? "rotateY(-180deg)" : "rotateY(0deg)",
         }}
       >
         <FrontPage highlight={highlights[i].highlight} />
         {i + 1 < highlights.length ? (
           <BackPage highlight={highlights[i + 1].highlight} />
         ) : (
-          <BackPage highlight={"hello"} />
+          <BackPage highlight={""} />
         )}
       </div>,
     );
