@@ -2,8 +2,6 @@ import "../../output.css";
 import React, { useState } from "react";
 import FrontPage, { BackPage } from "./Page";
 
-//TODO: FIX the buttons animating all over the place
-
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -39,11 +37,11 @@ function GenericFlipBook({ highlights }) {
     }
   }
   const goNextPage = () => {
-    if (currentPage < highlights.length - 1) {
+    if (currentPage < pages.length) {
       if (currentPage === 0) {
         openBook(true);
       }
-      if (currentPage === highlights.length - 2) {
+      if (currentPage === pages.length) {
         closeBook(false);
       }
       setCurrentPage((prevPage) => prevPage + 1);
@@ -55,49 +53,60 @@ function GenericFlipBook({ highlights }) {
       if (currentPage === 1) {
         closeBook(true);
       }
-      if (currentPage === highlights.length - 1) {
+      if (currentPage === pages.length - 1) {
         openBook(false);
       }
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
-  const pages = [];
+  const pages = [
+    <div
+      key={0}
+      className={`cover ${currentPage >= 1 ? "flipcover" : null}`}
+      id="cover"
+    ></div>,
+  ];
+
   let i = 0;
 
   while (i < highlights.length) {
     pages.push(
       <div
         className="page"
-        id={`page${Math.floor(i / 2)}`}
-        key={i}
+        id={`page${Math.ceil(i + 1 / 2)}`}
+        key={i + 1}
         style={{
-          zIndex: highlights.length - Math.floor(i / 2),
+          zIndex: highlights.length - Math.ceil(i + 1 / 2),
           transform:
-            currentPage > Math.floor(i / 2)
+            currentPage > Math.ceil(i + 1 / 2)
               ? "rotateY(-180deg)"
               : "rotateY(0deg)",
         }}
       >
         <FrontPage highlight={highlights[i].highlight} />
-        {i + 1 < highlights.length && (
+        {i + 1 < highlights.length ? (
           <BackPage highlight={highlights[i + 1].highlight} />
+        ) : (
+          <BackPage highlight={"blank"} />
         )}
       </div>,
     );
     i += 2;
   }
 
+  pages.push(<div className="back-cover" id="back-cover"></div>);
+
   return (
     <div className="flex justify-center items-center">
       <button id="prev-btn" onClick={goPrevPage} className="z-50 p-20">
-        prev
+        <i className="fas fa-chevron-left"></i>
       </button>
       <div className="book" id="book">
         {pages}
       </div>
       <button id="next-btn" onClick={goNextPage} className="z-50 p-20">
-        next
+        <i className="fas fa-chevron-right"></i>
       </button>
     </div>
   );
