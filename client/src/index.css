@@ -123,3 +123,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .prev {
   left: 1em;
 }
+
+#book,
+#next-btn,
+#prev-btn {
+  transition: transform 0.8s ease-in-out;
+}

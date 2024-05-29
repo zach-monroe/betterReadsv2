@@ -34,8 +34,8 @@ function GenericFlipBook({ highlights }) {
       prev.style.transform = "translateX(0%)";
     } else {
       book.style.transform = "translateX(100%)";
-      next.style.transform = "translateX(-50%)";
-      prev.style.transform = "translateX(50%)";
+      next.style.transform = "translateX(0%)";
+      prev.style.transform = "translateX(0%)";
     }
   }
   const goNextPage = () => {
@@ -55,7 +55,7 @@ function GenericFlipBook({ highlights }) {
       if (currentPage === 1) {
         closeBook(true);
       }
-      if (currentPage === highlights.length - 2) {
+      if (currentPage === highlights.length - 1) {
         openBook(false);
       }
       setCurrentPage((prevPage) => prevPage - 1);
