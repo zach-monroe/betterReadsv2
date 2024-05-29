@@ -1,51 +1,22 @@
 import "../../output.css";
 import React, { useState } from "react";
 import FrontPage, { BackPage } from "./Page";
+import { transform } from "framer-motion";
 
 //HACK: This entire file
 //
 
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
-  function openBook(isAtBeginning) {
-    const book = document.getElementById("book");
-    const next = document.getElementById("next-btn");
-    const prev = document.getElementById("prev-btn");
-
-    if (isAtBeginning === true) {
-      book.style.transform = "translateX(50%)";
-      next.style.transform = "translateX(100%)";
-      prev.style.transform = "translateX(-100%)";
-    } else {
-      book.style.transform = "translateX(50%)";
-      next.style.transform = "translateX(100%)";
-      prev.style.transform = "translateX(-100%)";
-    }
-  }
-
-  function closeBook(isAtBeginning) {
-    const book = document.getElementById("book");
-    const next = document.getElementById("next-btn");
-    const prev = document.getElementById("prev-btn");
-
-    if (isAtBeginning === true) {
-      book.style.transform = "translateX(0%)";
-      next.style.transform = "translateX(0%)";
-      prev.style.transform = "translateX(0%)";
-    } else {
-      book.style.transform = "translateX(100%)";
-      next.style.transform = "translateX(0%)";
-      prev.style.transform = "translateX(0%)";
-    }
-  }
   const goNextPage = () => {
     if (currentPage < pages.length) {
       if (currentPage === 0) {
-        openBook(true);
+        setIsOpen(true);
       }
       if (currentPage === pages.length - 1) {
-        closeBook(false);
+        setIsOpen(false);
       }
       setCurrentPage((prevPage) => prevPage + 1);
     }
@@ -54,10 +25,10 @@ function GenericFlipBook({ highlights }) {
   const goPrevPage = () => {
     if (currentPage > 0) {
       if (currentPage === 1) {
-        closeBook(true);
+        setIsOpen(false);
       }
       if (currentPage === pages.length) {
-        openBook(false);
+        setIsOpen(true);
       }
       setCurrentPage((prevPage) => prevPage - 1);
     }
@@ -103,23 +74,40 @@ function GenericFlipBook({ highlights }) {
   pages.push(
     <div
       className={`back-cover ${currentPage === pages.length + 1 ? "flipback" : null}`}
-      style={{
-        zIndex: currentPage > pages.length ? 99 : -1,
-        transition: "zIndex 1.5s",
-      }}
       id="back-cover"
     ></div>,
   );
 
   return (
     <div className="flex justify-center items-center">
-      <button id="prev-btn" onClick={goPrevPage} className="z-50 p-20">
+      <button
+        id="prev-btn"
+        onClick={goPrevPage}
+        className="z-50 p-20"
+        style={{ transform: isOpen ? "translateX(-100%)" : "translateX(0%)" }}
+      >
         <i className="fas fa-chevron-left"></i>
       </button>
-      <div className="book" id="book">
+      <div
+        className="book"
+        id="book"
+        style={{
+          transform:
+            isOpen && currentPage > 0
+              ? "translateX(50%)"
+              : !isOpen && currentPage > 0
+                ? "translateX(100%)"
+                : "translateX(0%)",
+        }}
+      >
         {pages}
       </div>
-      <button id="next-btn" onClick={goNextPage} className="z-50 p-20">
+      <button
+        id="next-btn"
+        onClick={goNextPage}
+        className="z-50 p-20"
+        style={{ transform: isOpen ? "translateX(100%)" : "translateX(0%)" }}
+      >
         <i className="fas fa-chevron-right"></i>
       </button>
     </div>

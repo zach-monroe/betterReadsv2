@@ -143,24 +143,31 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 .back-cover {
   position: absolute;
-  transition: transform 1s;
+  z-index: -1;
+  transition:
+    transform 1s,
+    z-index 2s ease 1s;
 }
 .flipcover {
   transition:
     transform 1.5s,
     z-index 0.5s 0.5s;
   transform: rotateY(-180deg);
-  z-index: 1;
+  z-index: 3;
 }
 
 .flipback {
-  transition: transform 1.5s;
-  transition-duration: 1.5s;
+  transition:
+    transform 1.5s,
+    z-index 1.5s ease 1.5s;
   transform: rotateY(-180deg);
+  z-index: 99;
 }
 
 #book,
 #next-btn,
-#prev-btn {
+#prev-btn,
+.cover,
+.back-cover {
   transition: transform 1s ease-in-out;
 }
