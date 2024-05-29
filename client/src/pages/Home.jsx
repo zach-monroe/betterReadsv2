@@ -10,6 +10,7 @@ function Home() {
   const { user } = useAuth();
   const [selectedBook, setSelectedBook] = useState(null);
 
+  //Fetches Data from server to fill BookCards
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,16 +21,13 @@ function Home() {
         console.log(error);
       }
     };
+
+    //calls fetchData within the scope of useEffect so that it actually fills backendData on render.
     fetchData();
   }, []);
 
-  console.log(JSON.stringify(backendData));
-
+  //deconstructing backendData into a "books" array for mapping.
   const { books } = backendData;
-
-  if (selectedBook) {
-    console.log(JSON.stringify(selectedBook));
-  }
 
   return (
     <div>

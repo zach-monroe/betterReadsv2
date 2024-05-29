@@ -7,17 +7,11 @@ import BigBookCard from "../components/Book/BigBookCard";
 
 function Profile() {
   const [backendData, setBackendData] = useState({});
-  const auth = useAuth();
+  const [selectedBook, setSelectedBook] = useState(null);
   const { user } = useAuth();
 
-  const [selectedBook, setSelectedBook] = useState(null);
-
-  function closePopUp() {
-    setSelectedBook(null);
-  }
   //fetches profile data from server to render onto the page.
   useEffect(() => {
-    //using a callback function to handle async functions.
     const fetchData = async () => {
       try {
         //requests the user's data by using their id number.
@@ -91,22 +85,12 @@ function Profile() {
             )}
           </div>
         </div>
-        <div className="flex justify-center">
-          <button
-            onClick={() => {
-              auth.logOut();
-            }}
-          >
-            Log Out
-          </button>
-        </div>
       </div>
       <BigBookCard
         isProfile={true}
         selectedBook={selectedBook}
         setSelectedBook={setSelectedBook}
         handleDelete={handleDelete}
-        closePopUp={closePopUp}
       />
     </div>
   );

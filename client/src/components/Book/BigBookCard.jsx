@@ -9,8 +9,12 @@ function BigBookCard({
   selectedBook,
   setSelectedBook,
   handleDelete,
-  closePopUp,
 }) {
+  //handles exiting BigBookCard on Deletion. Passed down to DelteButton component.
+  function closePopUp() {
+    setSelectedBook(null);
+  }
+
   return (
     <>
       <AnimatePresence>

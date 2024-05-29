@@ -16,6 +16,9 @@ function BookCard(props) {
     onSelect,
   } = props;
 
+  //this handles formatting the data to present properly.
+  // BUG: Doesn't handle when there is more than one word in a title.
+
   let shortTitle = "";
   const formattedTitle = title?.[0].toUpperCase() + title?.substring(1);
   const formattedAuthorFname =
@@ -24,6 +27,8 @@ function BookCard(props) {
     author_lname?.[0].toUpperCase() + author_lname?.substring(1);
   const formattedUser =
     user_fname?.[0].toUpperCase() + user_fname?.substring(1);
+
+  //keeps titles from being too long on home page.
   if (formattedTitle.length > 24) {
     shortTitle = formattedTitle.substring(0, 21) + "...";
   }
