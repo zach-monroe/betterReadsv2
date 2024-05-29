@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import "../../output.css";
+import React, { useState } from "react";
 import { useAuth } from "../../AuthProvider";
 
 function DeleteButton(props) {
@@ -46,7 +46,7 @@ function DeleteButton(props) {
       {!showConfirm ? (
         <button
           onClick={handleDeleteClick}
-          className=" px-4 bg-red-800 text-white rounded-full"
+          className=" px-6 my-4 border-2 border-red-800 bg-red-800 hover:bg-white text-white hover:text-red-800 rounded-full"
         >
           Delete
         </button>

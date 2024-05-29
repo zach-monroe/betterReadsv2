@@ -56,8 +56,6 @@ function BookCard(props) {
           <motion.h2>
             Author: {formattedAuthorFname} {formattedAuthorLname}
           </motion.h2>
-          <motion.p>Notes: {notes}</motion.p>
-          <motion.p>Rating {rating}</motion.p>
           {formattedUser ? (
             <h2 className="pb-2">User: {formattedUser}</h2>
           ) : null}
