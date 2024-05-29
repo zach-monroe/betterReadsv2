@@ -4,17 +4,8 @@ import "../output.css";
 import BookCover from "./Book/BookCover";
 
 function BookCard(props) {
-  const {
-    id,
-    title,
-    author_fname,
-    author_lname,
-    notes,
-    rating,
-    isbn,
-    user_fname,
-    onSelect,
-  } = props;
+  const { id, title, author_fname, author_lname, isbn, user_fname, onSelect } =
+    props;
 
   //this handles formatting the data to present properly.
   // BUG: Doesn't handle when there is more than one word in a title.

@@ -39,7 +39,6 @@ app.post("/api/add", async (req, res) => {
   console.log(req.body);
   //For adding the users input into the database
   const title = req.body.title;
-  const notes = req.body.notes;
   const author_fname = req.body.author_fname;
   const author_lname = req.body.author_lname;
   const rating = req.body.rating;
@@ -51,8 +50,8 @@ app.post("/api/add", async (req, res) => {
     //posting the information to the database.  It is placed here so users can't add their input unless it gets a valid isbn number.
     try {
       const readResult = await db.query(
-        "INSERT INTO read (author_lname, title, notes, rating, author_fname, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING (id)",
-        [author_lname, title, notes, rating, author_fname, user_id],
+        "INSERT INTO read (author_lname, title, rating, author_fname, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING (id)",
+        [author_lname, title, rating, author_fname, user_id],
       );
 
       //gets the id from the post to "read" table and connect with the "isbn" table
@@ -85,7 +84,6 @@ app.get("/api/edit/:id", async (req, res) => {
 
 app.post("/api/update", async (req, res) => {
   const title = req.body.title;
-  const notes = req.body.notes;
   const author_fname = req.body.author_fname;
   const author_lname = req.body.author_lname;
   const rating = req.body.rating;
@@ -93,7 +91,7 @@ app.post("/api/update", async (req, res) => {
 
   try {
     const readResult = await db.query(
-      "UPDATE read SET author_lname = $1, title = $2, notes = $3, rating = $4, author_fname = $5 WHERE id = $6",
+      "UPDATE read SET author_lname = $1, title = $2, rating = $3, author_fname = $4 WHERE id = $5",
       [author_lname, title, notes, rating, author_fname, id],
     );
   } catch (err) {

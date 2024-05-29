@@ -11,8 +11,8 @@ function BookDetailsModal({
   closePopUp,
 }) {
   return (
-    <div className="bg-primaryDark min-w-max rounded p-4 shadow-md flex flex-col items-center justify-start">
-      <h5 className="text-2xl text-left mb-4">{selectedBook.title}</h5>
+    <div className="bg-primaryDark min-w-max rounded p-4 shadow-md flex flex-col items-center justify-between">
+      <h5 className="text-2xl text-center mb-4">{selectedBook.title}</h5>
       <div className="flex flex-row items-center text-right my-4">
         <div className="mx-4">
           <BookCover
@@ -22,7 +22,6 @@ function BookDetailsModal({
           />
         </div>
         <div>
-          <h2 className="text-lg mb-2">Notes: {selectedBook.notes}</h2>
           <p className="text-md mb-2">Rating: {selectedBook.rating}</p>
           <p className="text-md mb-2">
             Author: {selectedBook.author_fname} {selectedBook.author_lname}

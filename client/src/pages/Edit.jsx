@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Input, { TextArea } from "../components/New/Inputs";
+import Input from "../components/New/Inputs";
 import { useAuth } from "../AuthProvider";
 
 //follows very similarly to New.jsx. Could have made both functions (add, update) fit into one form, but this felt like a cleaner approach.
@@ -17,7 +17,6 @@ function Edit() {
     title: "",
     author_fname: "",
     author_lname: "",
-    notes: "",
     rating: 0,
     id: "",
     user_id: "",
@@ -110,15 +109,6 @@ function Edit() {
                 type="text"
                 placeholder="Author Last Name"
                 value={bookData.author_lname}
-              />
-            </div>
-            <div className="pb-4">
-              <h2 className="mb-2 text-primary">Add Your Notes Here:</h2>
-              <TextArea
-                setBook={setBook}
-                name="notes"
-                placeholder="Your Notes Here!"
-                value={bookData.notes}
               />
             </div>
             <div className="pb-4">

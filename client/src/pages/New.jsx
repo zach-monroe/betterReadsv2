@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input, { TextArea } from "../components/New/Inputs";
+import Input from "../components/New/Inputs";
 import { useAuth } from "../AuthProvider";
 import { fetchISBN, addBookToDatabase } from "../components/New/newFunctions";
 
@@ -10,7 +10,6 @@ function New() {
     title: "",
     author_fname: "",
     author_lname: "",
-    notes: "",
     rating: 5,
     user_id: user.id,
   });
@@ -88,15 +87,6 @@ function New() {
                 type="text"
                 placeholder="Doe"
                 value={book.author_lname}
-              />
-            </div>
-            <div className="pb-4">
-              <h2 className="mb-2 text-primary ">Add Your Notes Here:</h2>
-              <TextArea
-                setBook={setBook}
-                name="notes"
-                placeholder="Some very insightful quote or observation."
-                value={book.notes}
               />
             </div>
             <div className="pb-4">
