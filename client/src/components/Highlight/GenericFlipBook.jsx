@@ -88,7 +88,7 @@ function GenericFlipBook({ highlights }) {
         {i + 1 < highlights.length ? (
           <BackPage highlight={highlights[i + 1].highlight} />
         ) : (
-          <BackPage highlight={"blank"} />
+          <BackPage highlight={"hello"} />
         )}
       </div>,
     );
