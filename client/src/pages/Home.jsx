@@ -10,7 +10,6 @@ function Home() {
   const [backendData, setData] = useState({});
   const { user } = useAuth();
   const [selectedBook, setSelectedBook] = useState(null);
-
   const [highlightIsOpen, setHighlight] = useState(false);
 
   //Fetches Data from server to fill BookCards

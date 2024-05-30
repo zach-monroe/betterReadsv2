@@ -14,9 +14,9 @@ function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
           transition={{ duration: 0.3, type: "tween" }}
           exit={{ opacity: 0 }}
         >
-          <motion.div>
+          <motion.div className="p-4 pointer-events-auto">
             <motion.button
-              className="text-white mt-20"
+              className="text-white absolute top-2 right-2 m-4"
               onClick={() => setHighlight(false)}
             >
               x

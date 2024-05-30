@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import BookCard from "../components/BookCard";
 import BigBookCard from "../components/Book/BigBookCard";
+import AnimateHighlight from "../components/Highlight/AnimateHighlight";
 
 function Profile() {
   const [backendData, setBackendData] = useState({});
   const [selectedBook, setSelectedBook] = useState(null);
+
+  const [highlightIsOpen, setHighlight] = useState(false);
   const { user } = useAuth();
 
   //fetches profile data from server to render onto the page.
@@ -90,7 +93,13 @@ function Profile() {
         isProfile={true}
         selectedBook={selectedBook}
         setSelectedBook={setSelectedBook}
+        setHighlight={setHighlight}
         handleDelete={handleDelete}
+      />
+      <AnimateHighlight
+        highlightIsOpen={highlightIsOpen}
+        setHighlight={setHighlight}
+        selectedBook={selectedBook}
       />
     </div>
   );
