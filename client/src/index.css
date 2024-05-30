@@ -91,7 +91,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin-top: 10px;
   transform-origin: left;
   transform-style: preserve-3d;
-  transition-duration: 1.5s;
+  transition-duration: 1s;
 }
 
 .front-page,

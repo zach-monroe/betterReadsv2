@@ -557,28 +557,16 @@ video {
   position: absolute;
 }
 
-.relative {
-  position: relative;
-}
-
 .inset-0 {
   inset: 0px;
 }
 
-.right-0 {
-  right: 0px;
-}
-
-.top-0 {
-  top: 0px;
+.right-2 {
+  right: 0.5rem;
 }
 
 .top-2 {
   top: 0.5rem;
-}
-
-.right-2 {
-  right: 0.5rem;
 }
 
 .z-50 {
@@ -595,10 +583,6 @@ video {
 
 .m-4 {
   margin: 1rem;
-}
-
-.m-8 {
-  margin: 2rem;
 }
 
 .mx-2 {
@@ -634,10 +618,6 @@ video {
   margin-bottom: 1rem;
 }
 
-.mt-20 {
-  margin-top: 5rem;
-}
-
 .mt-4 {
   margin-top: 1rem;
 }
@@ -654,20 +634,12 @@ video {
   display: grid;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .max-h-screen {
   max-height: 100vh;
 }
 
 .min-h-screen {
   min-height: 100vh;
-}
-
-.w-full {
-  width: 100%;
 }
 
 .min-w-128 {
@@ -1025,7 +997,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin-top: 10px;
   transform-origin: left;
   transform-style: preserve-3d;
-  transition-duration: 1.5s;
+  transition-duration: 1s;
 }
 
 .front-page,
