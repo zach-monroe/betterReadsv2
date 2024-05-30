@@ -247,17 +247,15 @@ app.get("/api/highlights/", async (req, res) => {
           },
         ],
       });
-      console.log(user_id);
     } else {
       res.json({ highlights: result.rows });
-      console.log("highlights:", JSON.stringify(result.rows));
     }
   } catch (error) {
     res.status(404).json({ message: "Not Found" });
   }
 });
 
-//adding a highlight
+//adding and updating a highlight (rolled these into the same endpoint for ease of use on the front end)
 app.post("/api/highlights/", async (req, res) => {
   const book_id = req.body.book_id;
   const user_id = req.body.user_id;
@@ -265,44 +263,29 @@ app.post("/api/highlights/", async (req, res) => {
   const highlight = req.body.highlight;
 
   try {
-    const result = await db.query(
-      "INSERT INTO highlights (book_id, user_id, entry, highlight) VALUES ($1, $2, $3, $4) RETURNING *",
-      [book_id, user_id, entry, highlight],
-    );
-    res.status(201).json({
-      message: "Highlight added successfully",
-      highlight: result.rows[0],
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
-
-app.put("/api/highlights/:user_id/:book_id/:entry", async (req, res) => {
-  const user_id = req.params.user_id;
-  const book_id = req.params.book_id;
-  const entry = req.params.entry;
-  const { highlight } = req.body;
-
-  try {
-    //check if highligh exists
-    const existingHighlight = await db.query(
-      "SELECT * FROM highlights WHERE user_id = $1 AND book_id = $2 AND entry = $3",
+    const highlightExists = db.query(
+      "SELECT * FROM highlights WHERE user_id = $1 AND book_id= $2 AND entry = $3",
       [user_id, book_id, entry],
     );
-
-    if (existingHighlight.rows.length === 0) {
-      return res.status(404).json({ message: "Highlight not found" });
+    if (highlightExists.rows?.length === 0) {
+      const result = await db.query(
+        "INSERT INTO highlights (book_id, user_id, entry, highlight) VALUES ($1, $2, $3, $4) RETURNING *",
+        [book_id, user_id, entry, highlight],
+      );
+      res.status(201).json({
+        message: "Highlight added successfully",
+        highlight: result.rows[0],
+      });
+    } else {
+      const result = await db.query(
+        "UPDATE highlights SET highlight = $1 WHERE user_id = $2 AND book_id = $3 AND entry = $4 RETURNING *",
+        [highlight, user_id, book_id, entry],
+      );
+      res.status(201).json({
+        message: "Highlight Updated Successfully",
+        highlight: result.rows[0],
+      });
     }
-
-    // Update the highlight
-    await db.query(
-      "UPDATE highlights SET highlight = $1 WHERE user_id = $2 AND book_id = $3 AND entry = $4",
-      [highlight, user_id, book_id, entry],
-    );
-
-    res.json({ message: "Highlight updated successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal Server Error" });

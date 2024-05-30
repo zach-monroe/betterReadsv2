@@ -56,9 +56,19 @@ function UserFlipBook({ highlights }) {
             currentPage > counter ? "rotateY(-180deg)" : "rotateY(0deg)",
         }}
       >
-        <UserFrontPage highlight={highlights[i].highlight} />
+        <UserFrontPage
+          highlight={highlights[i].highlight}
+          entry={highlights[i].entry}
+          user_id={highlights[i].user_id}
+          book_id={highlights[i].book_id}
+        />
         {i + 1 < highlights.length ? (
-          <UserBackPage highlight={highlights[i + 1].highlight} />
+          <UserBackPage
+            highlight={highlights[i + 1].highlight}
+            entry={highlights[i + 1].entry}
+            user_id={highlights[i + 1].user_id}
+            book_id={highlights[i + 1].book_id}
+          />
         ) : (
           <UserBackPage highlight={""} />
         )}
