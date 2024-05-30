@@ -235,8 +235,17 @@ app.get("/api/highlights/", async (req, res) => {
       "SELECT * FROM highlights WHERE book_id = $1 AND user_id = $2",
       [book_id, user_id],
     );
-    if (result?.length === 0) {
-      res.status(404).json({ message: "No Higlights Found" });
+    if (result.rows?.length === 0) {
+      res.json({
+        highlights: [
+          {
+            user_id: user_id,
+            book_id: book_id,
+            entry: 1,
+            highlight: "No Highlights Added Yet",
+          },
+        ],
+      });
     } else {
       res.json({ highlights: result.rows });
     }
