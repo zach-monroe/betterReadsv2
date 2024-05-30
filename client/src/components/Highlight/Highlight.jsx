@@ -1,8 +1,8 @@
-import "../output.css";
+import "../../output.css";
 import React, { useState, useEffect } from "react";
-import { useAuth } from "../AuthProvider.js";
-import UserFlipBook from "./Highlight/UserFlipBook.jsx";
-import GenericFlipBook from "./Highlight/GenericFlipBook.jsx";
+import { useAuth } from "../../AuthProvider.js";
+import UserFlipBook from "./UserFlipBook.jsx";
+import GenericFlipBook from "./GenericFlipBook.jsx";
 
 function Highlight() {
   const { user } = useAuth();

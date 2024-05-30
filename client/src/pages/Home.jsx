@@ -5,7 +5,7 @@ import BookCard from "../components/BookCard";
 import BigBookCard from "../components/Book/BigBookCard";
 import { useAuth } from "../AuthProvider";
 import { motion, AnimatePresence } from "framer-motion";
-import Highlight from "../components/Highlight";
+import Highlight from "../components/Highlight/Highlight";
 
 function Home() {
   const [backendData, setData] = useState({});
@@ -77,7 +77,7 @@ function Home() {
             className="fixed max-h-screen inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.5 }}
             exit={{ opacity: 0 }}
           >
             <motion.div>

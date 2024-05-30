@@ -1,11 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import "../../output.css";
 import BookCover from "./BookCover";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
-import { motion, AnimatePresence } from "framer-motion";
-import Highlight from "../Highlight";
 
 function BookDetailsModal({
   selectedBook,
