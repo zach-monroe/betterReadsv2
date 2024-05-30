@@ -4,7 +4,7 @@ import "../output.css";
 import BookCard from "../components/BookCard";
 import BigBookCard from "../components/Book/BigBookCard";
 import { useAuth } from "../AuthProvider";
-import AnimateHighlight from "../components/AnimateHighlight";
+import AnimateHighlight from "../components/Highlight/AnimateHighlight";
 
 function Home() {
   const [backendData, setData] = useState({});

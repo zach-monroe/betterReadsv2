@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Highlight from "./Highlight/Highlight";
+import Highlight from "./Highlight";
 
 function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
   return (
@@ -11,7 +11,7 @@ function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
           className="fixed max-h-screen inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3, type: "tween" }}
           exit={{ opacity: 0 }}
         >
           <motion.div>
@@ -21,7 +21,13 @@ function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
             >
               x
             </motion.button>
-            <Highlight />
+            <motion.div
+              initial={{ x: "150vw" }}
+              animate={{ x: 0 }}
+              transition={{ duration: 0.3, type: "tween" }}
+            >
+              <Highlight />
+            </motion.div>
           </motion.div>
         </motion.div>
       )}

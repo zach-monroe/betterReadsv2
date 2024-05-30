@@ -29,7 +29,7 @@ function BigBookCard({
             className="min-w-max"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.1, duration: 0.2 }}
+            transition={{ delay: 0, duration: 0 }}
             exit={{ scale: 0.8, opacity: 0 }}
           >
             <BookDetailsModal

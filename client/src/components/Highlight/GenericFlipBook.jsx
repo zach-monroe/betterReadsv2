@@ -1,10 +1,6 @@
 import "../../output.css";
 import React, { useState } from "react";
 import FrontPage, { BackPage } from "./Page";
-import { transform } from "framer-motion";
-
-//HACK: This entire file
-//
 
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -86,7 +82,7 @@ function GenericFlipBook({ highlights }) {
         className="z-50 p-20"
         style={{ transform: isOpen ? "translateX(-100%)" : "translateX(0%)" }}
       >
-        <i className="fas fa-chevron-left"></i>
+        <i className="fas fa-chevron-left text-white"></i>
       </button>
       <div
         className="book"
@@ -108,7 +104,7 @@ function GenericFlipBook({ highlights }) {
         className="z-50 p-20"
         style={{ transform: isOpen ? "translateX(100%)" : "translateX(0%)" }}
       >
-        <i className="fas fa-chevron-right"></i>
+        <i className="fas fa-chevron-right text-white"></i>
       </button>
     </div>
   );
