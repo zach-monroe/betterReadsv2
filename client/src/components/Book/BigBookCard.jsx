@@ -22,14 +22,14 @@ function BigBookCard({
           className="fixed max-h-screen inset-0 bg-black bg-opacity-50 z-50 flex flex-col items-center justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0 }}
+          transition={{ duration: 0.3, style: "tween" }}
           exit={{ opacity: 0 }}
         >
           <motion.div
             className="min-w-max"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0, duration: 0 }}
+            transition={{ delay: 0, duration: 0.3, style: "tween" }}
             exit={{ scale: 0.8, opacity: 0 }}
           >
             <BookDetailsModal

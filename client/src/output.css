@@ -590,16 +590,6 @@ video {
   margin-bottom: 1rem;
 }
 
-.mx-20 {
-  margin-left: 5rem;
-  margin-right: 5rem;
-}
-
-.my-20 {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -608,12 +598,12 @@ video {
   margin-bottom: 1rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
 .mt-20 {
   margin-top: 5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .block {
@@ -1040,16 +1030,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .cover {
   position: absolute;
-  z-index: 4;
+  z-index: 5;
   transition: transform 1s;
 }
 
 .back-cover {
   position: absolute;
   z-index: -1;
-  transition:
-    transform 1s,
-    z-index 2s ease 1s;
+  transition: transform 1s;
 }
 
 .flipcover {
@@ -1070,9 +1058,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 #book,
 #next-btn,
-#prev-btn,
-.cover,
-.back-cover {
+#prev-btn {
   transition: transform 1s ease-in-out;
 }
 

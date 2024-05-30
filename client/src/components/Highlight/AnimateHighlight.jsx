@@ -24,7 +24,7 @@ function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
             <motion.div
               initial={{ x: "150vw" }}
               animate={{ x: 0 }}
-              transition={{ duration: 0.3, type: "tween" }}
+              transition={{ duration: 0.3, style: "tween", delay: 0.7 }}
             >
               <Highlight />
             </motion.div>

@@ -37,7 +37,7 @@ function Highlight() {
           <GenericFlipBook highlights={highlights} />
         )
       ) : (
-        <p>No highlights available</p>
+        <GenericFlipBook highlights="No Highlights Added" />
       )}
     </div>
   );

@@ -138,15 +138,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 .cover {
   position: absolute;
-  z-index: 4;
+  z-index: 5;
   transition: transform 1s;
 }
 .back-cover {
   position: absolute;
   z-index: -1;
-  transition:
-    transform 1s,
-    z-index 2s ease 1s;
+  transition: transform 1s;
 }
 .flipcover {
   transition:
@@ -166,8 +164,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 #book,
 #next-btn,
-#prev-btn,
-.cover,
-.back-cover {
+#prev-btn {
   transition: transform 1s ease-in-out;
 }
