@@ -17,20 +17,7 @@ function Highlight({ selectedBook }) {
           `/api/highlights?user_id=${selectedBook.user_id}&book_id=${selectedBook.book_id}`,
         );
         const data = await response.json();
-        if (data === { highlights: [] }) {
-          setBackendData({
-            highlights: [
-              {
-                user_id: selectedBook.user_id,
-                book_id: selectedBook.book_id,
-                entry: 1,
-                highlight: "No Highlights Yet",
-              },
-            ],
-          });
-        } else {
-          setBackendData(data);
-        }
+        setBackendData(data);
       } catch (error) {
         console.log(error);
       }
@@ -48,9 +35,9 @@ function Highlight({ selectedBook }) {
     <div className="min-h-screen flex justify-center items-center">
       {highlights && highlights.length > 0 ? (
         highlights.some((highlight) => highlight.user_id === user?.id) ? (
-          <GenericFlipBook highlights={highlights} />
-        ) : (
           <UserFlipBook highlights={highlights} />
+        ) : (
+          <GenericFlipBook highlights={highlights} />
         )
       ) : (
         <GenericFlipBook highlights="No Highlights Added" />

@@ -226,6 +226,7 @@ app.get("/api/profile/:id", async (req, res) => {
   } catch (error) {}
 });
 
+//getting highlights for a specific book based on query params
 app.get("/api/highlights/", async (req, res) => {
   const book_id = req.query.book_id;
   const user_id = req.query.user_id;
@@ -239,15 +240,17 @@ app.get("/api/highlights/", async (req, res) => {
       res.json({
         highlights: [
           {
-            user_id: user_id,
-            book_id: book_id,
+            user_id: parseInt(user_id, 10),
+            book_id: parseInt(book_id, 10),
             entry: 1,
             highlight: "No Highlights Added Yet",
           },
         ],
       });
+      console.log(user_id);
     } else {
       res.json({ highlights: result.rows });
+      console.log("highlights:", JSON.stringify(result.rows));
     }
   } catch (error) {
     res.status(404).json({ message: "Not Found" });
