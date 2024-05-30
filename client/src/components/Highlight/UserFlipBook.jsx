@@ -70,7 +70,12 @@ function UserFlipBook({ highlights }) {
             book_id={highlights[i + 1].book_id}
           />
         ) : (
-          <UserBackPage highlight={""} />
+          <UserBackPage
+            highlight={"Add Your Own Highlight Here!"}
+            entry={highlights[i].entry + 1}
+            user_id={highlights[i].user_id}
+            book_id={highlights[i].book_id}
+          />
         )}
       </div>,
     );

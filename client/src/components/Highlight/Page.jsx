@@ -1,6 +1,6 @@
 import React from "react";
 import "../../output.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ContentEditable from "react-contenteditable";
 
 function FrontPage({ highlight }) {
@@ -21,20 +21,10 @@ function BackPage({ highlight }) {
 
 function UserFrontPage({ highlight, entry, user_id, book_id }) {
   const [editableHighlight, setEdit] = useState(highlight);
-  console.log(highlight, entry, user_id, book_id);
+  const contentEditableRef = useRef(null);
 
   async function submitHighlight() {
     try {
-      console.log(editableHighlight);
-      console.log(
-        "request body:",
-        JSON.stringify({
-          book_id: parseInt(book_id, 10),
-          user_id: parseInt(user_id, 10),
-          entry: parseInt(entry, 10),
-          highlight: editableHighlight,
-        }),
-      );
       const response = await fetch("/api/highlights/", {
         method: "POST",
         headers: {
@@ -44,7 +34,7 @@ function UserFrontPage({ highlight, entry, user_id, book_id }) {
           book_id: parseInt(book_id, 10),
           user_id: parseInt(user_id, 10),
           entry: parseInt(entry, 10),
-          highlight: editableHighlight,
+          highlight: contentEditableRef.current.innerHTML,
         }),
       });
       if (!response.ok) {
@@ -59,12 +49,14 @@ function UserFrontPage({ highlight, entry, user_id, book_id }) {
     if (e.key === "Enter") {
       e.preventDefault();
       submitHighlight();
+      contentEditableRef.current.blur();
     }
   }
   return (
     <div className="front-page editable-content">
       <ContentEditable
-        html={`<p>${editableHighlight}</p>`}
+        innerRef={contentEditableRef}
+        html={editableHighlight}
         onChange={(e) => setEdit(e.target.value)}
         onKeyDown={handleKeyPress}
       />
@@ -74,20 +66,10 @@ function UserFrontPage({ highlight, entry, user_id, book_id }) {
 
 function UserBackPage({ highlight, entry, user_id, book_id }) {
   const [editableHighlight, setEdit] = useState(highlight);
-  console.log(highlight, entry, user_id, book_id);
+  const contentEditableRef = useRef(null);
 
   async function submitHighlight() {
     try {
-      console.log(editableHighlight);
-      console.log(
-        "request body:",
-        JSON.stringify({
-          book_id: parseInt(book_id, 10),
-          user_id: parseInt(user_id, 10),
-          entry: parseInt(entry, 10),
-          highlight: editableHighlight,
-        }),
-      );
       const response = await fetch("/api/highlights/", {
         method: "POST",
         headers: {
@@ -97,7 +79,7 @@ function UserBackPage({ highlight, entry, user_id, book_id }) {
           book_id: parseInt(book_id, 10),
           user_id: parseInt(user_id, 10),
           entry: parseInt(entry, 10),
-          highlight: editableHighlight,
+          highlight: contentEditableRef.current.innerHTML,
         }),
       });
       if (!response.ok) {
@@ -112,12 +94,14 @@ function UserBackPage({ highlight, entry, user_id, book_id }) {
     if (e.key === "Enter") {
       e.preventDefault();
       submitHighlight();
+      contentEditableRef.current.blur();
     }
   }
   return (
     <div className="back-page editable-content">
       <ContentEditable
-        html={`<p>${editableHighlight}</p>`}
+        innerRef={contentEditableRef}
+        html={editableHighlight}
         onChange={(e) => setEdit(e.target.value)}
         onKeyDown={handleKeyPress}
       />

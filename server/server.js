@@ -261,22 +261,14 @@ app.post("/api/highlights/", async (req, res) => {
   const user_id = req.body.user_id;
   const entry = req.body.entry;
   const highlight = req.body.highlight;
+  console.log(JSON.stringify(req.body));
 
   try {
     const highlightExists = db.query(
       "SELECT * FROM highlights WHERE user_id = $1 AND book_id= $2 AND entry = $3",
       [user_id, book_id, entry],
     );
-    if (highlightExists.rows?.length === 0) {
-      const result = await db.query(
-        "INSERT INTO highlights (book_id, user_id, entry, highlight) VALUES ($1, $2, $3, $4) RETURNING *",
-        [book_id, user_id, entry, highlight],
-      );
-      res.status(201).json({
-        message: "Highlight added successfully",
-        highlight: result.rows[0],
-      });
-    } else {
+    if (highlightExists.rows?.length > 0) {
       const result = await db.query(
         "UPDATE highlights SET highlight = $1 WHERE user_id = $2 AND book_id = $3 AND entry = $4 RETURNING *",
         [highlight, user_id, book_id, entry],
@@ -285,6 +277,16 @@ app.post("/api/highlights/", async (req, res) => {
         message: "Highlight Updated Successfully",
         highlight: result.rows[0],
       });
+    } else {
+      const result = await db.query(
+        "INSERT INTO highlights (book_id, user_id, entry, highlight) VALUES ($1, $2, $3, $4) RETURNING *",
+        [book_id, user_id, entry, highlight],
+      );
+      res.status(201).json({
+        message: "Highlight added successfully",
+        highlight: result.rows[0],
+      });
+      console.log("added a new highlight");
     }
   } catch (error) {
     console.error(error);
