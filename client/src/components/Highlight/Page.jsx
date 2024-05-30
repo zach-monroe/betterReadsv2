@@ -22,7 +22,7 @@ function UserFrontPage({ highlight }) {
   const [editableHighlight, setEdit] = useState(highlight);
 
   return (
-    <div className="front-page editable-content text-left items-center wrap max-h-">
+    <div className="front-page editable-content">
       <p contentEditable onChange={(e) => setEdit(e.target.value)}>
         {editableHighlight}
       </p>
