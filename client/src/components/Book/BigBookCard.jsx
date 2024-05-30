@@ -8,6 +8,7 @@ function BigBookCard({
   selectedBook,
   setSelectedBook,
   handleDelete,
+  setHighlight,
 }) {
   function closePopUp() {
     setSelectedBook(null);
@@ -36,6 +37,7 @@ function BigBookCard({
               isProfile={isProfile}
               handleDelete={handleDelete}
               closePopUp={closePopUp}
+              setHighlight={setHighlight}
             />
           </motion.div>
         </motion.div>

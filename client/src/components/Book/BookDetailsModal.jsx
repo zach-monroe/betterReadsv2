@@ -1,20 +1,28 @@
 import React from "react";
+import { useState } from "react";
 import "../../output.css";
 import BookCover from "./BookCover";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
+import { motion, AnimatePresence } from "framer-motion";
+import Highlight from "../Highlight";
 
 function BookDetailsModal({
   selectedBook,
   isProfile,
   handleDelete,
   closePopUp,
+  setHighlight,
 }) {
+  function renderHighlight() {
+    setHighlight(true);
+  }
+
   return (
     <div className="bg-primaryDark min-w-max rounded p-4 shadow-md flex flex-col items-center justify-between">
       <h5 className="text-2xl text-center mb-4">{selectedBook.title}</h5>
       <div className="flex flex-row items-center text-right my-4">
-        <div className="mx-4">
+        <div className="mx-4" onClick={renderHighlight}>
           <BookCover
             isbn={selectedBook.book_isbn}
             isAnimated={true}

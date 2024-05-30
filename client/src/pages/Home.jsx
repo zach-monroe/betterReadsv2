@@ -4,11 +4,15 @@ import "../output.css";
 import BookCard from "../components/BookCard";
 import BigBookCard from "../components/Book/BigBookCard";
 import { useAuth } from "../AuthProvider";
+import { motion, AnimatePresence } from "framer-motion";
+import Highlight from "../components/Highlight";
 
 function Home() {
   const [backendData, setData] = useState({});
   const { user } = useAuth();
   const [selectedBook, setSelectedBook] = useState(null);
+
+  const [highlightIsOpen, setHighlight] = useState(false);
 
   //Fetches Data from server to fill BookCards
   useEffect(() => {
@@ -63,7 +67,31 @@ function Home() {
         isProfile={false}
         selectedBook={selectedBook}
         setSelectedBook={setSelectedBook}
+        setHighlight={setHighlight}
       />
+
+      <AnimatePresence>
+        {highlightIsOpen && (
+          <motion.div
+            layoutId={selectedBook.id}
+            className="fixed max-h-screen inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div>
+              <motion.button
+                className="text-white mt-20"
+                onClick={() => setHighlight(false)}
+              >
+                x
+              </motion.button>
+              <Highlight />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
