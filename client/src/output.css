@@ -549,6 +549,10 @@ video {
   pointer-events: auto;
 }
 
+.collapse {
+  visibility: collapse;
+}
+
 .fixed {
   position: fixed;
 }
@@ -847,6 +851,10 @@ video {
   padding-top: 2rem;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .text-center {
   text-align: center;
 }
@@ -1046,7 +1054,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .cover {
   position: absolute;
-  z-index: 5;
+  z-index: 1000;
   transition: transform 1s;
 }
 
@@ -1061,7 +1069,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
     transform 1.5s,
     z-index 0.5s 0.5s;
   transform: rotateY(-180deg);
-  z-index: 3;
+  z-index: -1;
 }
 
 .flipback {
@@ -1076,6 +1084,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 #next-btn,
 #prev-btn {
   transition: transform 1s ease-in-out;
+}
+
+/* content Editable stuff in highlight */
+
+.editable-content {
+  max-height: 408px;
+  overflow-y: auto;
 }
 
 .hover\:bg-primary:hover {

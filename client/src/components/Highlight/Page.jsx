@@ -1,9 +1,10 @@
 import React from "react";
-import "../../output.css"; // Import CSS file for Page styling
+import "../../output.css";
+import { useState } from "react";
 
 function FrontPage({ highlight }) {
   return (
-    <div class="front-page">
+    <div className="front-page">
       <p>{highlight}</p>
     </div>
   );
@@ -11,11 +12,34 @@ function FrontPage({ highlight }) {
 
 function BackPage({ highlight }) {
   return (
-    <div class="back-page">
+    <div className="back-page">
       <p>{highlight}</p>
     </div>
   );
 }
 
+function UserFrontPage({ highlight }) {
+  const [editableHighlight, setEdit] = useState(highlight);
+
+  return (
+    <div className="front-page editable-content text-left items-center wrap max-h-">
+      <p contentEditable onChange={(e) => setEdit(e.target.value)}>
+        {editableHighlight}
+      </p>
+    </div>
+  );
+}
+
+function UserBackPage({ highlight }) {
+  const [editableHighlight, setEdit] = useState(highlight);
+  return (
+    <div className="back-page editable-content">
+      <p contentEditable onChange={(e) => setEdit(e.target.value)}>
+        {editableHighlight}
+      </p>
+    </div>
+  );
+}
+
 export default FrontPage;
-export { BackPage };
+export { BackPage, UserFrontPage, UserBackPage };

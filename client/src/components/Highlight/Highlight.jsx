@@ -4,24 +4,40 @@ import { useAuth } from "../../AuthProvider.js";
 import UserFlipBook from "./UserFlipBook.jsx";
 import GenericFlipBook from "./GenericFlipBook.jsx";
 
-function Highlight() {
+function Highlight({ selectedBook }) {
   const { user } = useAuth();
   const [backendData, setBackendData] = useState({});
   console.log(JSON.stringify(user));
+  console.log(JSON.stringify(selectedBook));
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api/highlights?user_id=1&book_id=118");
+        const response = await fetch(
+          `/api/highlights?user_id=${selectedBook.user_id}&book_id=${selectedBook.book_id}`,
+        );
         const data = await response.json();
-        setBackendData(data);
+        if (data === { highlights: [] }) {
+          setBackendData({
+            highlights: [
+              {
+                user_id: selectedBook.user_id,
+                book_id: selectedBook.book_id,
+                entry: 1,
+                highlight: "No Highlights Yet",
+              },
+            ],
+          });
+        } else {
+          setBackendData(data);
+        }
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [selectedBook]);
 
   console.log(JSON.stringify(backendData));
 
@@ -34,7 +50,7 @@ function Highlight() {
         highlights.some((highlight) => highlight.user_id === user?.id) ? (
           <GenericFlipBook highlights={highlights} />
         ) : (
-          <GenericFlipBook highlights={highlights} />
+          <UserFlipBook highlights={highlights} />
         )
       ) : (
         <GenericFlipBook highlights="No Highlights Added" />
