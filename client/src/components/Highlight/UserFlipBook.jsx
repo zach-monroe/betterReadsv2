@@ -39,9 +39,10 @@ function UserFlipBook({ highlights }) {
   ];
 
   let i = 0;
+  let counter = 0;
 
   while (i < highlights.length) {
-    var counter = Math.floor(i / 2) + 1;
+    counter = Math.floor(i / 2) + 1;
     pages.push(
       <div
         className="page"
@@ -80,6 +81,38 @@ function UserFlipBook({ highlights }) {
       </div>,
     );
     i += 2;
+  }
+
+  if (highlights.length % 2 === 0 && highlights.length > 0) {
+    pages.push(
+      <div
+        className="page"
+        id={`page${counter + 1}`}
+        key={counter}
+        style={{
+          zIndex:
+            currentPage > counter + 1
+              ? highlights.length + i
+              : highlights.length - counter - 1,
+          transform:
+            currentPage > counter + 1 ? "rotateY(-180deg)" : "rotateY(0deg)",
+        }}
+      >
+        <UserFrontPage
+          highlight={"add your highlight here!"}
+          entry={i + 1}
+          user_id={highlights[0].user_id}
+          book_id={highlights[0].book_id}
+        />
+
+        <UserBackPage
+          highlight={"Add your Highlight here!"}
+          entry={i + 2}
+          user_id={highlights[0].user_id}
+          book_id={highlights[0].book_id}
+        />
+      </div>,
+    );
   }
 
   pages.push(
