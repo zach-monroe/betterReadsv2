@@ -16,8 +16,9 @@ function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
         >
           <motion.div className="p-4 pointer-events-auto">
             <motion.button
-              className="text-white absolute top-2 right-2 m-4"
+              className="text-white text-xl absolute top-4 right-4  "
               onClick={() => setHighlight(false)}
+              style={{ zIndex: 60 }}
             >
               x
             </motion.button>
