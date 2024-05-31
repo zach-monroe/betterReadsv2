@@ -861,6 +861,11 @@ video {
   line-height: 1.75rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-accent {
   --tw-text-opacity: 1;
   color: rgb(255 118 41 / var(--tw-text-opacity));
