@@ -109,7 +109,7 @@ function UserFlipBook({ highlights }) {
       className={`back-cover ${currentPage === pages.length + 1 ? "flipback" : null}`}
       id="back-cover"
       style={{
-        zIndex: currentPage > pages.length ? 99 : -1,
+        zIndex: currentPage > pages.length ? 1000 : -1,
         transition: "zIndex 1.5s",
         transitionDuration: "1.0s",
       }}
