@@ -12,5 +12,10 @@ root.render(
 
 //TODOS GO HERE;
 //UserFlipBook.js
-//TODO: Add Edit functionality to pages if a user has permissions
 // TODO: Add an add button to last page if a user has permissions.
+//
+//
+//General:
+// TODO: Fix the text aliasing over page turns.
+// TODO: make bookcover colors match theme.
+// TODO: improve UI

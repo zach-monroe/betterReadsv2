@@ -2,6 +2,8 @@ import "../../output.css";
 import React, { useState } from "react";
 import FullPage from "./Page";
 
+// HACK: This file is in fact a hot mess.
+
 function UserFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
