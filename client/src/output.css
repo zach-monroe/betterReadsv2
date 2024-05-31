@@ -557,20 +557,8 @@ video {
   position: absolute;
 }
 
-.relative {
-  position: relative;
-}
-
 .inset-0 {
   inset: 0px;
-}
-
-.right-2 {
-  right: 0.5rem;
-}
-
-.top-2 {
-  top: 0.5rem;
 }
 
 .right-4 {
@@ -591,10 +579,6 @@ video {
 
 .m-2 {
   margin: 0.5rem;
-}
-
-.m-4 {
-  margin: 1rem;
 }
 
 .mx-2 {
@@ -1019,7 +1003,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin-top: 10px;
   transform-origin: left;
   transform-style: preserve-3d;
-  transition-duration: 1s;
+  transition-duration: 1.5s;
 }
 
 .front-page,

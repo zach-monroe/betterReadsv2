@@ -67,7 +67,7 @@ function FullPage({
   counter,
   i,
   currentPage,
-  highlights,
+  highlights_length,
 }) {
   if (isUser) {
     return (
@@ -78,8 +78,8 @@ function FullPage({
         style={{
           zIndex:
             currentPage > counter
-              ? highlights.length + i
-              : highlights.length - counter,
+              ? highlights_length + i
+              : highlights_length - counter,
           transform:
             currentPage > counter ? "rotateY(-180deg)" : "rotateY(0deg)",
         }}
@@ -109,8 +109,8 @@ function FullPage({
         style={{
           zIndex:
             currentPage > counter
-              ? highlights.length + i
-              : highlights.length - counter,
+              ? highlights_length + i
+              : highlights_length - counter,
           transform:
             currentPage > counter ? "rotateY(-180deg)" : "rotateY(0deg)",
         }}

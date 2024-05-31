@@ -54,7 +54,7 @@ function UserFlipBook({ highlights }) {
           currentPage={currentPage}
           backHighlight={highlights[i + 1].highlight}
           backEntry={highlights[i + 1].entry}
-          highlights={highlights}
+          highlights_length={highlights.length}
           isUser={true}
           user_id={highlights[i].user_id}
           book_id={highlights[i].book_id}
@@ -71,7 +71,7 @@ function UserFlipBook({ highlights }) {
           currentPage={currentPage}
           backHighlight={"Add Your Own Highlight Here!"}
           backEntry={highlights[i].entry + 1}
-          highlights={highlights}
+          highlights_length={highlights.length}
           isUser={true}
           user_id={highlights[i].user_id}
           book_id={highlights[i].book_id}
@@ -93,7 +93,7 @@ function UserFlipBook({ highlights }) {
         currentPage={currentPage}
         backHighlight={"Add Your Own Highlight"}
         backEntry={highlights[highlights.length - 1].entry + 2}
-        highlights={highlights}
+        highlights_length={highlights.length}
         isUser={true}
         user_id={highlights[0].user_id}
         book_id={highlights[0].book_id}
