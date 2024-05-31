@@ -1,6 +1,6 @@
 import "../../output.css";
 import React, { useState } from "react";
-import FrontPage, { BackPage } from "./Page";
+import FullPage from "./Page";
 
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -39,36 +39,52 @@ function GenericFlipBook({ highlights }) {
   ];
 
   let i = 0;
+  let counter = 0;
 
   while (i < highlights.length) {
-    var counter = Math.floor(i / 2) + 1;
-    pages.push(
-      <div
-        className="page"
-        id={`page${counter}`}
-        key={counter}
-        style={{
-          zIndex:
-            currentPage > counter
-              ? highlights.length + i
-              : highlights.length - counter,
-          transform:
-            currentPage > counter ? "rotateY(-180deg)" : "rotateY(0deg)",
-        }}
-      >
-        <FrontPage highlight={highlights[i].highlight} />
-        {i + 1 < highlights.length ? (
-          <BackPage highlight={highlights[i + 1].highlight} />
-        ) : (
-          <BackPage highlight={""} />
-        )}
-      </div>,
-    );
+    counter = Math.floor(i / 2) + 1;
+    if (i + 1 < highlights.length) {
+      pages.push(
+        <FullPage
+          key={i}
+          frontHighlight={highlights[i].highlight}
+          frontEntry={highlights[i].entry}
+          i={i}
+          counter={counter}
+          currentPage={currentPage}
+          backHighlight={highlights[i + 1].highlight}
+          backEntry={highlights[i + 1].entry}
+          highlights={highlights}
+          isUser={false}
+          user_id={highlights[i].user_id}
+          book_id={highlights[i].book_id}
+        />,
+      );
+    } else {
+      pages.push(
+        <FullPage
+          key={i}
+          frontHighlight={highlights[i].highlight}
+          frontEntry={highlights[i].entry}
+          i={i}
+          counter={counter}
+          currentPage={currentPage}
+          backHighlight={""}
+          backEntry={highlights[i].entry + 1}
+          highlights={highlights}
+          isUser={true}
+          user_id={highlights[i].user_id}
+          book_id={highlights[i].book_id}
+        />,
+      );
+    }
+
     i += 2;
   }
 
   pages.push(
     <div
+      key={pages.length + 1}
       className={`back-cover ${currentPage === pages.length + 1 ? "flipback" : null}`}
       id="back-cover"
       style={{
