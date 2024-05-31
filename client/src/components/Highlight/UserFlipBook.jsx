@@ -101,10 +101,6 @@ function UserFlipBook({ highlights }) {
     );
   }
 
-  function addPage() {
-    console.log("page is added");
-  }
-
   pages.push(
     <div
       key={pages.length + 1}
@@ -115,9 +111,7 @@ function UserFlipBook({ highlights }) {
         transition: "zIndex 1.5s",
         transitionDuration: "1.0s",
       }}
-    >
-      <button onClick={addPage}>+</button>
-    </div>,
+    ></div>,
   );
 
   return (
