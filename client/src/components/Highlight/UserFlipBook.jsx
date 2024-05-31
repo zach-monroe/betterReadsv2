@@ -1,6 +1,6 @@
 import "../../output.css";
 import React, { useState } from "react";
-import { UserFrontPage, UserBackPage } from "./Page";
+import FullPage from "./Page";
 
 function UserFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -43,75 +43,61 @@ function UserFlipBook({ highlights }) {
 
   while (i < highlights.length) {
     counter = Math.floor(i / 2) + 1;
-    pages.push(
-      <div
-        className="page"
-        id={`page${counter}`}
-        key={counter}
-        style={{
-          zIndex:
-            currentPage > counter
-              ? highlights.length + i
-              : highlights.length - counter,
-          transform:
-            currentPage > counter ? "rotateY(-180deg)" : "rotateY(0deg)",
-        }}
-      >
-        <UserFrontPage
-          highlight={highlights[i].highlight}
-          entry={highlights[i].entry}
+    if (i + 1 < highlights.length) {
+      pages.push(
+        <FullPage
+          key={i}
+          frontHighlight={highlights[i].highlight}
+          frontEntry={highlights[i].entry}
+          i={i}
+          counter={counter}
+          currentPage={currentPage}
+          backHighlight={highlights[i + 1].highlight}
+          backEntry={highlights[i + 1].entry}
+          highlights={highlights}
+          isUser={true}
           user_id={highlights[i].user_id}
           book_id={highlights[i].book_id}
-        />
-        {i + 1 < highlights.length ? (
-          <UserBackPage
-            highlight={highlights[i + 1].highlight}
-            entry={highlights[i + 1].entry}
-            user_id={highlights[i + 1].user_id}
-            book_id={highlights[i + 1].book_id}
-          />
-        ) : (
-          <UserBackPage
-            highlight={"Add Your Own Highlight Here!"}
-            entry={highlights[i].entry + 1}
-            user_id={highlights[i].user_id}
-            book_id={highlights[i].book_id}
-          />
-        )}
-      </div>,
-    );
+        />,
+      );
+    } else {
+      pages.push(
+        <FullPage
+          key={i}
+          frontHighlight={highlights[i].highlight}
+          frontEntry={highlights[i].entry}
+          i={i}
+          counter={counter}
+          currentPage={currentPage}
+          backHighlight={"Add Your Own Highlight Here!"}
+          backEntry={highlights[i].entry + 1}
+          highlights={highlights}
+          isUser={true}
+          user_id={highlights[i].user_id}
+          book_id={highlights[i].book_id}
+        />,
+      );
+    }
+
     i += 2;
   }
 
   if (highlights.length % 2 === 0 && highlights.length > 0) {
     pages.push(
-      <div
-        className="page"
-        id={`page${counter + 1}`}
-        key={counter}
-        style={{
-          zIndex:
-            currentPage > counter + 1
-              ? highlights.length + i
-              : highlights.length - counter - 1,
-          transform:
-            currentPage > counter + 1 ? "rotateY(-180deg)" : "rotateY(0deg)",
-        }}
-      >
-        <UserFrontPage
-          highlight={"add your highlight here!"}
-          entry={i + 1}
-          user_id={highlights[0].user_id}
-          book_id={highlights[0].book_id}
-        />
-
-        <UserBackPage
-          highlight={"Add your Highlight here!"}
-          entry={i + 2}
-          user_id={highlights[0].user_id}
-          book_id={highlights[0].book_id}
-        />
-      </div>,
+      <FullPage
+        key={i + 1}
+        frontHighlight={"Add Your Own Highlight"}
+        frontEntry={highlights[highlights.length - 1].entry + 1}
+        i={i + 1}
+        counter={counter + 1}
+        currentPage={currentPage}
+        backHighlight={"Add Your Own Highlight"}
+        backEntry={highlights[highlights.length - 1].entry + 2}
+        highlights={highlights}
+        isUser={true}
+        user_id={highlights[0].user_id}
+        book_id={highlights[0].book_id}
+      />,
     );
   }
 
