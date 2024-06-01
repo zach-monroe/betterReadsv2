@@ -653,6 +653,10 @@ html {
   min-height: 100vh;
 }
 
+.min-h-full{
+  min-height: 100%;
+}
+
 .w-full{
   width: 100%;
 }
@@ -706,6 +710,10 @@ html {
 
 .items-center{
   align-items: center;
+}
+
+.justify-start{
+  justify-content: flex-start;
 }
 
 .justify-end{

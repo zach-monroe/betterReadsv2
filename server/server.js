@@ -243,7 +243,7 @@ app.get("/api/highlights/", async (req, res) => {
             user_id: parseInt(user_id, 10),
             book_id: parseInt(book_id, 10),
             entry: 1,
-            highlight: "No Highlights Added Yet",
+            highlight: "No Highlights Added",
           },
         ],
       });
@@ -264,7 +264,7 @@ app.post("/api/highlights/", async (req, res) => {
   console.log(JSON.stringify(req.body));
 
   try {
-    const highlightExists = db.query(
+    const highlightExists = await db.query(
       "SELECT * FROM highlights WHERE user_id = $1 AND book_id= $2 AND entry = $3",
       [user_id, book_id, entry],
     );

@@ -46,12 +46,14 @@ function UserPage({ highlight, entry, user_id, book_id, isFront }) {
   }
   return (
     <div className={`${isFront ? "front-page" : "back-page"} editable-content`}>
-      <ContentEditable
-        innerRef={contentEditableRef}
-        html={editableHighlight}
-        onChange={(e) => setEdit(e.target.value)}
-        onKeyDown={handleKeyPress}
-      />
+      <div className="flex justify-start min-h-full items-center">
+        <ContentEditable
+          innerRef={contentEditableRef}
+          html={editableHighlight}
+          onChange={(e) => setEdit(e.target.value)}
+          onKeyDown={handleKeyPress}
+        />
+      </div>
     </div>
   );
 }

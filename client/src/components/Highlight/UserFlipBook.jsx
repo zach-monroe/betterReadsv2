@@ -3,6 +3,11 @@ import React, { useState } from "react";
 import FullPage from "./Page";
 
 // HACK: This file is in fact a hot mess.
+// - Have tried using useState instead of pages with a while loop.  It never renders correctly.
+// - Have tried using useEffect to make the book re render when the book closes, generating a new highlight.
+//
+// It seems the only workable solution will be adding an input field
+// on the back cover which allows users to add entries and automatically increments.
 
 function UserFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -43,45 +48,66 @@ function UserFlipBook({ highlights }) {
   let i = 0;
   let counter = 0;
 
-  while (i < highlights.length) {
-    counter = Math.floor(i / 2) + 1;
-    if (i + 1 < highlights.length) {
-      pages.push(
-        <FullPage
-          key={i}
-          frontHighlight={highlights[i].highlight}
-          frontEntry={highlights[i].entry}
-          i={i}
-          counter={counter}
-          currentPage={currentPage}
-          backHighlight={highlights[i + 1].highlight}
-          backEntry={highlights[i + 1].entry}
-          highlights_length={highlights.length}
-          isUser={true}
-          user_id={highlights[i].user_id}
-          book_id={highlights[i].book_id}
-        />,
-      );
-    } else {
-      pages.push(
-        <FullPage
-          key={i}
-          frontHighlight={highlights[i].highlight}
-          frontEntry={highlights[i].entry}
-          i={i}
-          counter={counter}
-          currentPage={currentPage}
-          backHighlight={"Add Your Own Highlight Here!"}
-          backEntry={highlights[i].entry + 1}
-          highlights_length={highlights.length}
-          isUser={true}
-          user_id={highlights[i].user_id}
-          book_id={highlights[i].book_id}
-        />,
-      );
-    }
+  if (highlights[0].highlight === "No Highlights Added") {
+    pages.push(
+      <FullPage
+        key={0}
+        frontHighlight={
+          "To add your first post, just click on this text, add your highlight and hit enter!"
+        }
+        frontEntry={1}
+        i={0}
+        counter={1}
+        currentPage={currentPage}
+        backHighlight={"Add your post here!"}
+        backEntry={2}
+        highlights_length={highlights.length}
+        isUser={true}
+        user_id={highlights[i].user_id}
+        book_id={highlights[i].book_id}
+      />,
+    );
+  } else {
+    while (i < highlights.length) {
+      counter = Math.floor(i / 2) + 1;
+      if (i + 1 < highlights.length) {
+        pages.push(
+          <FullPage
+            key={i}
+            frontHighlight={highlights[i].highlight}
+            frontEntry={highlights[i].entry}
+            i={i}
+            counter={counter}
+            currentPage={currentPage}
+            backHighlight={highlights[i + 1].highlight}
+            backEntry={highlights[i + 1].entry}
+            highlights_length={highlights.length}
+            isUser={true}
+            user_id={highlights[i].user_id}
+            book_id={highlights[i].book_id}
+          />,
+        );
+      } else {
+        pages.push(
+          <FullPage
+            key={i}
+            frontHighlight={highlights[i].highlight}
+            frontEntry={highlights[i].entry}
+            i={i}
+            counter={counter}
+            currentPage={currentPage}
+            backHighlight={"Add Your Own Highlight Here!"}
+            backEntry={highlights[i].entry + 1}
+            highlights_length={highlights.length}
+            isUser={true}
+            user_id={highlights[i].user_id}
+            book_id={highlights[i].book_id}
+          />,
+        );
+      }
 
-    i += 2;
+      i += 2;
+    }
   }
 
   if (highlights.length % 2 === 0 && highlights.length > 0) {
