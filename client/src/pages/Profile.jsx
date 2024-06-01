@@ -53,7 +53,9 @@ function Profile() {
     <div>
       <div className="text-darkFore min-h-screen bg-primary">
         <div className="flex justify-center">
-          <h1 className="pt-10">{user?.name}'s Profile</h1>
+          <h1 className="pt-10 text-xl font-libre-baskerville text-bold">
+            Welcome {user?.name}
+          </h1>
         </div>
         <div className="flex justify-center">
           <div className="grid pt-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 text-fore1">

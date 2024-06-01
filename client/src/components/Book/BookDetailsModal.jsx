@@ -26,30 +26,32 @@ function BookDetailsModal({
             title={selectedBook.title}
           />
         </div>
-        <div>
-          <p className="text-md mb-2">Rating: {selectedBook.rating}</p>
-          <p className="text-md mb-2">
-            Author: {selectedBook.author_fname} {selectedBook.author_lname}
-          </p>
-          {selectedBook.user_fname && (
-            <h2 className="text-md mb-2">User: {selectedBook.user_fname}</h2>
-          )}
+        <div className="flex items-center">
+          <div>
+            <p className="text-md mb-2">Rating: {selectedBook.rating}</p>
+            <p className="text-md mb-2">
+              Author: {selectedBook.author_fname} {selectedBook.author_lname}
+            </p>
+            {selectedBook.user_fname && (
+              <h2 className="text-md mb-2">User: {selectedBook.user_fname}</h2>
+            )}
+            {isProfile && (
+              <div className="">
+                <div className="flex justify-center ">
+                  <EditButton id={selectedBook.book_id} />
+                </div>
+                <div className="flex justify-center">
+                  <DeleteButton
+                    id={selectedBook.book_id}
+                    onDelete={handleDelete}
+                    closePopUp={closePopUp}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      {isProfile && (
-        <div className="flex justify-center items-center">
-          <div className="mx-2">
-            <EditButton id={selectedBook.book_id} />
-          </div>
-          <div className="mx-2">
-            <DeleteButton
-              id={selectedBook.book_id}
-              onDelete={handleDelete}
-              closePopUp={closePopUp}
-            />
-          </div>
-        </div>
-      )}
       <button className="mt-4 p-2 bg-gray-300 rounded" onClick={closePopUp}>
         Close
       </button>

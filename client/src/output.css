@@ -657,6 +657,18 @@ html {
   width: 100%;
 }
 
+.w-\[35px\]{
+  width: 35px;
+}
+
+.w-\[103px\]{
+  width: 103px;
+}
+
+.w-\[100px\]{
+  width: 100px;
+}
+
 .min-w-128{
   min-width: 32rem;
 }
@@ -694,6 +706,10 @@ html {
 
 .items-center{
   align-items: center;
+}
+
+.justify-end{
+  justify-content: flex-end;
 }
 
 .justify-center{
@@ -842,6 +858,21 @@ html {
   padding-bottom: 1rem;
 }
 
+.px-8{
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-10{
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.px-9{
+  padding-left: 2.25rem;
+  padding-right: 2.25rem;
+}
+
 .pb-2{
   padding-bottom: 0.5rem;
 }
@@ -882,6 +913,11 @@ html {
 .text-3xl{
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .text-accent{
