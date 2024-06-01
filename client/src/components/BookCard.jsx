@@ -36,7 +36,7 @@ function BookCard(props) {
         <motion.div
           layoutId={id}
           onClick={onSelect}
-          className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-4 px-4 cursor-pointer"
+          className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-4 px-4 my-4 cursor-pointer"
         >
           <motion.h1 className="text-material flex w-full justify-center my-2">
             Title: {shortTitle !== "" ? shortTitle : formattedTitle}
