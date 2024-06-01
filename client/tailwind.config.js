@@ -14,7 +14,19 @@ module.exports = {
         128: "32rem",
       },
     },
-    fontFamily: {},
+    fontFamily: {
+      oxygen: ["Oxygen", "sans-serif"],
+      "libre-baskerville": ["Libre Baskerville", "serif"],
+    },
+    fontWeight: {
+      light: 300,
+      regular: 400,
+      bold: 700,
+    },
+    fontStyle: {
+      italic: "italic",
+      normal: "normal",
+    },
   },
   variants: {},
   plugins: [],

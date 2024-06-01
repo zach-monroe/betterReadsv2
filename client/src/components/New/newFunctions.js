@@ -11,7 +11,19 @@ async function fetchISBN(title, author_lname) {
 
     // Check if ISBN exists
     if (data.docs && data.docs.length > 0 && data.docs[0].isbn) {
-      const isbn = data.docs[0].isbn[0];
+      let isbn = "";
+      console.log(JSON.stringify(data.docs[0].isbn));
+      for (var i = 0; i < data.docs[0].isbn.length; i++) {
+        var tempIsbn = data.docs[0].isbn[i];
+        //Verifies if ISBN is an english edition
+        if (
+          tempIsbn.substring(0, 4) === "9781" ||
+          tempIsbn.substring(0, 4) === "9780"
+        ) {
+          isbn = tempIsbn;
+        } else {
+        }
+      }
       return isbn;
     } else {
       return null; // ISBN not found

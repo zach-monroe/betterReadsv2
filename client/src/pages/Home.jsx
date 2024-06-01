@@ -34,7 +34,9 @@ function Home() {
   return (
     <div>
       <div className="flex justify-center text-material bg-primary">
-        {user?.name ? <h1 className="pt-10">Welcome {user.name}</h1> : null}
+        {user?.name ? (
+          <h1 className="pt-10 font-libre-baskerville">Welcome {user.name}</h1>
+        ) : null}
       </div>
       <div className="flex justify-center bg-primary">
         <div className="px-5 mx-auto pt-8 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:max-w-sm text-material min-h-screen min-w-fit gap-2">

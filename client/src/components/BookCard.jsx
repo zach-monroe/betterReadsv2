@@ -36,19 +36,21 @@ function BookCard(props) {
         <motion.div
           layoutId={id}
           onClick={onSelect}
-          className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-2 px-2 cursor-pointer"
+          className="bg-primaryDark rounded overflow-hidden shadow-md max-w-80 py-4 px-4 cursor-pointer"
         >
-          <motion.h1 className="text-material pt-2">
+          <motion.h1 className="text-material flex w-full justify-center my-2">
             Title: {shortTitle !== "" ? shortTitle : formattedTitle}
           </motion.h1>
-          <motion.div className="flex justify-center">
+          <motion.div className="flex ml-0 justify-center">
             <BookCover isbn={isbn} isAnimated={false} title={formattedTitle} />
           </motion.div>
-          <motion.h2>
+          <motion.h2 className=" flex w-full justify-center my-2">
             Author: {formattedAuthorFname} {formattedAuthorLname}
           </motion.h2>
           {formattedUser ? (
-            <h2 className="pb-2">User: {formattedUser}</h2>
+            <h2 className="pb-2 flex w-full justify-center">
+              User: {formattedUser}
+            </h2>
           ) : null}
         </motion.div>
       </motion.div>

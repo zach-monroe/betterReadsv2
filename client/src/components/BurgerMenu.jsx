@@ -40,24 +40,28 @@ function Burger() {
 
   const { token } = useAuth();
   return (
-    <div>
+    <div className="font-libre-baskerville">
       <Menu>
-        <Link onClick={simulateEscapeKeyPress} to="/">
+        <Link onClick={simulateEscapeKeyPress} to="/" className="py-4">
           Home
         </Link>
-        <Link onClick={simulateEscapeKeyPress} to="/new">
+        <Link onClick={simulateEscapeKeyPress} to="/new" className="py-4">
           New
         </Link>
         {token ? (
-          <Link onClick={simulateEscapeKeyPress} to="/profile">
+          <Link onClick={simulateEscapeKeyPress} to="/profile" className="py-4">
             Profile
           </Link>
         ) : (
-          <Link onClick={simulateEscapeKeyPress} to="/login">
+          <Link onClick={simulateEscapeKeyPress} to="/login" className="py-4">
             Log-In
           </Link>
         )}
-        {token ? <button onClick={openModal}>Log-Out</button> : null}
+        {token ? (
+          <button onClick={openModal} className="py-4">
+            Log-Out
+          </button>
+        ) : null}
       </Menu>
       <LogOutModal isOpen={isOpen} closeModal={closeModal} logOut={logOut} />
     </div>
