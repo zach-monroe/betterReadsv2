@@ -4,7 +4,7 @@ import "../output.css";
 import BookCard from "../components/BookCard";
 import BigBookCard from "../components/Book/BigBookCard";
 import AnimateHighlight from "../components/Highlight/AnimateHighlight";
-import { motion } from "framer-motion";
+import Header from "../components/Header";
 
 function Home() {
   const [backendData, setData] = useState({});
@@ -33,44 +33,7 @@ function Home() {
   return (
     <div>
       <div className="flex sticky justify-center text-material bg-primary border-b-2 border-primaryDark pb-2">
-        <h1 className="pt-10 text-3xl font-libre-baskerville">
-          <motion.span
-            whileHover={{ rotateY: 180 }}
-            className="letter"
-            transition={{ duration: 0.3 }}
-          >
-            R
-          </motion.span>
-          <motion.span
-            whileHover={{ rotateY: 180 }}
-            className="letter"
-            transition={{ duration: 0.3 }}
-          >
-            e
-          </motion.span>
-          <motion.span
-            whileHover={{ rotateY: 180 }}
-            className="letter"
-            transition={{ duration: 0.3 }}
-          >
-            a
-          </motion.span>
-          <motion.span
-            whileHover={{ rotateY: 180 }}
-            className="letter"
-            transition={{ duration: 0.3 }}
-          >
-            d
-          </motion.span>
-          <motion.span
-            whileHover={{ rotateY: 180 }}
-            className="letter"
-            transition={{ duration: 0.3 }}
-          >
-            s
-          </motion.span>
-          <motion.span>.</motion.span>
-        </h1>
+        <Header />
       </div>
       <div className="flex justify-center bg-primary">
         <div className="my-4 px-5 mx-auto pt-8 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:max-w-sm text-material min-h-screen min-w-fit gap-2">
