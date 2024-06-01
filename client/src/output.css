@@ -649,28 +649,20 @@ html {
   max-height: 100vh;
 }
 
-.min-h-screen{
-  min-height: 100vh;
-}
-
 .min-h-full{
   min-height: 100%;
 }
 
-.w-full{
-  width: 100%;
-}
-
-.w-\[35px\]{
-  width: 35px;
-}
-
-.w-\[103px\]{
-  width: 103px;
+.min-h-screen{
+  min-height: 100vh;
 }
 
 .w-\[100px\]{
   width: 100px;
+}
+
+.w-full{
+  width: 100%;
 }
 
 .min-w-128{
@@ -714,10 +706,6 @@ html {
 
 .justify-start{
   justify-content: flex-start;
-}
-
-.justify-end{
-  justify-content: flex-end;
 }
 
 .justify-center{
@@ -861,24 +849,14 @@ html {
   padding-right: 1.5rem;
 }
 
-.py-4{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
 .px-8{
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-.px-10{
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
-.px-9{
-  padding-left: 2.25rem;
-  padding-right: 2.25rem;
+.py-4{
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .pb-2{
