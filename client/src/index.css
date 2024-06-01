@@ -10,8 +10,15 @@
   }
 }
 
-nav li {
-  list-style-type: none;
+/* Header */
+
+.letter {
+  display: inline-block;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  z-index: 1;
+  position: relative;
 }
 
 /* Position and sizing of burger button */
