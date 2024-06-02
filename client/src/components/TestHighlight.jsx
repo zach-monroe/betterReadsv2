@@ -45,6 +45,7 @@ function TestHighlight() {
             ];
 
         setPages(pageElements);
+        setEntry(highlights.length + 1)
       } catch (error) {
         console.log("error");
       }
@@ -58,9 +59,11 @@ function TestHighlight() {
 
   function handleClose() {
     setNewHighlight("")
+    setEntry(pages.length + 1)
 
   }
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault()
     console.log(entry)
     const sendToApi = async () => {
       try {
