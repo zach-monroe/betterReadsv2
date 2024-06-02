@@ -223,7 +223,7 @@ app.get("/api/profile/:id", async (req, res) => {
     );
     console.log(result.rows);
     res.json({ books: result?.rows });
-  } catch (error) {}
+  } catch (error) { }
 });
 
 //getting highlights for a specific book based on query params
@@ -233,7 +233,7 @@ app.get("/api/highlights/", async (req, res) => {
 
   try {
     const result = await db.query(
-      "SELECT * FROM highlights WHERE book_id = $1 AND user_id = $2",
+      "SELECT * FROM highlights WHERE book_id = $1 AND user_id = $2 ORDER BY entry ASC",
       [book_id, user_id],
     );
     if (result.rows?.length === 0) {
