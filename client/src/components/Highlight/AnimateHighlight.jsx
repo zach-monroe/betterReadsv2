@@ -22,7 +22,8 @@ function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
       {highlightIsOpen && (
         <motion.div
           layoutId={selectedBook.id}
-          className="fixed  inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center max-h-screen overflow-y-auto"
+          className="fixed  inset-0 bg-black bg-opacity-50
+          flex items-center justify-center max-h-screen overflow-y-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, type: "tween" }}
@@ -32,7 +33,6 @@ function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
             <motion.button
               className="text-white text-2xl absolute top-4 right-4  "
               onClick={() => setHighlight(false)}
-              style={{ zIndex: 60 }}
             >
               x
             </motion.button>
@@ -44,9 +44,10 @@ function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
               <Highlight selectedBook={selectedBook} />
             </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </motion.div >
+      )
+      }
+    </AnimatePresence >
   );
 }
 

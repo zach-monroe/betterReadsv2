@@ -2,8 +2,6 @@ import "../../output.css";
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../../AuthProvider.js";
 import TestHighlight from "../TestHighlight.jsx";
-import GenericFlipBook from "./GenericFlipBook.jsx";
-import TestGenHighlight from "../TestGenHighlight.jsx";
 
 function Highlight({ selectedBook }) {
   const { user } = useAuth();
@@ -36,12 +34,12 @@ function Highlight({ selectedBook }) {
     <div className="min-h-screen flex justify-center items-center">
       {highlights && highlights.length > 0 ? (
         highlights.some((highlight) => highlight.user_id === user?.id) ? (
-          <TestHighlight highlights={highlights} />
+          <TestHighlight highlights={highlights} isUser={true} />
         ) : (
-          <TestGenHighlight highlights={highlights} />
+          <TestHighlight highlights={highlights} isUser={false} />
         )
       ) : (
-        <GenericFlipBook highlights="No Highlights Added" />
+        <TestHighlight highlights="No Highlights Added" isUser={false} />
       )}
     </div>
   );

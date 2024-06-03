@@ -1,8 +1,6 @@
 import React from "react";
-import { useAuth } from "../../AuthProvider";
 
-const Page = React.forwardRef(({ user_id, book_id, children, entry, setNewHighlight, setEntry }, ref) => {
-  const { user } = useAuth()
+const Page = React.forwardRef(({ isUser, children, entry, setNewHighlight, setEntry }, ref) => {
 
   function handleClick() {
     console.log(entry)
@@ -11,15 +9,15 @@ const Page = React.forwardRef(({ user_id, book_id, children, entry, setNewHighli
   }
 
   return (
-    <div className={`bg-white relative`} ref={ref}>
-      <div className="flex justify-center items-center min-h-full ">
+    <div className="bg-white relative" ref={ref}>
+      <div className="flex justify-center items-center min-h-full border-2 border-t-0 border-b-0 border-black">
         <div className="flex justify-center items-center">
-          <p className="">{children}</p>
+          <p className="mx-2">{children}</p>
         </div>
         <br />
 
       </div>
-      {user?.id === user_id &&
+      {isUser &&
         <div className="flex justify-center mt-2">
           <button onClick={handleClick} className=" bg-secondary rounded mx-4 px-2 text-white text-lg">Edit</button>
         </div>}

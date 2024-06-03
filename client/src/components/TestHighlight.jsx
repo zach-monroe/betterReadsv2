@@ -4,7 +4,7 @@ import HTMLFlipBook from "react-pageflip";
 import Page from "./TestHighlight/Page";
 import { HighlightForm } from "./TestHighlight/HighlightForm";
 
-function TestHighlight({ highlights }) {
+function TestHighlight({ highlights, isUser }) {
   const book_id = highlights[0].book_id;
   const user_id = highlights[0].user_id;
   const [pages, setPages] = useState([]);
@@ -15,7 +15,7 @@ function TestHighlight({ highlights }) {
 
   useEffect(() => {
     const pageElements =
-      highlights.length > 0
+      Array.isArray(highlights) && highlights.length > 0
         ? highlights.map((page, i) => (
           <Page
             key={i}
@@ -35,7 +35,9 @@ function TestHighlight({ highlights }) {
             No Highlights!
           </Page>,
         ];
-
+    if (pageElements.length % 2 !== 0) {
+      pageElements.push(<Page key={pageElements.length} id={pageElements.length}></Page>)
+    }
     setPages(pageElements);
     setEntry(highlights.length + 1);
   }, [highlights, book_id, user_id]);
@@ -79,7 +81,9 @@ function TestHighlight({ highlights }) {
           {pages}
         </HTMLFlipBook>
       </div>
+
       <HighlightForm
+        isUser={isUser}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         handleClose={handleClose}
