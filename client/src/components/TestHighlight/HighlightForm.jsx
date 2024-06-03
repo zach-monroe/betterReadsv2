@@ -1,14 +1,14 @@
 import React from "react";
 
 export function HighlightForm({ handleClose, handleSubmit, entry, newHighlight, handleChange }) {
-  return <div className="flex justify-center mt-8">
+  return <div className="flex justify-center mt-12 box-shadow-2">
     <div className="bg-primaryDark p-4 rounded mb-10">
       <form onSubmit={handleSubmit}>
         <input type="hidden" value={entry} />
         <textarea
           cols={50}
           rows={4}
-          maxLength={300}
+          maxLength={119}
           value={newHighlight}
           className="min-w-fit"
           onChange={handleChange}
