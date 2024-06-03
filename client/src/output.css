@@ -563,6 +563,10 @@ html {
   position: absolute;
 }
 
+.relative{
+  position: relative;
+}
+
 .sticky{
   position: -webkit-sticky;
   position: sticky;
@@ -661,20 +665,12 @@ html {
   display: none;
 }
 
-.h-2{
-  height: 0.5rem;
-}
-
-.h-6{
-  height: 1.5rem;
-}
-
-.h-8{
-  height: 2rem;
-}
-
 .max-h-screen{
   max-height: 100vh;
+}
+
+.min-h-72{
+  min-height: 18rem;
 }
 
 .min-h-full{
@@ -683,12 +679,6 @@ html {
 
 .min-h-screen{
   min-height: 100vh;
-}
-
-.min-h-fit{
-  min-height: -webkit-fit-content;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
 }
 
 .w-\[100px\]{
@@ -701,18 +691,6 @@ html {
 
 .w-full{
   width: 100%;
-}
-
-.w-2{
-  width: 0.5rem;
-}
-
-.w-6{
-  width: 1.5rem;
-}
-
-.w-8{
-  width: 2rem;
 }
 
 .min-w-128{
@@ -772,14 +750,6 @@ html {
 
 .gap-2{
   gap: 0.5rem;
-}
-
-.self-end{
-  align-self: flex-end;
-}
-
-.justify-self-end{
-  justify-self: end;
 }
 
 .overflow-hidden{
@@ -872,14 +842,14 @@ html {
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 
-.bg-white{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .bg-secondary{
   --tw-bg-opacity: 1;
   background-color: rgb(41 47 71 / var(--tw-bg-opacity));
+}
+
+.bg-white{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50{
@@ -984,13 +954,13 @@ html {
   line-height: 2.25rem;
 }
 
-.text-xl{
-  font-size: 1.25rem;
+.text-lg{
+  font-size: 1.125rem;
   line-height: 1.75rem;
 }
 
-.text-lg{
-  font-size: 1.125rem;
+.text-xl{
+  font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
@@ -1229,6 +1199,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .editable-content {
   max-height: 408px;
   overflow-y: auto;
+}
+
+/* Test Highlight stuff */
+
+/* Add this CSS to your stylesheet */
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  /* Adjust the duration and easing function as needed */
 }
 
 .hover\:bg-primary:hover{

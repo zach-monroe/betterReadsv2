@@ -2,25 +2,15 @@ import React from "react";
 import "../output.css"
 import { useState, useEffect, useRef } from "react";
 import HTMLFlipBook from "react-pageflip";
-
-const Page = React.forwardRef((props, ref) => {
-  function handleClick() {
-    console.log(props.entry)
-    props.setEntry(props.entry)
-    props.setNewHighlight(props.children)
-  }
-  return (
-    <div className="bg-white flex items-around min-h-full" ref={ref}>
-      <p className="pt-10">{props.children}</p>
-      <button onClick={handleClick} className="absolute bg-secondary rounded px-2 text-white text-lg">&#x270e;</button>
-    </div>
-  );
-});
+import Page from "./TestHighlight/Page"
+import { HighlightForm } from "./TestHighlight/HighlightForm";
 
 function TestHighlight() {
+  const user_id = 1;
+  const book_id = 134
   const [pages, setPages] = useState([]);
   const [newHighlight, setNewHighlight] = useState("Add your highlight here!");
-  const [entry, setEntry] = useState()
+  const [entry, setEntry] = useState('')
 
   const bookRef = useRef(null);
 
@@ -34,7 +24,7 @@ function TestHighlight() {
         const pageElements =
           highlights.length > 0
             ? highlights.map((page, i) => (
-              <Page key={i} id={i} entry={page.entry} setEntry={setEntry} setNewHighlight={setNewHighlight}>
+              <Page key={i} id={i} entry={page.entry} user_id={user_id} book_id={book_id} setEntry={setEntry} setPages={setPages} setNewHighlight={setNewHighlight}>
                 {page.highlight}
               </Page>
             ))
@@ -71,8 +61,8 @@ function TestHighlight() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            book_id: 134,
-            user_id: 1,
+            book_id: book_id,
+            user_id: user_id,
             entry: entry,
             highlight: newHighlight
           }),
@@ -82,6 +72,7 @@ function TestHighlight() {
       }
     }
     sendToApi()
+    e.currentTarget.submit()
   }
 
   return (
@@ -91,29 +82,32 @@ function TestHighlight() {
           {pages}
         </HTMLFlipBook>
       </div>
-      <div className="flex justify-center mt-8">
-        <div className="bg-primaryDark p-4 rounded mb-10">
-          <form onSubmit={handleSubmit}>
-            <input type="hidden" value={entry} />
-            <textarea
-              cols={50}
-              rows={4}
-              maxLength={300}
-              value={newHighlight}
-              className="min-w-fit"
-              onChange={handleChange}
-            />
-            <br />
-            <div className="flex justify-around mt-4">
-              <button className="py-2 px-4 w-[46px] rounded bg-red-600" onClick={handleClose}>x</button>
-              <button type="submit" className="py-2 px-4 w-[46px] rounded bg-green-600" >
-                &#x2713;
-              </button>
-            </div></form>
-        </div>
-      </div>
+      <HighlightForm handleChange={handleChange} handleSubmit={handleSubmit} handleClose={handleClose} entry={entry} newHighlight={newHighlight} />
+
     </div>
   );
 }
 
 export default TestHighlight;
+////
+//      <div className="flex justify-center mt-8">
+//        <div className="bg-primaryDark p-4 rounded mb-10">
+//          <form onSubmit={handleSubmit}>
+//            <input type="hidden" value={entry} />
+//            <textarea
+//              cols={50}
+//              rows={4}
+//              maxLength={300}
+//              value={newHighlight}
+//              className="min-w-fit"
+//              onChange={handleChange}
+//            />
+//            <br />
+//            <div className="flex justify-around mt-4">
+//              <button className="py-2 px-4 w-[46px] rounded bg-red-600" onClick={handleClose}>x</button>
+//              <button type="submit" className="py-2 px-4 w-[46px] rounded bg-green-600" >
+//                &#x2713;
+//              </button>
+//            </div></form>
+//        </div>
+
