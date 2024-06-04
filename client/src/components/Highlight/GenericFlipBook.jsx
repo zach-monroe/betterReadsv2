@@ -32,7 +32,7 @@ function GenericFlipBook({ highlights }) {
 
   const pages = [
     <div
-      key={0}
+      key={-1}
       className={`cover ${currentPage > 0 ? "flipcover" : null}`}
       id="cover"
     ></div>,
@@ -54,6 +54,7 @@ function GenericFlipBook({ highlights }) {
           currentPage={currentPage}
           backHighlight={highlights[i + 1].highlight}
           backEntry={highlights[i + 1].entry}
+          highlights_length={highlights.length}
           highlights={highlights}
           isUser={false}
           user_id={highlights[i].user_id}
@@ -70,9 +71,10 @@ function GenericFlipBook({ highlights }) {
           counter={counter}
           currentPage={currentPage}
           backHighlight={""}
+          highlights_length={highlights.length}
           backEntry={highlights[i].entry + 1}
           highlights={highlights}
-          isUser={true}
+          isUser={false}
           user_id={highlights[i].user_id}
           book_id={highlights[i].book_id}
         />,
@@ -88,7 +90,7 @@ function GenericFlipBook({ highlights }) {
       className={`back-cover ${currentPage === pages.length + 1 ? "flipback" : null}`}
       id="back-cover"
       style={{
-        zIndex: currentPage > pages.length ? 99 : -1,
+        zIndex: currentPage > pages.length ? 1000 : -1,
         transition: "zIndex 1.5s",
         transitionDuration: "1.0s",
       }}
