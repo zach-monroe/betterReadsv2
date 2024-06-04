@@ -19,6 +19,7 @@ function TestHighlight({ highlights, isUser }) {
         ? highlights.map((page, i) => (
           <Page
             key={i}
+            isUser={isUser}
             id={i}
             entry={page.entry}
             user_id={user_id}

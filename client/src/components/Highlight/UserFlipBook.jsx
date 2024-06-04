@@ -14,11 +14,11 @@ function UserFlipBook({ highlights }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const goNextPage = () => {
-    if (currentPage < pages.length) {
+    if (currentPage < pages.length + 1) {
       if (currentPage === 0) {
         setIsOpen(true);
       }
-      if (currentPage === pages.length - 1) {
+      if (currentPage === pages.length) {
         setIsOpen(false);
       }
       setCurrentPage((prevPage) => prevPage + 1);
@@ -30,7 +30,7 @@ function UserFlipBook({ highlights }) {
       if (currentPage === 1) {
         setIsOpen(false);
       }
-      if (currentPage === pages.length) {
+      if (currentPage === pages.length + 1) {
         setIsOpen(true);
       }
       setCurrentPage((prevPage) => prevPage - 1);
@@ -39,7 +39,7 @@ function UserFlipBook({ highlights }) {
 
   const pages = [
     <div
-      key={0}
+      key={-1}
       className={`cover ${currentPage > 0 ? "flipcover" : null}`}
       id="cover"
     ></div>,
@@ -48,94 +48,68 @@ function UserFlipBook({ highlights }) {
   let i = 0;
   let counter = 0;
 
-  if (highlights[0].highlight === "No Highlights Added") {
-    pages.push(
-      <FullPage
-        key={0}
-        frontHighlight={
-          "To add your first post, just click on this text, add your highlight and hit enter!"
-        }
-        frontEntry={1}
-        i={0}
-        counter={1}
-        currentPage={currentPage}
-        backHighlight={"Add your post here!"}
-        backEntry={2}
-        highlights_length={highlights.length}
-        isUser={true}
-        user_id={highlights[i].user_id}
-        book_id={highlights[i].book_id}
-      />,
-    );
-  } else {
-    while (i < highlights.length) {
-      counter = Math.floor(i / 2) + 1;
-      if (i + 1 < highlights.length) {
-        pages.push(
-          <FullPage
-            key={i}
-            frontHighlight={highlights[i].highlight}
-            frontEntry={highlights[i].entry}
-            i={i}
-            counter={counter}
-            currentPage={currentPage}
-            backHighlight={highlights[i + 1].highlight}
-            backEntry={highlights[i + 1].entry}
-            highlights_length={highlights.length}
-            isUser={true}
-            user_id={highlights[i].user_id}
-            book_id={highlights[i].book_id}
-          />,
-        );
-      } else {
-        pages.push(
-          <FullPage
-            key={i}
-            frontHighlight={highlights[i].highlight}
-            frontEntry={highlights[i].entry}
-            i={i}
-            counter={counter}
-            currentPage={currentPage}
-            backHighlight={"Add Your Own Highlight Here!"}
-            backEntry={highlights[i].entry + 1}
-            highlights_length={highlights.length}
-            isUser={true}
-            user_id={highlights[i].user_id}
-            book_id={highlights[i].book_id}
-          />,
-        );
-      }
-
-      i += 2;
+  while (i < highlights.length + 10) {
+    counter = Math.floor(i / 2) + 1;
+    if (i + 1 < highlights.length) {
+      pages.push(
+        <FullPage
+          key={i}
+          frontHighlight={highlights[i].highlight}
+          frontEntry={highlights[i].entry}
+          i={i}
+          counter={counter}
+          currentPage={currentPage}
+          backHighlight={highlights[i + 1].highlight}
+          backEntry={highlights[i + 1].entry}
+          highlights_length={highlights.length}
+          isUser={true}
+          user_id={highlights[i].user_id}
+          book_id={highlights[i].book_id}
+        />,
+      );
+    } else if (i + 1 >= highlights.length && i < highlights.length) {
+      pages.push(
+        <FullPage
+          key={i}
+          frontHighlight={highlights[i].highlight}
+          frontEntry={highlights[i].entry}
+          i={i}
+          counter={counter}
+          currentPage={currentPage}
+          backHighlight={"Add Your Own Highlight Here!"}
+          highlights_length={highlights.length}
+          isUser={true}
+          user_id={highlights[i].user_id}
+          book_id={highlights[i].book_id}
+        />,
+      );
+    } else if (i > highlights.length) {
+      pages.push(
+        <FullPage
+          key={i}
+          frontHighlight={"Add Your Own Highlight Here!"}
+          i={i}
+          counter={counter}
+          currentPage={currentPage}
+          backHighlight={"Add Your Own Highlight Here!"}
+          highlights_length={highlights.length}
+          isUser={true}
+          user_id={highlights[0].user_id}
+          book_id={highlights[0].book_id} />
+      )
     }
+
+    i += 2;
   }
 
-  if (highlights.length % 2 === 0 && highlights.length > 0) {
-    pages.push(
-      <FullPage
-        key={i + 1}
-        frontHighlight={"Add Your Own Highlight"}
-        frontEntry={highlights[highlights.length - 1].entry + 1}
-        i={i + 1}
-        counter={counter + 1}
-        currentPage={currentPage}
-        backHighlight={"Add Your Own Highlight"}
-        backEntry={highlights[highlights.length - 1].entry + 2}
-        highlights_length={highlights.length}
-        isUser={true}
-        user_id={highlights[0].user_id}
-        book_id={highlights[0].book_id}
-      />,
-    );
-  }
 
   pages.push(
     <div
       key={pages.length + 1}
-      className={`back-cover ${currentPage === pages.length + 1 ? "flipback" : null}`}
+      className={`back-cover ${currentPage === pages.length + 2 ? "flipback" : null}`}
       id="back-cover"
       style={{
-        zIndex: currentPage > pages.length ? 1000 : -1,
+        zIndex: currentPage > pages.length + 1 ? 1000 : -1,
         transition: "zIndex 1.5s",
         transitionDuration: "1.0s",
       }}

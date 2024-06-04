@@ -14,6 +14,7 @@ function Page({ highlight, isFront }) {
 function UserPage({ highlight, entry, user_id, book_id, isFront }) {
   const [editableHighlight, setEdit] = useState(highlight);
   const contentEditableRef = useRef(null);
+  const [newEntry, setEntry] = useState(entry)
 
   async function submitHighlight() {
     try {
@@ -25,10 +26,20 @@ function UserPage({ highlight, entry, user_id, book_id, isFront }) {
         body: JSON.stringify({
           book_id: parseInt(book_id, 10),
           user_id: parseInt(user_id, 10),
-          entry: parseInt(entry, 10),
+          entry: parseInt(newEntry, 10),
           highlight: contentEditableRef.current.innerHTML,
         }),
-      });
+      })
+      const data = await response.json()
+      console.log(JSON.stringify(data))
+      if (data.message === "added") {
+        console.log(newEntry)
+        console.log(data.highlight.entry, "DATA ENTRY")
+        console.log(data.highlight.entry + 1, "NEW ENTRY")
+        setEntry((prevValue) => prevValue + 1)
+        console.log(newEntry)
+      }
+
       if (!response.ok) {
         throw new Error("couldn't add highlight" + response.statusText);
       }
@@ -81,7 +92,7 @@ function FullPage({
           zIndex:
             currentPage > counter
               ? highlights_length + i * i
-              : highlights_length - counter,
+              : (highlights_length + 10) - counter,
           transform:
             currentPage > counter ? "rotateY(-180deg)" : "rotateY(0deg)",
         }}
