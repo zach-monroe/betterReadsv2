@@ -669,35 +669,23 @@ html {
   min-width: 32rem;
 }
 
+.min-w-\[200px\]{
+  min-width: 200px;
+}
+
 .min-w-fit{
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
   min-width: fit-content;
 }
 
+.min-w-full{
+  min-width: 100%;
+}
+
 .min-w-max{
   min-width: -webkit-max-content;
   min-width: max-content;
-}
-
-.min-w-8{
-  min-width: 2rem;
-}
-
-.min-w-20{
-  min-width: 5rem;
-}
-
-.min-w-40{
-  min-width: 10rem;
-}
-
-.min-w-\[200px\]{
-  min-width: 200px;
-}
-
-.min-w-full{
-  min-width: 100%;
 }
 
 .max-w-80{
@@ -1189,6 +1177,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
   border-color: rgb(36 36 36 / var(--tw-border-opacity));
 }
 
+.hover\:bg-accent:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 118 41 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-primary:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(229 225 215 / var(--tw-bg-opacity));
@@ -1199,13 +1192,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-accent:hover{
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 118 41 / var(--tw-bg-opacity));
-}
-
 .hover\:italic:hover{
   font-style: italic;
+}
+
+.hover\:text-accent:hover{
+  --tw-text-opacity: 1;
+  color: rgb(255 118 41 / var(--tw-text-opacity));
 }
 
 .hover\:text-material:hover{
@@ -1216,11 +1209,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .hover\:text-red-800:hover{
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
-}
-
-.hover\:text-accent:hover{
-  --tw-text-opacity: 1;
-  color: rgb(255 118 41 / var(--tw-text-opacity));
 }
 
 .hover\:shadow-none:hover{

@@ -115,7 +115,7 @@ function FullPage({
           zIndex:
             currentPage > counter
               ? highlights_length + i * i
-              : highlights_length - counter,
+              : highlights_length - i,
           transform:
             currentPage > counter ? "rotateY(-180deg)" : "rotateY(0deg)",
         }}

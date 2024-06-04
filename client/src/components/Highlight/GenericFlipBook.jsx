@@ -1,17 +1,18 @@
 import "../../output.css";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import FullPage from "./Page";
 
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const pagesRef = useRef([]);
 
   const goNextPage = () => {
-    if (currentPage < pages.length) {
+    if (currentPage < pagesRef.current.length) {
       if (currentPage === 0) {
         setIsOpen(true);
       }
-      if (currentPage === pages.length - 1) {
+      if (currentPage === pagesRef.current.length - 1) {
         setIsOpen(false);
       }
       setCurrentPage((prevPage) => prevPage + 1);
@@ -23,79 +24,85 @@ function GenericFlipBook({ highlights }) {
       if (currentPage === 1) {
         setIsOpen(false);
       }
-      if (currentPage === pages.length) {
+      if (currentPage === pagesRef.current.length) {
         setIsOpen(true);
       }
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
-  const pages = [
-    <div
-      key={-1}
-      className={`cover ${currentPage > 0 ? "flipcover" : null}`}
-      id="cover"
-    ></div>,
-  ];
+  const generatePages = () => {
+    let pages = [
+      <div
+        key={-1}
+        className={`cover ${currentPage > 0 ? "flipcover" : null}`}
+        id="cover"
+      ></div>,
+    ];
 
-  let i = 0;
-  let counter = 0;
+    let i = 0;
+    let counter = 0;
 
-  while (i < highlights.length) {
-    counter = Math.floor(i / 2) + 1;
-    if (i + 1 < highlights.length) {
-      pages.push(
-        <FullPage
-          key={i}
-          frontHighlight={highlights[i].highlight}
-          frontEntry={highlights[i].entry}
-          i={i}
-          counter={counter}
-          currentPage={currentPage}
-          backHighlight={highlights[i + 1].highlight}
-          backEntry={highlights[i + 1].entry}
-          highlights_length={highlights.length}
-          highlights={highlights}
-          isUser={false}
-          user_id={highlights[i].user_id}
-          book_id={highlights[i].book_id}
-        />,
-      );
-    } else {
-      pages.push(
-        <FullPage
-          key={i}
-          frontHighlight={highlights[i].highlight}
-          frontEntry={highlights[i].entry}
-          i={i}
-          counter={counter}
-          currentPage={currentPage}
-          backHighlight={""}
-          highlights_length={highlights.length}
-          backEntry={highlights[i].entry + 1}
-          highlights={highlights}
-          isUser={false}
-          user_id={highlights[i].user_id}
-          book_id={highlights[i].book_id}
-        />,
-      );
+    while (i < highlights.length) {
+      counter = Math.floor(i / 2) + 1;
+      if (i + 1 < highlights.length) {
+        pages.push(
+          <FullPage
+            key={i}
+            frontHighlight={highlights[i].highlight}
+            frontEntry={highlights[i].entry}
+            i={i}
+            counter={counter}
+            currentPage={currentPage}
+            backHighlight={highlights[i + 1].highlight}
+            backEntry={highlights[i + 1].entry}
+            highlights_length={highlights.length}
+            highlights={highlights}
+            isUser={false}
+            user_id={highlights[i].user_id}
+            book_id={highlights[i].book_id}
+          />
+        );
+      } else {
+        pages.push(
+          <FullPage
+            key={i}
+            frontHighlight={highlights[i].highlight}
+            frontEntry={highlights[i].entry}
+            i={i}
+            counter={counter}
+            currentPage={currentPage}
+            backHighlight={""}
+            highlights_length={highlights.length}
+            backEntry={highlights[i].entry + 1}
+            highlights={highlights}
+            isUser={false}
+            user_id={highlights[i].user_id}
+            book_id={highlights[i].book_id}
+          />
+        );
+      }
+
+      i += 2;
     }
 
-    i += 2;
-  }
+    pages.push(
+      <div
+        key={pages.length}
+        className={`back-cover ${currentPage > pages.length ? "flipback" : null}`}
+        id="back-cover"
+        style={{
+          zIndex: currentPage > pages.length ? 1000 : -1,
+          transition: "zIndex 1.5s",
+          transitionDuration: "1.0s",
+        }}
+      ></div>
+    );
 
-  pages.push(
-    <div
-      key={pages.length + 1}
-      className={`back-cover ${currentPage === pages.length + 1 ? "flipback" : null}`}
-      id="back-cover"
-      style={{
-        zIndex: currentPage > pages.length ? 1000 : -1,
-        transition: "zIndex 1.5s",
-        transitionDuration: "1.0s",
-      }}
-    ></div>,
-  );
+    pagesRef.current = pages;
+  };
+
+  generatePages();
 
   return (
     <div className="flex justify-center items-center">
@@ -119,7 +126,7 @@ function GenericFlipBook({ highlights }) {
                 : "translateX(0%)",
         }}
       >
-        {pages}
+        {pagesRef.current}
       </div>
       <button
         id="next-btn"
