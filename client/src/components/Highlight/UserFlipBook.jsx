@@ -1,17 +1,17 @@
 import "../../output.css";
 import React, { useState } from "react";
+import { useRef } from "react"
 import FullPage from "./Page";
 
 // HACK: This file is in fact a hot mess.
 // - Have tried using useState instead of pages with a while loop.  It never renders correctly.
 // - Have tried using useEffect to make the book re render when the book closes, generating a new highlight.
-//
-// It seems the only workable solution will be adding an input field
-// on the back cover which allows users to add entries and automatically increments.
 
 function UserFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
+  const pagesRef = useRef([])
+
 
   const goNextPage = () => {
     if (currentPage < pages.length + 1) {
@@ -36,85 +36,97 @@ function UserFlipBook({ highlights }) {
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
+  let pages = []
+  const generatePages = () => {
 
-  const pages = [
-    <div
-      key={-1}
-      className={`cover ${currentPage > 0 ? "flipcover" : null}`}
-      id="cover"
-    ></div>,
-  ];
+    pages = [
+      <div
+        key={-1}
+        className={`cover ${currentPage > 0 ? "flipcover" : null}`}
+        id="cover"
+      ></div>,
+    ];
 
-  let i = 0;
-  let counter = 0;
+    let i = 0;
+    let counter = 0;
 
-  while (i < highlights.length + 10) {
-    counter = Math.floor(i / 2) + 1;
-    if (i + 1 < highlights.length) {
-      pages.push(
-        <FullPage
-          key={i}
-          frontHighlight={highlights[i].highlight}
-          frontEntry={highlights[i].entry}
-          i={i}
-          counter={counter}
-          currentPage={currentPage}
-          backHighlight={highlights[i + 1].highlight}
-          backEntry={highlights[i + 1].entry}
-          highlights_length={highlights.length}
-          isUser={true}
-          user_id={highlights[i].user_id}
-          book_id={highlights[i].book_id}
-        />,
-      );
-    } else if (i + 1 >= highlights.length && i < highlights.length) {
-      pages.push(
-        <FullPage
-          key={i}
-          frontHighlight={highlights[i].highlight}
-          frontEntry={highlights[i].entry}
-          i={i}
-          counter={counter}
-          currentPage={currentPage}
-          backHighlight={"Add Your Own Highlight Here!"}
-          highlights_length={highlights.length}
-          isUser={true}
-          user_id={highlights[i].user_id}
-          book_id={highlights[i].book_id}
-        />,
-      );
-    } else if (i > highlights.length) {
-      pages.push(
-        <FullPage
-          key={i}
-          frontHighlight={"Add Your Own Highlight Here!"}
-          i={i}
-          counter={counter}
-          currentPage={currentPage}
-          backHighlight={"Add Your Own Highlight Here!"}
-          highlights_length={highlights.length}
-          isUser={true}
-          user_id={highlights[0].user_id}
-          book_id={highlights[0].book_id} />
-      )
+    while (i < highlights.length + 10) {
+      counter = Math.floor(i / 2) + 1;
+      if (i + 1 < highlights.length) {
+        pages.push(
+          <FullPage
+            key={i}
+            frontHighlight={highlights[i].highlight}
+            frontEntry={highlights[i].entry}
+            i={i}
+            counter={counter}
+            currentPage={currentPage}
+            backHighlight={highlights[i + 1].highlight}
+            backEntry={highlights[i + 1].entry}
+            highlights_length={highlights.length}
+            isUser={true}
+            user_id={highlights[i].user_id}
+            book_id={highlights[i].book_id}
+          />,
+        );
+      } else if (i + 1 >= highlights.length && i < highlights.length) {
+        pages.push(
+          <FullPage
+            key={i}
+            frontHighlight={highlights[i].highlight}
+            frontEntry={highlights[i].entry}
+            i={i}
+            counter={counter}
+            currentPage={currentPage}
+            backHighlight={"Add Your Own Highlight Here!"}
+            backEntry={highlights[i].entry + 1}
+            highlights_length={highlights.length}
+            isUser={true}
+            user_id={highlights[i].user_id}
+            book_id={highlights[i].book_id}
+          />,
+        );
+      } else if (i > highlights.length) {
+        pages.push(
+          <FullPage
+            key={i}
+            frontHighlight={"Add Your Own Highlight Here!"}
+            frontEntry={highlights[highlights.length - 1].entry + i}
+            i={i}
+            counter={counter}
+            currentPage={currentPage}
+            backHighlight={"Add Your Own Highlight Here!"}
+            backEntry={highlights[highlights.length - 1].entry + (i + 1)}
+            highlights_length={highlights.length}
+            isUser={true}
+            user_id={highlights[0].user_id}
+            book_id={highlights[0].book_id} />
+        )
+      }
+
+      i += 2;
     }
 
-    i += 2;
+
+    pages.push(
+      <div
+        key={pages.length + 1}
+        className={`back-cover ${currentPage === pages.length + 2 ? "flipback" : null}`}
+        id="back-cover"
+        style={{
+          zIndex: currentPage > pages.length + 1 ? 1000 : -1,
+          transition: "zIndex 1.5s",
+          transitionDuration: "1.0s",
+        }}
+      ></div>,
+    );
+
+    pagesRef.current = pages;
   }
 
+  generatePages()
 
-  pages.push(
-    <div
-      key={pages.length + 1}
-      className={`back-cover ${currentPage === pages.length + 2 ? "flipback" : null}`}
-      id="back-cover"
-      style={{
-        zIndex: currentPage > pages.length + 1 ? 1000 : -1,
-        transition: "zIndex 1.5s",
-        transitionDuration: "1.0s",
-      }}
-    ></div>,
-  );
+
 
   return (
     <div className="flex justify-center items-center">
@@ -138,7 +150,7 @@ function UserFlipBook({ highlights }) {
                 : "translateX(0%)",
         }}
       >
-        {pages}
+        {pagesRef.current}
       </div>
       <button
         id="next-btn"
