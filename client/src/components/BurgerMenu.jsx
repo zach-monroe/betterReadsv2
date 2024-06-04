@@ -4,6 +4,7 @@ import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import LogOutModal from "./LogOutModal";
+import { motion } from "framer-motion";
 import Modal from "react-modal";
 
 Modal.setAppElement("#root");
@@ -42,25 +43,33 @@ function Burger() {
   return (
     <div className="font-libre-baskerville">
       <Menu>
-        <Link onClick={simulateEscapeKeyPress} to="/" className="py-4">
-          Home
-        </Link>
-        <Link onClick={simulateEscapeKeyPress} to="/new" className="py-4">
-          New
-        </Link>
+        <motion.div initial={{ scale: 1 }} className="my-4" whileHover={{ scale: 1.2, x: 40, }}>
+          <Link onClick={simulateEscapeKeyPress} to="/" className="py-4">
+            Home
+          </Link></motion.div>
+
+        <motion.div initial={{ scale: 1 }} className="my-4" whileHover={{ scale: 1.2, x: 40, }}>
+          <Link onClick={simulateEscapeKeyPress} to="/new" className="py-4">
+            New
+          </Link></motion.div>
         {token ? (
-          <Link onClick={simulateEscapeKeyPress} to="/profile" className="py-4">
-            Profile
-          </Link>
+          <motion.div initial={{ scale: 1 }} className="my-4" whileHover={{ scale: 1.2, x: 40, }}>
+            <Link onClick={simulateEscapeKeyPress} to="/profile" className="py-4">
+              Profile
+            </Link></motion.div>
         ) : (
-          <Link onClick={simulateEscapeKeyPress} to="/login" className="py-4">
-            Log-In
-          </Link>
+
+          <motion.div initial={{ scale: 1 }} className="my-4" whileHover={{ scale: 1.2, x: 40, }}>
+            <Link onClick={simulateEscapeKeyPress} to="/login" className="py-4">
+              Log-In
+            </Link></motion.div>
         )}
         {token ? (
-          <button onClick={openModal} className="py-4">
-            Log-Out
-          </button>
+
+          <motion.div initial={{ scale: 1 }} className="my-4" whileHover={{ scale: 1.2, x: 40, }}>
+            <button onClick={openModal} className="hover:italic">
+              Log-Out
+            </button></motion.div>
         ) : null}
       </Menu>
       <LogOutModal isOpen={isOpen} closeModal={closeModal} logOut={logOut} />

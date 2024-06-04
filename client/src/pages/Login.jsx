@@ -36,6 +36,7 @@ function Login() {
                 }}
                 placeholder="Email"
                 required
+                className="min-w-[200px]"
               />
             </div>
             <div className="pb-4 text-material">
@@ -47,12 +48,13 @@ function Login() {
                   setPassword(e.target.value);
                 }}
                 placeholder="Password"
+                className="min-w-[200px]"
                 required
               />
             </div>
             <div className="flex justify-center">
               <input
-                className="bg-accent rounded-full px-4 border-primary border-2"
+                className="bg-accent rounded-full px-4 border-primary border-2 hover:bg-primary hover:border-accent hover:text-accent"
                 type="submit"
                 value="Log-In"
               />
@@ -68,7 +70,7 @@ function Login() {
           </div>
           <div className="flex justify-center pt-4 ">
             <Link
-              className="bg-material text-accent border-accent border-2 rounded-full px-4"
+              className="bg-material text-accent border-accent border-2 rounded-full px-4 hover:bg-accent hover:border-material hover:text-material"
               to="/signup"
             >
               Sign-Up

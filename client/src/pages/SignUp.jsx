@@ -57,6 +57,7 @@ function SignUp() {
                 onChange={handleChange}
                 placeholder="Email"
                 required
+                className="min-w-[200px]"
               />
             </div>
             <div className="pb-4 text-material">
@@ -67,6 +68,7 @@ function SignUp() {
                 onChange={handleChange}
                 placeholder="Password"
                 required
+                className="min-w-[200px]"
               />
             </div>
             <div className="pb-4 text-material">
@@ -77,6 +79,7 @@ function SignUp() {
                 onChange={handleChange}
                 placeholder="Confirm Password"
                 required
+                className="min-w-[200px]"
               />
             </div>
 
@@ -88,6 +91,7 @@ function SignUp() {
                 onChange={handleChange}
                 placeholder="First Name"
                 required
+                className="min-w-[200px]"
               />
             </div>
             <div className="pb-4 text-material">
@@ -98,6 +102,7 @@ function SignUp() {
                 onChange={handleChange}
                 placeholder="Last Name"
                 required
+                className="min-w-[200px]"
               />
             </div>
             <div className="flex justify-center ">
