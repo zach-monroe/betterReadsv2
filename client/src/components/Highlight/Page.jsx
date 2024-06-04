@@ -12,7 +12,7 @@ function Page({ highlight, isFront }) {
 }
 
 function UserPage({ highlight, entry, user_id, book_id, isFront }) {
-  const [editableHighlight, setEdit] = useState(highlight);
+  const [editableHighlight, setEdit] = useState(highlight !== "" ? highlight : "Add Your Highlight Here");
   const contentEditableRef = useRef(null);
 
   async function submitHighlight() {
