@@ -43,7 +43,7 @@ function Burger() {
   return (
     <div className="font-libre-baskerville">
       <Menu>
-        <motion.div initial={{ scale: 1 }} className="my-4" whileHover={{ scale: 1.2, x: 40, }}>
+        <motion.div initial={{ scale: 1 }} className="my-4 min-w-full" whileHover={{ scale: 1.2, x: 40, }}>
           <Link onClick={simulateEscapeKeyPress} to="/" className="py-4">
             Home
           </Link></motion.div>

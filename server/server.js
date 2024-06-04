@@ -83,6 +83,7 @@ app.get("/api/edit/:id", async (req, res) => {
 });
 
 app.post("/api/update", async (req, res) => {
+  console.log(JSON.stringify(req.body))
   const title = req.body.title;
   const author_fname = req.body.author_fname;
   const author_lname = req.body.author_lname;
@@ -92,14 +93,15 @@ app.post("/api/update", async (req, res) => {
   try {
     const readResult = await db.query(
       "UPDATE read SET author_lname = $1, title = $2, rating = $3, author_fname = $4 WHERE id = $5",
-      [author_lname, title, notes, rating, author_fname, id],
+      [author_lname, title, rating, author_fname, id],
     );
+
+    res.status(200).json({ message: "Update Posted!" });
   } catch (err) {
     console.log(err.body);
     res.status(400).json({ message: "Update could not be posted." });
   }
 
-  res.status(200).json({ message: "Update Posted!" });
 });
 
 app.post("/api/delete", async (req, res) => {

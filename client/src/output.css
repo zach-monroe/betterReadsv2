@@ -696,6 +696,10 @@ html {
   min-width: 200px;
 }
 
+.min-w-full{
+  min-width: 100%;
+}
+
 .max-w-80{
   max-width: 20rem;
 }

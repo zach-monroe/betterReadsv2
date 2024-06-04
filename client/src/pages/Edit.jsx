@@ -66,7 +66,7 @@ function Edit() {
 
       if (response.ok) {
         setIsSubmitting(false);
-        navigate("/");
+        navigate("/profile");
       } else {
         throw new Error("Failed to add book: " + response.statusText);
       }
