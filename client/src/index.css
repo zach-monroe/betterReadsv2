@@ -194,8 +194,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Test Highlight stuff */ 
 
 
-/* Add this CSS to your stylesheet */
 .fade-out {
   opacity: 0;
   transition: opacity 0.3s ease-in-out; /* Adjust the duration and easing function as needed */
+}
+
+
+.no-scroll {
+  overflow: hidden;
 }

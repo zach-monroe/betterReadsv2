@@ -274,7 +274,7 @@ app.post("/api/highlights/", async (req, res) => {
         [highlight, user_id, book_id, entry],
       );
       res.status(201).json({
-        message: "Highlight Updated Successfully",
+        message: "updated",
         highlight: result.rows[0],
       });
     } else {
@@ -283,7 +283,7 @@ app.post("/api/highlights/", async (req, res) => {
         [book_id, user_id, entry, highlight],
       );
       res.status(201).json({
-        message: "Highlight added successfully",
+        message: "added",
         highlight: result.rows[0],
       });
       console.log("added a new highlight");

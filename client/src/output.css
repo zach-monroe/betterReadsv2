@@ -555,6 +555,10 @@ html {
   pointer-events: auto;
 }
 
+.invisible{
+  visibility: hidden;
+}
+
 .fixed{
   position: fixed;
 }
@@ -637,16 +641,20 @@ html {
   margin-left: 0px;
 }
 
+.mt-12{
+  margin-top: 3rem;
+}
+
+.mt-2{
+  margin-top: 0.5rem;
+}
+
 .mt-20{
   margin-top: 5rem;
 }
 
 .mt-4{
   margin-top: 1rem;
-}
-
-.mt-8{
-  margin-top: 2rem;
 }
 
 .block{
@@ -665,12 +673,12 @@ html {
   display: none;
 }
 
-.max-h-screen{
-  max-height: 100vh;
+.h-0{
+  height: 0px;
 }
 
-.min-h-72{
-  min-height: 18rem;
+.max-h-screen{
+  max-height: 100vh;
 }
 
 .min-h-full{
@@ -756,6 +764,10 @@ html {
   overflow: hidden;
 }
 
+.overflow-y-auto{
+  overflow-y: auto;
+}
+
 .rounded{
   border-radius: 0.25rem;
 }
@@ -768,13 +780,26 @@ html {
   border-width: 2px;
 }
 
+.border-b-0{
+  border-bottom-width: 0px;
+}
+
 .border-b-2{
   border-bottom-width: 2px;
+}
+
+.border-t-0{
+  border-top-width: 0px;
 }
 
 .border-accent{
   --tw-border-opacity: 1;
   border-color: rgb(255 118 41 / var(--tw-border-opacity));
+}
+
+.border-black{
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
 .border-material{
@@ -1203,12 +1228,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Test Highlight stuff */
 
-/* Add this CSS to your stylesheet */
-
 .fade-out {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   /* Adjust the duration and easing function as needed */
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 .hover\:bg-primary:hover{
