@@ -9,7 +9,6 @@ import Profile from "./pages/Profile";
 import AuthProvider from "./AuthProvider";
 import PrivateRoute from "./routes/PrivateRoute";
 import Burger from "./components/BurgerMenu";
-import TestHighlight from "./components/TestHighlight";
 
 function App() {
   return (
@@ -28,7 +27,6 @@ function App() {
                 <Route path="/new" element={<New />} />
                 <Route path="/profile" element={<Profile />} />
               </Route>
-              <Route path="/highlight" element={<TestHighlight />} />
             </Routes>
           </div>
         </AuthProvider>
