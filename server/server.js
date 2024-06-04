@@ -1,7 +1,6 @@
 import express from "express";
 import pg from "pg";
 import bodyParser from "body-parser";
-import password from "./config.js";
 import bcrypt from "bcrypt";
 import "dotenv/config";
 import jwt from "jsonwebtoken";
@@ -15,11 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 const db = new pg.Client({
-  host: "localhost",
-  database: "books",
+  host: process.env.HOST,
+  database: process.env.DATABASE,
   user: "postgres",
-  password,
-  port: 5432,
+  password: process.env.PASSWORD,
+  port: process.env.PORT,
 });
 
 db.connect();
