@@ -294,34 +294,6 @@ app.post("/api/highlights/", async (req, res) => {
   }
 });
 
-app.delete("/api/highlights/:user_id/:book_id/:entry", async (req, res) => {
-  const user_id = req.params.user_id;
-  const book_id = req.params.book_id;
-  const entry = req.params.entry;
-
-  try {
-    // Check if the highlight exists
-    const existingHighlight = await db.query(
-      "SELECT * FROM highlights WHERE user_id = $1 AND book_id = $2 AND entry = $3",
-      [user_id, book_id, entry],
-    );
-
-    if (existingHighlight.rows.length === 0) {
-      return res.status(404).json({ message: "Highlight not found" });
-    }
-
-    // Delete the highlight
-    await db.query(
-      "DELETE FROM highlights WHERE user_id = $1 AND book_id = $2 AND entry = $3",
-      [user_id, book_id, entry],
-    );
-
-    res.status(203).json({ message: "Highlight deleted successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
 
 app.listen(port, () => {
   console.log(`Server is live at port ${port}`);
