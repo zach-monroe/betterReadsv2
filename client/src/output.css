@@ -1155,16 +1155,29 @@ Note: Beware of modifying this element as it can break the animations - you shou
   overflow-y: auto;
 }
 
-/* Test Highlight stuff */
-
-.fade-out {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  /* Adjust the duration and easing function as needed */
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.no-scroll {
-  overflow: hidden;
+.loading-spinner {
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid #333;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .hover\:border-accent:hover{
