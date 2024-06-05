@@ -1,6 +1,6 @@
 import "../../output.css";
 import React, { useState, useRef } from "react";
-import FullPage from "./Page";
+import FullPage from "./FullPage";
 
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);

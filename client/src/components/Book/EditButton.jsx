@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 function EditButton(props) {
   const navigate = useNavigate();
 
+  //sends book data to Edit.jsx when user clicks on the button.
+
   return (
     <div>
       <button

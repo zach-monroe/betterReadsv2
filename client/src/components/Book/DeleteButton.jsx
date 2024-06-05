@@ -7,17 +7,21 @@ function DeleteButton(props) {
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleDeleteClick = () => {
+    //shows confirmation menu
     setShowConfirm(true);
   };
 
   const cancelDelete = () => {
+    //removes confirmation menu if user clicks "No".
     setShowConfirm(false);
   };
 
   const confirmDelete = async () => {
+    //this function is called only AFTER the user has confirmed their desire to delete.
     console.log("handle delete has been called");
 
     try {
+      //Calls Delete Endpoint
       const response = await fetch("/api/delete", {
         method: "POST",
         headers: {
@@ -25,17 +29,19 @@ function DeleteButton(props) {
         },
         body: JSON.stringify({ id: props.id, user: user.id }), // Send the id to delete, and user_id to verify
       });
-
+      //handles when deletion behaves as expected.
       if (response.ok) {
         console.log("Item deleted successfully");
-        props.onDelete(props.id);
+        props.onDelete(props.id); //Called to handle the deletion animation for the client.
         console.log("DeleteButton handle delete worked");
       } else {
         console.error("Failed to delete item:", response.status);
+        throw new Error()
       }
     } catch (error) {
       console.error("Error deleting item:", error);
     } finally {
+      //closes both the confirmation menu and the BigBookCard
       props.closePopUp();
       setShowConfirm(false);
     }

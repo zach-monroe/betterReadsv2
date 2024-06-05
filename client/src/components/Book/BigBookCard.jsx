@@ -3,7 +3,7 @@ import "../../output.css";
 import { motion, AnimatePresence } from "framer-motion";
 import BookDetailsModal from "./BookDetailsModal";
 
-function BigBookCard({
+function AnimateBigBookCard({
   isProfile,
   selectedBook,
   setSelectedBook,
@@ -14,6 +14,7 @@ function BigBookCard({
     setSelectedBook(null);
   }
 
+  //NOTE: BigBookCard is just a wrapper that handles the animation for the information stored in the BookDetailsModal.  This was to keep the code from getting overly complex in this section.
   return (
     <AnimatePresence>
       {selectedBook && (
@@ -46,4 +47,4 @@ function BigBookCard({
   );
 }
 
-export default BigBookCard;
+export default AnimateBigBookCard;

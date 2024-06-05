@@ -4,13 +4,14 @@ import { useAuth } from "../../AuthProvider.js";
 import UserFlipBook from "./UserFlipBook"
 import GenericFlipBook from "./GenericFlipBook"
 
+
+//This Function handles the fetching of the highlights for the selected book, as well as rendering the correct flipbook based on user permissions.
 function Highlight({ selectedBook }) {
   const { user } = useAuth();
   const [backendData, setBackendData] = useState({});
-  console.log(JSON.stringify(user));
-  console.log(JSON.stringify(selectedBook));
 
   useEffect(() => {
+    //fetches data from api for this particular book.
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -26,10 +27,8 @@ function Highlight({ selectedBook }) {
     fetchData();
   }, [selectedBook]);
 
-  console.log(JSON.stringify(backendData));
-
+  //deconstructing backendData into the highlights array for mapping.
   const { highlights } = backendData;
-  console.log(highlights);
 
   return (
     <div className="min-h-screen flex justify-center items-center">

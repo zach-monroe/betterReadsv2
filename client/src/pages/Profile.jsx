@@ -3,7 +3,7 @@ import "../output.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider";
 import BookCard from "../components/BookCard";
-import BigBookCard from "../components/Book/BigBookCard";
+import AnimateBigBookCard from "../components/Book/BigBookCard";
 import AnimateHighlight from "../components/Highlight/AnimateHighlight";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -101,7 +101,7 @@ function Profile() {
           )}
         </div>
       </div>
-      <BigBookCard
+      <AnimateBigBookCard
         isProfile={true}
         selectedBook={selectedBook}
         setSelectedBook={setSelectedBook}

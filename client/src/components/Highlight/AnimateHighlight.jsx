@@ -3,9 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import Highlight from "./Highlight";
 import { useEffect } from "react";
 
+
+//this is a wrapper to animate the Highlight component. Much like how AnimateBigBookCard is the animation wrapper for the BookDetailsModal.
 function AnimateHighlight({ highlightIsOpen, selectedBook, setHighlight }) {
+  // props are sent from whatever page has been rendered (Home.jsx or Profile.jsx)
 
   useEffect(() => {
+    //this makes sure that that the background doesn't scroll when the user has the highlight flipbook open.
     if (highlightIsOpen) {
       document.body.classList.add("no-scroll");
     } else {

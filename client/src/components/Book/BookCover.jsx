@@ -34,7 +34,7 @@ function BookCover(props) {
   return (
     <>
       <div
-        className={
+        className={ //Insures that the shadow functionality only appears in the BigBookCard
           props.isAnimated
             ? "rounded hover:shadow-xl hover:shadow-accent"
             : "rounded hover:shadow-none"

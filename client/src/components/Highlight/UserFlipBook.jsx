@@ -1,7 +1,7 @@
 import "../../output.css";
 import React, { useState } from "react";
 import { useRef } from "react"
-import FullPage from "./Page";
+import FullPage from "./FullPage";
 
 // HACK: This file is in fact a hot mess.
 // - Have tried using useState instead of pages with a while loop.  It never renders correctly.

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../output.css";
 import BookCard from "../components/BookCard";
-import BigBookCard from "../components/Book/BigBookCard";
+import AnimateBigBookCard from "../components/Book/BigBookCard";
 import AnimateHighlight from "../components/Highlight/AnimateHighlight";
 import Header from "../components/Header";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -69,7 +69,7 @@ function Home() {
           </div>
         )}
       </div>
-      <BigBookCard
+      <AnimateBigBookCard
         isProfile={false}
         selectedBook={selectedBook}
         setSelectedBook={setSelectedBook}
