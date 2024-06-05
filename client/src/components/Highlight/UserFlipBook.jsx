@@ -39,7 +39,7 @@ function UserFlipBook({ highlights }) {
     }
   };
 
-  //defining pages outside of the scope of generatePages so it can be accessed globally if needed.
+  //defining pages outside of the scope of generatePages so it can be referenced globally as needed.
   let pages = []
 
   //generatePages generates the pages in accordance with the length and content of highlights.
@@ -164,7 +164,7 @@ function UserFlipBook({ highlights }) {
         className="book"
         id="book"
         style={{
-          transform:
+          transform: //handles opening and closing animations
             isOpen && currentPage > 0
               ? "translateX(50%)"
               : !isOpen && currentPage > 0

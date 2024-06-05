@@ -13,6 +13,8 @@ function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
 
+
+  //function for when user hits the next arrow. Handles animations for opening and closing the book (Defined below.)
   const goNextPage = () => {
     if (currentPage < pages.length) {
       if (currentPage === 0) {
@@ -25,6 +27,8 @@ function GenericFlipBook({ highlights }) {
     }
   };
 
+
+  //function for when user hits the previous arrow. Handles animations for opening and closing the book (Defined below.)
   const goPrevPage = () => {
     if (currentPage > 0) {
       if (currentPage === 1) {
@@ -37,8 +41,12 @@ function GenericFlipBook({ highlights }) {
     }
   };
 
+  //declaring pages globally so it can be referrenced as needed.
   let pages = []
+
+  //generates pages in accordance with highlights.length
   const generatePages = () => {
+
     pages = [
       <div
         key={-1}
@@ -50,9 +58,14 @@ function GenericFlipBook({ highlights }) {
     let i = 0;
     let counter = 0;
 
+    //adds all entries from highlights. 
     while (i < highlights.length) {
+
       counter = Math.floor(i / 2) + 1;
+
       if (i + 1 < highlights.length) {
+        //ensures both front and back pages have highlights.
+
         pages.push(
           <FullPage
             key={i}
@@ -70,7 +83,10 @@ function GenericFlipBook({ highlights }) {
             book_id={highlights[i].book_id}
           />
         );
+
       } else {
+        //if front page has a highlight but the back page does not, this handles adding a blank back page.
+
         pages.push(
           <FullPage
             key={i}
@@ -88,11 +104,13 @@ function GenericFlipBook({ highlights }) {
             book_id={highlights[i].book_id}
           />
         );
+
       }
 
       i += 2;
     }
 
+    //adding back cover
     pages.push(
       <div
         key={pages.length}
@@ -108,6 +126,8 @@ function GenericFlipBook({ highlights }) {
 
   };
 
+
+  //generating pages
   generatePages();
 
   return (
@@ -124,7 +144,7 @@ function GenericFlipBook({ highlights }) {
         className="book"
         id="book"
         style={{
-          transform:
+          transform: //handles opening and closing animations
             isOpen && currentPage > 0
               ? "translateX(50%)"
               : !isOpen && currentPage > 0
