@@ -1,18 +1,24 @@
 import "../../output.css";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import FullPage from "./FullPage";
+
+
+//This file does not adhere to React best practices.
+//There are a few reasons for this.
+//1. React Component Libraries for this purpose were not compatible with edit functionality.
+//2. Using state management as I have in the rest of this project proved to only inhibit the rendering of the pages.
+//////for some reason. The only way to get this to render correctly in the dom was to create my own generatePages function.
 
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
-  const pagesRef = useRef([]);
 
   const goNextPage = () => {
-    if (currentPage < pagesRef.current.length) {
+    if (currentPage < pages.length) {
       if (currentPage === 0) {
         setIsOpen(true);
       }
-      if (currentPage === pagesRef.current.length - 1) {
+      if (currentPage === pages.length - 1) {
         setIsOpen(false);
       }
       setCurrentPage((prevPage) => prevPage + 1);
@@ -24,15 +30,16 @@ function GenericFlipBook({ highlights }) {
       if (currentPage === 1) {
         setIsOpen(false);
       }
-      if (currentPage === pagesRef.current.length) {
+      if (currentPage === pages.length) {
         setIsOpen(true);
       }
       setCurrentPage((prevPage) => prevPage - 1);
     }
   };
 
+  let pages = []
   const generatePages = () => {
-    let pages = [
+    pages = [
       <div
         key={-1}
         className={`cover ${currentPage > 0 ? "flipcover" : null}`}
@@ -99,7 +106,6 @@ function GenericFlipBook({ highlights }) {
       ></div>
     );
 
-    pagesRef.current = pages;
   };
 
   generatePages();
@@ -126,7 +132,7 @@ function GenericFlipBook({ highlights }) {
                 : "translateX(0%)",
         }}
       >
-        {pagesRef.current}
+        {pages}
       </div>
       <button
         id="next-btn"

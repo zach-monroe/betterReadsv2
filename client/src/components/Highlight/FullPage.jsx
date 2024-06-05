@@ -3,11 +3,9 @@ import "../../output.css";
 import Page from "./GenericPage"
 import UserPage from "./UserPage"
 
-
 //This function is what is sent to the UserFlipBook and the GenericFlipBook component and used in their logic.
 //They pass their props in this manner.
 //Generic/UserFlipBook --> FullPage --> Page/UserPage
-
 
 function FullPage({
   frontHighlight,
@@ -22,6 +20,7 @@ function FullPage({
   currentPage,
   highlights_length,
 }) {
+
   if (isUser) {
     return (
       <div
