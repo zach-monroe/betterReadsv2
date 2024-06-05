@@ -7,7 +7,7 @@ import FullPage from "./FullPage";
 //There are a few reasons for this.
 //1. React Component Libraries for this purpose were not compatible with edit functionality.
 //2. Using state management as I have in the rest of this project proved to only inhibit the rendering of the pages.
-//////for some reason. The only way to get this to render correctly in the dom was to create my own generatePages function.
+//// The only way to get this to render correctly in the dom was to create my own generatePages function.
 
 function GenericFlipBook({ highlights }) {
   const [currentPage, setCurrentPage] = useState(0);

@@ -1,3 +1,5 @@
+//Separated out ISBN fetching and Database additions into a separate file to make New.jsx more readable.
+//
 //Function for getting the ISBN number from an API
 async function fetchISBN(title, author_lname) {
   try {
@@ -32,6 +34,8 @@ async function fetchISBN(title, author_lname) {
     throw new Error("Failed to fetch ISBN: " + error.message);
   }
 }
+
+
 
 // Function that handles adding the book to the database by sending an API post request.
 async function addBookToDatabase(bookData, isbn) {
