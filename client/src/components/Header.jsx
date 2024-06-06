@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+//handles Reads header with animations.
+
 function Header() {
   return (
     <h1 className="pt-10 text-3xl font-libre-baskerville">

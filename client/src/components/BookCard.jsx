@@ -8,8 +8,6 @@ function BookCard(props) {
     props;
 
   //this handles formatting the data to present properly.
-  // BUG: Doesn't handle when there is more than one word in a title.
-
   let shortTitle = "";
   const formattedTitle = title?.[0].toUpperCase() + title?.substring(1);
   const formattedAuthorFname =

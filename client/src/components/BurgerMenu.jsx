@@ -13,6 +13,7 @@ function Burger() {
   const [isOpen, setIsOpen] = useState(false);
   const auth = useAuth();
 
+  //Work around to close the menu when an item is pressed. Much simpler than the alternative.
   function simulateEscapeKeyPress() {
     const event = new KeyboardEvent("keydown", {
       key: "Escape",
@@ -25,21 +26,28 @@ function Burger() {
     document.dispatchEvent(event);
   }
 
+  //when logout modal is open, closes burger menu first.
   function openModal() {
     simulateEscapeKeyPress();
     setIsOpen(true);
   }
 
+
+  //handles closing log out modal.
   function closeModal() {
     setIsOpen(false);
   }
 
+
+  //logs user out.
   function logOut() {
     auth.logOut();
     setIsOpen(false);
   }
 
   const { token } = useAuth();
+
+
   return (
     <div className="font-libre-baskerville">
       <Menu>

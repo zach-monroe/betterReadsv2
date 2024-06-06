@@ -23,16 +23,19 @@ function New() {
     setIsSubmitting(true);
 
     try {
+
       // Fetch the ISBN for the book
       const isbn = await fetchISBN(book.title, book.author_lname);
       console.log("ISBN:", isbn);
 
       // If ISBN is found, continue with adding the book to the database
       if (isbn) {
+
         // Call the function to add the book to the database
         await addBookToDatabase(book, isbn);
         console.log("Book added successfully");
         setIsSubmitting(false);
+
         // once form is submitted correctly redirect the user to the homescreen.
         navigate("/");
       } else {

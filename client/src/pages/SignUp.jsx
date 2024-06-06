@@ -15,6 +15,7 @@ function SignUp() {
 
   const auth = useAuth();
 
+  //handles form changes and adds them to data.
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -23,6 +24,8 @@ function SignUp() {
       [name]: value,
     }));
   }
+
+  //handles submission of form
   async function handleSubmit(e) {
     e.preventDefault();
     if (data.password === data.confirm) {
