@@ -24,7 +24,6 @@ function BookCover(props) {
           setImgSrc(genericBookImage); // Fallback to generic book image
         }
       } catch (error) {
-        console.error("Error fetching image:", error);
         setImgSrc(genericBookImage); // Fallback to generic book image
       }
     }

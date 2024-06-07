@@ -35,6 +35,8 @@ function UserPage({ highlight, entry, user_id, book_id, isFront }) {
 
   //this handles if the user has hit the enter key, triggering submission of the Highlight 
   //instead of adding a new space to the editable content
+  //
+  //TODO: Take care of ben's comment below.
 
   function handleKeyPress(e) {
     if (e.key === "Enter") {
