@@ -27,9 +27,7 @@ const db = new pg.Client({
 db.connect();
 
 app.get("/api", async (req, res) => {
-  let result;
-
-  result = await db.query(
+  let result = await db.query(
     "SELECT read.*, isbn.*, users.user_fname as user_fname, users.user_lname as user_lname FROM read INNER JOIN isbn ON read.id = isbn.book_id INNER JOIN users on read.user_id = users.id",
   );
 
@@ -171,6 +169,7 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
+  // Usually not best practice to log the request body out, especially if there's a password
   console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;

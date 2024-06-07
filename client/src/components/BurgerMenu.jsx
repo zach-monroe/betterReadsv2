@@ -11,7 +11,7 @@ Modal.setAppElement("#root");
 
 function Burger() {
   const [isOpen, setIsOpen] = useState(false);
-  const auth = useAuth();
+  const { token, logOut } = useAuth();
 
   //Work around to close the menu when an item is pressed. Much simpler than the alternative.
   function simulateEscapeKeyPress() {
@@ -40,13 +40,10 @@ function Burger() {
 
 
   //logs user out.
-  function logOut() {
-    auth.logOut();
+  function onLogOut() {
+    logOut();
     setIsOpen(false);
   }
-
-  const { token } = useAuth();
-
 
   return (
     <div className="font-libre-baskerville">
@@ -80,7 +77,7 @@ function Burger() {
             </button></motion.div>
         ) : null}
       </Menu>
-      <LogOutModal isOpen={isOpen} closeModal={closeModal} logOut={logOut} />
+      <LogOutModal isOpen={isOpen} closeModal={closeModal} logOut={onLogOut} />
     </div>
   );
 }
