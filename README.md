@@ -40,6 +40,17 @@ I felt much more confident using Tailwind with this application, and find that u
 Hosting a full-stack application for free on AWS was a great learning experience about moving from development to production.
 
 
+## Roadblocks:
+
+The primary roadblock I faced was animating the flipbooks.  I wanted it to feel like an actual notebook, where you simply change the text on the actual pages.  I knew a form would feel less immersive for the user. 
+
+I tried using a few pre-built react components, but none of them worked well with editable content, or the animation context the component would be set in. So I decided to build my own.  I found a guide online to build something like this from scratch, and refactored it to work as a React component. (it was a static HTML and CSS site.)
+
+Refactoring it proved challenging, and my solution was less than elegant.  In a situation like this I would happily invite a more experienced developer to provide their feedback. (If you would like to contribute a better solution, feel free to open an issue.)
+
+Ultimately, I was able to get the flipbook to behave as desired. Users can add and edit their highlights, and others can view them in the context of an animated notebook.
+
+
 ## Build:
 
 Front-End: React and TailwindCSS
