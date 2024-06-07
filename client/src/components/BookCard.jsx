@@ -7,20 +7,20 @@ function BookCard(props) {
   const { id, title, author_fname, author_lname, isbn, user_fname, onSelect } =
     props;
 
+  const formatString = (str) => {
+      return str?.[0].toUpperCase() + str?.substring(1);
+  }
+
   //this handles formatting the data to present properly.
-  let shortTitle = "";
-  const formattedTitle = title?.[0].toUpperCase() + title?.substring(1);
-  const formattedAuthorFname =
-    author_fname?.[0].toUpperCase() + author_fname?.substring(1);
-  const formattedAuthorLname =
-    author_lname?.[0].toUpperCase() + author_lname?.substring(1);
-  const formattedUser =
-    user_fname?.[0].toUpperCase() + user_fname?.substring(1);
+  const formattedTitle = formatString(title)
+  const formattedAuthorFname = formatString(author_fname)
+  const formattedAuthorLname = formatString(author_lname)
+  const formattedUser = formatString(user_fname)
 
   //keeps titles from being too long on home page.
-  if (formattedTitle.length > 24) {
-    shortTitle = formattedTitle.substring(0, 21) + "...";
-  }
+  const shortTitle = formattedTitle.length > 24 ? formattedTitle.substring(0, 21) + "..." : ""
+  
+  
 
   return (
     <motion.div

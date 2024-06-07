@@ -22,7 +22,7 @@ function DeleteButton(props) {
 
     try {
       //Calls Delete Endpoint
-      const response = await fetch("/api/delete", {
+      const response = await fetch("http://18.219.34.33:5000/api/delete", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

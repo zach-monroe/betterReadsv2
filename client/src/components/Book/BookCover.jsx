@@ -10,6 +10,7 @@ function BookCover(props) {
     async function fetchImg() {
       try {
         const imgUrl = `https://covers.openlibrary.org/b/isbn/${props.isbn}-M.jpg`;
+        // Is there a reason we're using Axios here while throughout the app, we're using fetch?
         const response = await axios.get(imgUrl, { maxRedirects: 5 });
 
         // Check if response is successful and the content appears to be an image
