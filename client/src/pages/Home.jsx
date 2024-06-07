@@ -16,7 +16,7 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/api");
+        const response = await fetch("http://18.219.34.33:5000/api");
         const data = await response.json();
         setBackendData(data);
         setLoading(false);

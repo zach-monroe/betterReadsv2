@@ -19,7 +19,7 @@ function Profile() {
     const fetchData = async () => {
       try {
         // Requests the user's data by using their id number.
-        const response = await fetch(`/api/profile/${user.id}`);
+        const response = await fetch(`http://18.219.34.33:5000/api/profile/${user.id}`);
         if (response.ok) {
           // Handles normal response.
           const data = await response.json();

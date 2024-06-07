@@ -15,7 +15,7 @@ function Highlight({ selectedBook }) {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `/api/highlights?user_id=${selectedBook.user_id}&book_id=${selectedBook.book_id}`,
+          `http://18.219.34.33:5000/api/highlights?user_id=${selectedBook.user_id}&book_id=${selectedBook.book_id}`,
         );
         const data = await response.json();
         setBackendData(data);

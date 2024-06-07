@@ -41,7 +41,7 @@ async function fetchISBN(title, author_lname) {
 async function addBookToDatabase(bookData, isbn) {
   try {
     //Trying the post request to the api endpoint.
-    const response = await fetch("/api/add", {
+    const response = await fetch("http://18.219.34.33:5000/api/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

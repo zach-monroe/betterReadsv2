@@ -22,7 +22,7 @@ const AuthProvider = ({ children }) => {
   const loginAction = async (data) => {
     try {
       //fetching user information from server
-      const response = await fetch("/api/login", {
+      const response = await fetch("http://18.219.34.33:5000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
 
   const signupAction = async (data) => {
     try {
-      const response = await fetch("/api/register", {
+      const response = await fetch("http://18.219.34.33:5000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

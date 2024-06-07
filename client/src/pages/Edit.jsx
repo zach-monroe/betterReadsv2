@@ -27,7 +27,7 @@ function Edit() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/edit/${id}`);
+        const response = await fetch(`http://18.219.34.33:5000/api/edit/${id}`);
         const data = await response.json();
         setData(data);
       } catch (error) {
@@ -56,7 +56,7 @@ function Edit() {
     event.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/update", {
+      const response = await fetch("http://18.219.34.33:5000/api/update", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
