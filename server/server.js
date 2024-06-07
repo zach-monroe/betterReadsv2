@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import bcrypt from "bcrypt";
 import "dotenv/config";
 import jwt from "jsonwebtoken";
+import cors from "cors";
 
 const app = express();
 const port = 5000;
@@ -12,6 +13,8 @@ const saltRounds = 10;
 app.use(express.static("../public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors())
 
 const db = new pg.Client({
   host: process.env.HOST,
