@@ -12,7 +12,7 @@ function UserPage({ highlight, entry, user_id, book_id, isFront }) {
   async function submitHighlight() {
     try {
       //handles submission of the highlight if they hit the enter key.
-      const response = await fetch("/api/highlights/", {
+      const response = await fetch("http://18.219.34.33:5000/api/highlights/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
