@@ -38,6 +38,7 @@ function UserPage({ highlight, entry, user_id, book_id, isFront }) {
 
   function handleKeyPress(e) {
     if (e.key === "Enter") {
+      // Function needed to get rid of '&nbsp;' when user hits space twice -- the characters show up in HTML and ends up getting sent in the POST request
       e.preventDefault();
       submitHighlight();
       contentEditableRef.current.blur();
