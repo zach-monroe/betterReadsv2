@@ -36,7 +36,6 @@ app.get("/api", async (req, res) => {
 });
 
 app.post("/api/add", async (req, res) => {
-  console.log(req.body);
   //For adding the users input into the database
   const title = req.body.title;
   const author_fname = req.body.author_fname;
@@ -71,19 +70,16 @@ app.post("/api/add", async (req, res) => {
 });
 
 app.get("/api/edit/:id", async (req, res) => {
-  console.log(req.params);
   const id = req.params.id;
   const result = await db.query(
     "SELECT * FROM read INNER JOIN isbn ON read.id = isbn.book_id WHERE read.id = ($1)",
     [id],
   );
   const book = result.rows;
-  console.log(book);
   res.json({ book: book });
 });
 
 app.post("/api/update", async (req, res) => {
-  console.log(JSON.stringify(req.body))
   const title = req.body.title;
   const author_fname = req.body.author_fname;
   const author_lname = req.body.author_lname;
@@ -105,7 +101,6 @@ app.post("/api/update", async (req, res) => {
 });
 
 app.post("/api/delete", async (req, res) => {
-  console.log(req.body);
   const id = req.body.id;
   const client_id = req.body.user;
 
@@ -169,8 +164,6 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.post("/api/register", async (req, res) => {
-  // Usually not best practice to log the request body out, especially if there's a password
-  console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
   const user_fname = req.body.user_fname;
@@ -217,7 +210,6 @@ app.post("/api/register", async (req, res) => {
 });
 
 app.get("/api/profile/:id", async (req, res) => {
-  console.log(req.params);
   const id = req.params.id;
   try {
     const result = await db.query(
@@ -264,7 +256,6 @@ app.post("/api/highlights/", async (req, res) => {
   const user_id = req.body.user_id;
   const entry = req.body.entry;
   const highlight = req.body.highlight;
-  console.log(JSON.stringify(req.body));
 
   try {
     const highlightExists = await db.query(
