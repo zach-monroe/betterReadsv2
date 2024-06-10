@@ -44,6 +44,8 @@ function UserPage({ highlight, entry, user_id, book_id, isFront }) {
       e.preventDefault();
       submitHighlight();
       contentEditableRef.current.blur();
+    } else {
+      setEdit(contentEditableRef.current.innerHTML)
     }
   }
 
