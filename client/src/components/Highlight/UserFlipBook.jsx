@@ -106,7 +106,7 @@ function UserFlipBook({ highlights }) {
           />,
         );
 
-      } else if (i > highlights.length) {
+      } else if (i >= highlights.length) {
         //renders blank pages for users to make additions.
 
         pages.push(

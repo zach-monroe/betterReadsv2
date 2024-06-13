@@ -95,7 +95,7 @@ function GenericFlipBook({ highlights }) {
             i={i}
             counter={counter}
             currentPage={currentPage}
-            backHighlight={""}
+            backHighlight={" "}
             highlights_length={highlights.length}
             backEntry={highlights[i].entry + 1}
             highlights={highlights}
